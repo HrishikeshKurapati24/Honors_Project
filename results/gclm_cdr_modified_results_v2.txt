@@ -1,0 +1,7 @@
+---------------------------------------
+Elapsed time: 9494.864
+Seed: 666
+Final_AUC: 0.7892  Final_AUPR: 0.6067  Final_F1: 0.6002  Final_ACC: 0.7331
+
+Extended to 200 epochs: Final_AUC: 0.8328  Final_AUPR: 0.6876
+---------------------------------------

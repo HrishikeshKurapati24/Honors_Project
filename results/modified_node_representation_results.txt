@@ -1,0 +1,171 @@
+Using 6 omics data(no genomics instead used chromatin profiling data)
+---------------------------------------
+Elapsed time: 222.5485
+Final_AUC: 0.9464  Final_AUPR: 0.8897  Final_F1: 0.8004  Final_ACC: 0.8793
+
+using GINConv
+---------------------------------------
+Elapsed time: 225.204
+Final_AUC: 0.9399  Final_AUPR: 0.8742  Final_F1: 0.7861  Final_ACC: 0.8658
+---------------------------------------
+---------------------------------------
+
+Using all types of omics data
+---------------------------------------
+Elapsed time: 233.1298
+Final_AUC: 0.9444  Final_AUPR: 0.8772  Final_F1: 0.8005  Final_ACC: 0.8791
+
+with GINConv
+---------------------------------------
+Elapsed time: 273.0747
+Final_AUC: 0.9437  Final_AUPR: 0.8785  Final_F1: 0.7918  Final_ACC: 0.8726
+---------------------------------------
+---------------------------------------
+
+Pathway scores was excluded
+---------------------------------------
+Elapsed time: 222.1275
+Final_AUC: 0.9464  Final_AUPR: 0.8828  Final_F1: 0.8008  Final_ACC: 0.8833
+---------------------------------------
+
+Transcriptomics + Proteomics
+---------------------------------------
+Elapsed time: 182.5094
+Final_AUC: 0.9471  Final_AUPR: 0.8826  Final_F1: 0.8053  Final_ACC: 0.883
+
+with GINConv
+---------------------------------------
+Elapsed time: 275.3071
+Final_AUC: 0.9518  Final_AUPR: 0.8995  Final_F1: 0.8115  Final_ACC: 0.8886
+Notes: Better metrics but showed higher final training loss 
+---------------------------------------
+---------------------------------------
+
+Transcriptomics + Epigenomics(Methylation + Chromatin Profiling + Gene expression)
+---------------------------------------
+Elapsed time: 174.9401
+Final_AUC: 0.9497  Final_AUPR: 0.8938  Final_F1: 0.8148  Final_ACC: 0.8873
+
+With GINConv
+---------------------------------------
+Elapsed time: 198.3089
+Final_AUC: 0.9516  Final_AUPR: 0.8979  Final_F1: 0.8094  Final_ACC: 0.8874
+Notes: Showed lower training loss
+---------------------------------------
+
+with GCNConv
+---------------------------------------
+Elapsed time: 193.5543
+Final_AUC: 0.9465  Final_AUPR: 0.8874  Final_F1: 0.8036  Final_ACC: 0.8798
+---------------------------------------
+
+with GraphSAGE
+---------------------------------------
+Elapsed time: 181.212
+Final_AUC: 0.9502  Final_AUPR: 0.8942  Final_F1: 0.8086  Final_ACC: 0.8837
+---------------------------------------
+
+with GATConv
+---------------------------------------
+Elapsed time: 397.314
+Final_AUC: 0.9433  Final_AUPR: 0.8821  Final_F1: 0.7942  Final_ACC: 0.8798
+---------------------------------------
+
+using FC layers instead of attention mechanisms
+---------------------------------------
+Elapsed time: 195.8675
+Final_AUC: 0.9468  Final_AUPR: 0.8885  Final_F1: 0.7999  Final_ACC: 0.8795
+---------------------------------------
+
+using Variational autoencoders to reduce dimensionality of omics data instead of FC + RELU + BatchNorm1D + Dropout combination
+---------------------------------------
+Elapsed time: 195.5214
+Final_AUC: 0.9465  Final_AUPR: 0.8882  Final_F1: 0.7958  Final_ACC: 0.8741
+---------------------------------------
+---------------------------------------
+
+Genomics + Epigenomics + Transcriptomics
+
+with GINConv
+---------------------------------------
+Elapsed time: 230.8721
+Final_AUC: 0.9478  Final_AUPR: 0.8881  Final_F1: 0.802  Final_ACC: 0.8845
+---------------------------------------
+
+with GATConv
+---------------------------------------
+Elapsed time: 391.5928
+Final_AUC: 0.9446  Final_AUPR: 0.8809  Final_F1: 0.7985  Final_ACC: 0.882
+---------------------------------------
+
+Genomics + Transcriptomics + Proteomics
+---------------------------------------
+Elapsed time: 182.5094
+Final_AUC: 0.9471  Final_AUPR: 0.8826  Final_F1: 0.8053  Final_ACC: 0.883
+---------------------------------------
+
+Transcriptomics + Metabolomics
+---------------------------------------
+Elapsed time: 194.7601
+Final_AUC: 0.9468  Final_AUPR: 0.8813  Final_F1: 0.7974  Final_ACC: 0.8781
+---------------------------------------
+
+Transcriptomics + miRNA expression
+---------------------------------------
+Elapsed time: 184.5253
+Final_AUC: 0.9428  Final_AUPR: 0.8825  Final_F1: 0.797  Final_ACC: 0.879
+---------------------------------------
+
+Genomics + Epigenomics + Transcriptomics + Pathway
+---------------------------------------
+Elapsed time: 199.8076
+Final_AUC: 0.9462  Final_AUPR: 0.882  Final_F1: 0.7992  Final_ACC: 0.8761
+
+with GINConv
+---------------------------------------
+Elapsed time: 239.6359
+Final_AUC: 0.9479  Final_AUPR: 0.8859  Final_F1: 0.8026  Final_ACC: 0.8816
+---------------------------------------
+---------------------------------------
+
+🧩 1. AUC (Area Under the ROC Curve)
+Ranking:
+	1.	Transcriptomics + Epigenomics (Methylation + Chromatin Profiling + Gene Expression) – AUC 0.9497
+	2.	Transcriptomics + Proteomics – AUC 0.9471
+	3.	Genomics + Transcriptomics + Proteomics – AUC 0.9471
+	4.	Transcriptomics + Metabolomics – AUC 0.9468
+	5.	Six omics data (using chromatin profiling instead of genomics) – AUC 0.9464
+
+
+📈 2. AUPR (Area Under the Precision–Recall Curve)
+Ranking:
+	1.	Transcriptomics + Epigenomics (Methylation + Chromatin Profiling + Gene Expression) – AUPR 0.8938
+	2.	Six omics data (chromatin instead of genomics) – AUPR 0.8897
+	3.	Pathway scores excluded – AUPR 0.8828
+	4.	Transcriptomics + Proteomics – AUPR 0.8826
+
+
+⚖️ 3. F1 Score
+Ranking:
+	1.	Transcriptomics + Epigenomics – F1 0.8148
+	2.	Transcriptomics + Proteomics – F1 0.8053
+	3.	Genomics + Transcriptomics + Proteomics – F1 0.8053
+	4.	Pathway scores excluded – F1 0.8008
+	5.	Six omics data (chromatin instead of genomics) – F1 0.8004
+
+
+📊 4. Accuracy (ACC)
+Ranking:
+	1.	Transcriptomics + Epigenomics – Accuracy 0.8873
+	2.	Pathway scores excluded – Accuracy 0.8833
+	3.	Transcriptomics + Proteomics – Accuracy 0.8830
+	4.	Genomics + Transcriptomics + Proteomics – Accuracy 0.8830
+	5.	Six omics data (chromatin instead of genomics) – Accuracy 0.8793
+
+🧠 Overall Summary
+Across all metrics — AUC, AUPR, F1, and Accuracy — the Transcriptomics + Epigenomics (Methylation + Chromatin Profiling + Gene Expression) combination consistently outperforms every other setup.
+It captures gene-level activity together with the regulatory context (via methylation and chromatin accessibility), providing a more complete picture of drug sensitivity mechanisms.
+
+The next best performer is Transcriptomics + Proteomics, which still performs strongly but lacks the regulatory layer captured by epigenomics.
+Combinations that include all omics or pathway features don’t outperform simpler, more biologically focused subsets — indicating that adding too many omic layers may introduce redundancy or noise rather than improving prediction.
+

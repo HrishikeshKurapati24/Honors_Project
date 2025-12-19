@@ -1,0 +1,26 @@
+# -----------------------------
+# Core Colab-Compatible Packages
+# -----------------------------
+numpy==1.26.4
+scipy==1.16.3
+pandas==2.2.2
+scikit-learn==1.6.1
+hickle==5.0.2
+
+# -----------------------------
+# PyTorch + CUDA 12.1
+# -----------------------------
+torch==2.4.1
+torchvision
+torchaudio
+
+# -----------------------------
+# PyTorch Geometric + Extensions
+# -----------------------------
+torch-geometric==2.6.1
+torch-scatter==2.1.2+pt24cu121
+torch-sparse==0.6.18+pt24cu121
+
+# Chemistry and Drug Feature Extraction (used in extract_drug_feature.py)
+rdkit==2024.03.5
+deepchem==2.8.0

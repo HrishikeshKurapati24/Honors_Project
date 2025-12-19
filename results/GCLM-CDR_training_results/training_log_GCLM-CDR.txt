@@ -1,0 +1,981 @@
+Make 2 plots one for loss and one for test metrics over the epochs.
+GCLM-CDR training metrics:
+Using 3 modalities for training
+
+
+=== Active Modalities ===
+Genomics: ✓
+Epigenomics: ✓
+Transcriptomics: ✓
+Proteomics: ✗
+Metabolomics: ✗
+Pathway: ✗
+Enhanced Drug Representation: ✗
+Transformer Drug Architecture (2GIN+1Transformer): ✗
+Cell Line Module Variation: original
+========================
+
+Loading drug features from: ../new_data/GDSC/Drug/drug_graph_feat
+Found 229 HKL files
+/usr/local/lib/python3.12/dist-packages/hickle/hickle.py:356: UserWarning: Input argument 'file_obj' appears to be a file made with hickle v3. Using legacy load...
+  warnings.warn("Input argument 'file_obj' appears to be a file made"
+Loaded 229 drug features
+NOTE: Pathway data loading is commented out to increase dataset size by excluding pathway-based filtering.
+Found 537 common cell lines across 5 omics (pathway excluded from intersection).
+Loaded response file with 111248 rows
+Filtering by drug features (229 drugs available)
+After drug filter: 111248 rows (removed 0)
+Filtering by cell lines (537 cells available)
+After cell line filter: 90177 rows (removed 21071)
+All 87199 pairs across 435 cell lines and 228 drugs.
+
+=== Running GCLM_CDR ===
+Using device: cuda
+GCLM_CDR input dimensions - Genomics: 34673, Epigenomics: 1355, Transcriptomics: 32361
+/usr/local/lib/python3.12/dist-packages/torch_geometric/data/in_memory_dataset.py:300: UserWarning: It is not recommended to directly access the internal storage format `data` of an 'InMemoryDataset'. If you are absolutely certain what you are doing, access the internal storage via `InMemoryDataset._data` instead to suppress this warning. Alternatively, you can access stacked individual attributes of every graph via `dataset.{attr_name}`.
+  warnings.warn(msg)
+
+epoch: 0
+train loss:  0.6498
+  pred loss:  0.4883
+  pos loss:  0.7571
+  neg loss:  0.7577
+test auc: 0.6518  test aupr: 0.4301  test f1: 0.4851  test acc: 0.5512
+
+epoch: 1
+train loss:  0.5834
+  pred loss:  0.4127
+  pos loss:  0.6969
+  neg loss:  0.6975
+test auc: 0.6676  test aupr: 0.4398  test f1: 0.4995  test acc: 0.558
+
+epoch: 2
+train loss:  0.5765
+  pred loss:  0.3977
+  pos loss:  0.6956
+  neg loss:  0.696
+test auc: 0.5854  test aupr: 0.3724  test f1: 0.4529  test acc: 0.3448
+
+epoch: 3
+train loss:  0.5744
+  pred loss:  0.3932
+  pos loss:  0.6949
+  neg loss:  0.6955
+test auc: 0.6439  test aupr: 0.4094  test f1: 0.4858  test acc: 0.4773
+
+epoch: 4
+train loss:  0.5707
+  pred loss:  0.3841
+  pos loss:  0.6946
+  neg loss:  0.6956
+test auc: 0.6223  test aupr: 0.4116  test f1: 0.4678  test acc: 0.4714
+
+epoch: 5
+train loss:  0.5706
+  pred loss:  0.3844
+  pos loss:  0.6943
+  neg loss:  0.6952
+test auc: 0.6473  test aupr: 0.429  test f1: 0.4826  test acc: 0.4964
+
+epoch: 6
+train loss:  0.5708
+  pred loss:  0.385
+  pos loss:  0.6941
+  neg loss:  0.6952
+test auc: 0.6118  test aupr: 0.3949  test f1: 0.4644  test acc: 0.4507
+
+epoch: 7
+train loss:  0.5693
+  pred loss:  0.3814
+  pos loss:  0.694
+  neg loss:  0.695
+test auc: 0.6412  test aupr: 0.4294  test f1: 0.4765  test acc: 0.5119
+
+epoch: 8
+train loss:  0.5693
+  pred loss:  0.3814
+  pos loss:  0.6939
+  neg loss:  0.6952
+test auc: 0.618  test aupr: 0.404  test f1: 0.4664  test acc: 0.4647
+
+epoch: 9
+train loss:  0.5674
+  pred loss:  0.3768
+  pos loss:  0.6938
+  neg loss:  0.6952
+test auc: 0.6128  test aupr: 0.397  test f1: 0.4666  test acc: 0.4396
+
+epoch: 10
+train loss:  0.5671
+  pred loss:  0.3763
+  pos loss:  0.6938
+  neg loss:  0.695
+test auc: 0.59  test aupr: 0.3838  test f1: 0.4573  test acc: 0.3148
+
+epoch: 11
+train loss:  0.5672
+  pred loss:  0.376
+  pos loss:  0.6938
+  neg loss:  0.6956
+test auc: 0.605  test aupr: 0.3922  test f1: 0.4618  test acc: 0.441
+
+epoch: 12
+train loss:  0.5653
+  pred loss:  0.3716
+  pos loss:  0.6936
+  neg loss:  0.6953
+test auc: 0.5891  test aupr: 0.3745  test f1: 0.458  test acc: 0.3472
+
+epoch: 13
+train loss:  0.5677
+  pred loss:  0.3775
+  pos loss:  0.6937
+  neg loss:  0.6954
+test auc: 0.6185  test aupr: 0.4073  test f1: 0.4657  test acc: 0.504
+
+epoch: 14
+train loss:  0.5662
+  pred loss:  0.374
+  pos loss:  0.6936
+  neg loss:  0.6951
+test auc: 0.5947  test aupr: 0.3822  test f1: 0.4582  test acc: 0.3636
+
+epoch: 15
+train loss:  0.5686
+  pred loss:  0.3801
+  pos loss:  0.6936
+  neg loss:  0.6951
+test auc: 0.5802  test aupr: 0.3667  test f1: 0.4566  test acc: 0.3758
+
+epoch: 16
+train loss:  0.565
+  pred loss:  0.3708
+  pos loss:  0.6938
+  neg loss:  0.6951
+test auc: 0.5672  test aupr: 0.3564  test f1: 0.4555  test acc: 0.3153
+
+epoch: 17
+train loss:  0.5641
+  pred loss:  0.3682
+  pos loss:  0.6938
+  neg loss:  0.6958
+test auc: 0.5598  test aupr: 0.3479  test f1: 0.4553  test acc: 0.3149
+
+epoch: 18
+train loss:  0.5656
+  pred loss:  0.3724
+  pos loss:  0.6936
+  neg loss:  0.6953
+test auc: 0.5767  test aupr: 0.3612  test f1: 0.4567  test acc: 0.319
+
+epoch: 19
+train loss:  0.5661
+  pred loss:  0.3734
+  pos loss:  0.6938
+  neg loss:  0.6955
+test auc: 0.5816  test aupr: 0.367  test f1: 0.4588  test acc: 0.3719
+
+epoch: 20
+train loss:  0.5648
+  pred loss:  0.3703
+  pos loss:  0.6936
+  neg loss:  0.6954
+test auc: 0.6153  test aupr: 0.3983  test f1: 0.4724  test acc: 0.4759
+
+epoch: 21
+train loss:  0.5644
+  pred loss:  0.3689
+  pos loss:  0.6937
+  neg loss:  0.6958
+test auc: 0.5985  test aupr: 0.3798  test f1: 0.4638  test acc: 0.4431
+
+epoch: 22
+train loss:  0.5672
+  pred loss:  0.3765
+  pos loss:  0.6936
+  neg loss:  0.695
+test auc: 0.5872  test aupr: 0.3705  test f1: 0.4602  test acc: 0.4085
+
+epoch: 23
+train loss:  0.5638
+  pred loss:  0.3672
+  pos loss:  0.6937
+  neg loss:  0.6959
+test auc: 0.5796  test aupr: 0.3589  test f1: 0.4601  test acc: 0.4231
+
+epoch: 24
+train loss:  0.5624
+  pred loss:  0.364
+  pos loss:  0.6937
+  neg loss:  0.6958
+test auc: 0.6005  test aupr: 0.3778  test f1: 0.4676  test acc: 0.407
+
+epoch: 25
+train loss:  0.5652
+  pred loss:  0.3708
+  pos loss:  0.6939
+  neg loss:  0.6956
+test auc: 0.6008  test aupr: 0.3777  test f1: 0.4687  test acc: 0.4509
+
+epoch: 26
+train loss:  0.5658
+  pred loss:  0.3729
+  pos loss:  0.6936
+  neg loss:  0.6952
+test auc: 0.6148  test aupr: 0.3953  test f1: 0.4746  test acc: 0.4801
+
+epoch: 27
+train loss:  0.5654
+  pred loss:  0.3715
+  pos loss:  0.6936
+  neg loss:  0.6957
+test auc: 0.6042  test aupr: 0.3825  test f1: 0.4734  test acc: 0.4385
+
+epoch: 28
+train loss:  0.5677
+  pred loss:  0.3779
+  pos loss:  0.6935
+  neg loss:  0.695
+test auc: 0.5999  test aupr: 0.3831  test f1: 0.4658  test acc: 0.4495
+
+epoch: 29
+train loss:  0.5643
+  pred loss:  0.3685
+  pos loss:  0.6937
+  neg loss:  0.6961
+test auc: 0.6026  test aupr: 0.3827  test f1: 0.467  test acc: 0.481
+
+epoch: 30
+train loss:  0.5649
+  pred loss:  0.37
+  pos loss:  0.6937
+  neg loss:  0.6961
+test auc: 0.5964  test aupr: 0.3718  test f1: 0.4677  test acc: 0.4254
+
+epoch: 31
+train loss:  0.5662
+  pred loss:  0.3734
+  pos loss:  0.6936
+  neg loss:  0.6957
+test auc: 0.6243  test aupr: 0.4002  test f1: 0.4801  test acc: 0.4809
+
+epoch: 32
+train loss:  0.565
+  pred loss:  0.3706
+  pos loss:  0.6936
+  neg loss:  0.6957
+test auc: 0.6323  test aupr: 0.4187  test f1: 0.4814  test acc: 0.4941
+
+epoch: 33
+train loss:  0.5655
+  pred loss:  0.3718
+  pos loss:  0.6937
+  neg loss:  0.6956
+test auc: 0.6576  test aupr: 0.4477  test f1: 0.4882  test acc: 0.5259
+
+epoch: 34
+train loss:  0.5646
+  pred loss:  0.3691
+  pos loss:  0.6937
+  neg loss:  0.696
+test auc: 0.6488  test aupr: 0.4397  test f1: 0.4874  test acc: 0.5154
+
+epoch: 35
+train loss:  0.5619
+  pred loss:  0.3621
+  pos loss:  0.6937
+  neg loss:  0.6965
+test auc: 0.671  test aupr: 0.4634  test f1: 0.4933  test acc: 0.5559
+
+epoch: 36
+train loss:  0.5654
+  pred loss:  0.3715
+  pos loss:  0.6935
+  neg loss:  0.6957
+test auc: 0.6658  test aupr: 0.4516  test f1: 0.4973  test acc: 0.5553
+
+epoch: 37
+train loss:  0.5623
+  pred loss:  0.3637
+  pos loss:  0.6936
+  neg loss:  0.6959
+test auc: 0.6338  test aupr: 0.4141  test f1: 0.4815  test acc: 0.4973
+
+epoch: 38
+train loss:  0.564
+  pred loss:  0.3677
+  pos loss:  0.6937
+  neg loss:  0.6961
+test auc: 0.6707  test aupr: 0.4645  test f1: 0.4963  test acc: 0.5288
+
+epoch: 39
+train loss:  0.5636
+  pred loss:  0.3665
+  pos loss:  0.6938
+  neg loss:  0.6962
+test auc: 0.6932  test aupr: 0.4901  test f1: 0.5115  test acc: 0.609
+
+epoch: 40
+train loss:  0.5644
+  pred loss:  0.3686
+  pos loss:  0.6936
+  neg loss:  0.6963
+test auc: 0.6685  test aupr: 0.4535  test f1: 0.4984  test acc: 0.5147
+
+epoch: 41
+train loss:  0.5646
+  pred loss:  0.3696
+  pos loss:  0.6935
+  neg loss:  0.6956
+test auc: 0.6843  test aupr: 0.482  test f1: 0.5019  test acc: 0.6207
+
+epoch: 42
+train loss:  0.5644
+  pred loss:  0.369
+  pos loss:  0.6937
+  neg loss:  0.6956
+test auc: 0.6966  test aupr: 0.496  test f1: 0.5171  test acc: 0.6091
+
+epoch: 43
+train loss:  0.564
+  pred loss:  0.368
+  pos loss:  0.6936
+  neg loss:  0.6958
+test auc: 0.7213  test aupr: 0.537  test f1: 0.5372  test acc: 0.6564
+
+epoch: 44
+train loss:  0.5631
+  pred loss:  0.3653
+  pos loss:  0.6937
+  neg loss:  0.6961
+test auc: 0.7321  test aupr: 0.5415  test f1: 0.5445  test acc: 0.6308
+
+epoch: 45
+train loss:  0.5635
+  pred loss:  0.3664
+  pos loss:  0.6937
+  neg loss:  0.6961
+test auc: 0.7422  test aupr: 0.5519  test f1: 0.5521  test acc: 0.6598
+
+epoch: 46
+train loss:  0.5643
+  pred loss:  0.3685
+  pos loss:  0.6938
+  neg loss:  0.6961
+test auc: 0.6809  test aupr: 0.499  test f1: 0.509  test acc: 0.6433
+
+epoch: 47
+train loss:  0.5656
+  pred loss:  0.3725
+  pos loss:  0.6935
+  neg loss:  0.6951
+test auc: 0.7017  test aupr: 0.5173  test f1: 0.5161  test acc: 0.6363
+
+epoch: 48
+train loss:  0.5626
+  pred loss:  0.3638
+  pos loss:  0.6938
+  neg loss:  0.6966
+test auc: 0.6859  test aupr: 0.5066  test f1: 0.5006  test acc: 0.5613
+
+epoch: 49
+train loss:  0.5628
+  pred loss:  0.3645
+  pos loss:  0.6936
+  neg loss:  0.6964
+test auc: 0.6903  test aupr: 0.4975  test f1: 0.5068  test acc: 0.5471
+
+epoch: 50
+train loss:  0.564
+  pred loss:  0.3677
+  pos loss:  0.6936
+  neg loss:  0.696
+test auc: 0.6785  test aupr: 0.4873  test f1: 0.5027  test acc: 0.5457
+
+epoch: 51
+train loss:  0.5652
+  pred loss:  0.3707
+  pos loss:  0.6936
+  neg loss:  0.696
+test auc: 0.6735  test aupr: 0.5002  test f1: 0.5058  test acc: 0.6484
+
+epoch: 52
+train loss:  0.5639
+  pred loss:  0.3672
+  pos loss:  0.6937
+  neg loss:  0.6965
+test auc: 0.7547  test aupr: 0.5752  test f1: 0.5644  test acc: 0.6342
+
+epoch: 53
+train loss:  0.5638
+  pred loss:  0.3672
+  pos loss:  0.6937
+  neg loss:  0.696
+test auc: 0.7315  test aupr: 0.5567  test f1: 0.5547  test acc: 0.6724
+
+epoch: 54
+train loss:  0.5642
+  pred loss:  0.3679
+  pos loss:  0.6937
+  neg loss:  0.6964
+test auc: 0.7509  test aupr: 0.5729  test f1: 0.5644  test acc: 0.6682
+
+epoch: 55
+train loss:  0.5632
+  pred loss:  0.3657
+  pos loss:  0.6936
+  neg loss:  0.696
+test auc: 0.7569  test aupr: 0.5728  test f1: 0.5642  test acc: 0.6349
+
+epoch: 56
+train loss:  0.5642
+  pred loss:  0.3676
+  pos loss:  0.6942
+  neg loss:  0.6963
+test auc: 0.7774  test aupr: 0.6195  test f1: 0.5922  test acc: 0.7127
+
+epoch: 57
+train loss:  0.563
+  pred loss:  0.3652
+  pos loss:  0.6937
+  neg loss:  0.696
+test auc: 0.7642  test aupr: 0.5858  test f1: 0.5645  test acc: 0.6186
+
+epoch: 58
+train loss:  0.5611
+  pred loss:  0.3605
+  pos loss:  0.6936
+  neg loss:  0.6961
+test auc: 0.791  test aupr: 0.6313  test f1: 0.6065  test acc: 0.7228
+
+epoch: 59
+train loss:  0.5633
+  pred loss:  0.366
+  pos loss:  0.6936
+  neg loss:  0.6959
+test auc: 0.7771  test aupr: 0.6165  test f1: 0.5825  test acc: 0.7192
+
+epoch: 60
+train loss:  0.5627
+  pred loss:  0.3645
+  pos loss:  0.6937
+  neg loss:  0.696
+test auc: 0.7373  test aupr: 0.576  test f1: 0.5552  test acc: 0.6808
+
+epoch: 61
+train loss:  0.566
+  pred loss:  0.3725
+  pos loss:  0.6936
+  neg loss:  0.6964
+test auc: 0.7183  test aupr: 0.5306  test f1: 0.5434  test acc: 0.6376
+
+epoch: 62
+train loss:  0.5665
+  pred loss:  0.3741
+  pos loss:  0.6935
+  neg loss:  0.6958
+test auc: 0.7812  test aupr: 0.6229  test f1: 0.5851  test acc: 0.6823
+
+epoch: 63
+train loss:  0.562
+  pred loss:  0.3623
+  pos loss:  0.6937
+  neg loss:  0.6965
+test auc: 0.704  test aupr: 0.5516  test f1: 0.5379  test acc: 0.6814
+
+epoch: 64
+train loss:  0.5611
+  pred loss:  0.3601
+  pos loss:  0.6936
+  neg loss:  0.6967
+test auc: 0.7245  test aupr: 0.5594  test f1: 0.5477  test acc: 0.7189
+
+epoch: 65
+train loss:  0.5615
+  pred loss:  0.3606
+  pos loss:  0.6938
+  neg loss:  0.697
+test auc: 0.7793  test aupr: 0.6051  test f1: 0.594  test acc: 0.7128
+
+epoch: 66
+train loss:  0.5642
+  pred loss:  0.3682
+  pos loss:  0.6937
+  neg loss:  0.6962
+test auc: 0.7773  test aupr: 0.6116  test f1: 0.5826  test acc: 0.6754
+
+epoch: 67
+train loss:  0.5635
+  pred loss:  0.3662
+  pos loss:  0.6936
+  neg loss:  0.6966
+test auc: 0.7769  test aupr: 0.616  test f1: 0.585  test acc: 0.728
+
+epoch: 68
+train loss:  0.563
+  pred loss:  0.3652
+  pos loss:  0.6936
+  neg loss:  0.6963
+test auc: 0.7852  test aupr: 0.6262  test f1: 0.6027  test acc: 0.7387
+
+epoch: 69
+train loss:  0.5623
+  pred loss:  0.3628
+  pos loss:  0.6937
+  neg loss:  0.697
+test auc: 0.765  test aupr: 0.5863  test f1: 0.577  test acc: 0.644
+
+epoch: 70
+train loss:  0.5639
+  pred loss:  0.3669
+  pos loss:  0.6936
+  neg loss:  0.6968
+test auc: 0.7583  test aupr: 0.5841  test f1: 0.5627  test acc: 0.7142
+
+epoch: 71
+train loss:  0.5637
+  pred loss:  0.3658
+  pos loss:  0.6942
+  neg loss:  0.697
+test auc: 0.7801  test aupr: 0.6173  test f1: 0.5861  test acc: 0.7026
+
+epoch: 72
+train loss:  0.5654
+  pred loss:  0.3713
+  pos loss:  0.6935
+  neg loss:  0.696
+test auc: 0.7651  test aupr: 0.5941  test f1: 0.5723  test acc: 0.6986
+
+epoch: 73
+train loss:  0.5643
+  pred loss:  0.3683
+  pos loss:  0.6937
+  neg loss:  0.6963
+test auc: 0.7573  test aupr: 0.6175  test f1: 0.5653  test acc: 0.7203
+
+epoch: 74
+train loss:  0.5621
+  pred loss:  0.3625
+  pos loss:  0.6937
+  neg loss:  0.6965
+test auc: 0.7646  test aupr: 0.5913  test f1: 0.5749  test acc: 0.6511
+
+epoch: 75
+train loss:  0.5623
+  pred loss:  0.3633
+  pos loss:  0.6935
+  neg loss:  0.6964
+test auc: 0.733  test aupr: 0.5882  test f1: 0.5675  test acc: 0.7121
+
+epoch: 76
+train loss:  0.5625
+  pred loss:  0.3636
+  pos loss:  0.6937
+  neg loss:  0.6964
+test auc: 0.708  test aupr: 0.5431  test f1: 0.5343  test acc: 0.6309
+
+epoch: 77
+train loss:  0.5641
+  pred loss:  0.3672
+  pos loss:  0.6937
+  neg loss:  0.6968
+test auc: 0.753  test aupr: 0.5969  test f1: 0.5709  test acc: 0.7169
+
+epoch: 78
+train loss:  0.5634
+  pred loss:  0.3657
+  pos loss:  0.6936
+  neg loss:  0.6967
+test auc: 0.7502  test aupr: 0.5628  test f1: 0.5637  test acc: 0.6341
+
+epoch: 79
+train loss:  0.5647
+  pred loss:  0.3695
+  pos loss:  0.6936
+  neg loss:  0.696
+test auc: 0.735  test aupr: 0.5675  test f1: 0.5584  test acc: 0.6747
+
+epoch: 80
+train loss:  0.5645
+  pred loss:  0.369
+  pos loss:  0.6937
+  neg loss:  0.6961
+test auc: 0.7566  test aupr: 0.574  test f1: 0.5751  test acc: 0.6399
+
+epoch: 81
+train loss:  0.5637
+  pred loss:  0.3669
+  pos loss:  0.6937
+  neg loss:  0.6963
+test auc: 0.7571  test aupr: 0.597  test f1: 0.5818  test acc: 0.7325
+
+epoch: 82
+train loss:  0.563
+  pred loss:  0.3646
+  pos loss:  0.6938
+  neg loss:  0.6968
+test auc: 0.7507  test aupr: 0.5954  test f1: 0.555  test acc: 0.675
+
+epoch: 83
+train loss:  0.5622
+  pred loss:  0.3629
+  pos loss:  0.6937
+  neg loss:  0.6964
+test auc: 0.7593  test aupr: 0.6015  test f1: 0.5655  test acc: 0.676
+
+epoch: 84
+train loss:  0.5622
+  pred loss:  0.3625
+  pos loss:  0.6936
+  neg loss:  0.6969
+test auc: 0.7296  test aupr: 0.5794  test f1: 0.5302  test acc: 0.6849
+
+epoch: 85
+train loss:  0.5615
+  pred loss:  0.3609
+  pos loss:  0.6937
+  neg loss:  0.6966
+test auc: 0.7738  test aupr: 0.5866  test f1: 0.5823  test acc: 0.7032
+
+epoch: 86
+train loss:  0.5643
+  pred loss:  0.3682
+  pos loss:  0.6937
+  neg loss:  0.6962
+test auc: 0.7695  test aupr: 0.6171  test f1: 0.5862  test acc: 0.7346
+
+epoch: 87
+train loss:  0.5638
+  pred loss:  0.3668
+  pos loss:  0.6937
+  neg loss:  0.6967
+test auc: 0.762  test aupr: 0.6034  test f1: 0.5832  test acc: 0.721
+
+epoch: 88
+train loss:  0.5617
+  pred loss:  0.3613
+  pos loss:  0.6937
+  neg loss:  0.6968
+test auc: 0.7616  test aupr: 0.6043  test f1: 0.5593  test acc: 0.6855
+
+epoch: 89
+train loss:  0.5605
+  pred loss:  0.3584
+  pos loss:  0.6937
+  neg loss:  0.6969
+test auc: 0.7622  test aupr: 0.619  test f1: 0.5616  test acc: 0.6929
+
+epoch: 90
+train loss:  0.5639
+  pred loss:  0.3667
+  pos loss:  0.6937
+  neg loss:  0.6969
+test auc: 0.7822  test aupr: 0.6271  test f1: 0.5896  test acc: 0.7231
+
+epoch: 91
+train loss:  0.5598
+  pred loss:  0.3566
+  pos loss:  0.6936
+  neg loss:  0.6969
+test auc: 0.7986  test aupr: 0.6468  test f1: 0.6086  test acc: 0.7153
+
+epoch: 92
+train loss:  0.5634
+  pred loss:  0.3654
+  pos loss:  0.6939
+  neg loss:  0.6971
+test auc: 0.7769  test aupr: 0.6227  test f1: 0.5784  test acc: 0.6453
+
+epoch: 93
+train loss:  0.5619
+  pred loss:  0.3622
+  pos loss:  0.6935
+  neg loss:  0.6965
+test auc: 0.759  test aupr: 0.626  test f1: 0.567  test acc: 0.7027
+
+epoch: 94
+train loss:  0.5634
+  pred loss:  0.3645
+  pos loss:  0.694
+  neg loss:  0.698
+test auc: 0.7905  test aupr: 0.647  test f1: 0.6064  test acc: 0.7353
+
+epoch: 95
+train loss:  0.5639
+  pred loss:  0.3675
+  pos loss:  0.6935
+  neg loss:  0.6962
+test auc: 0.7623  test aupr: 0.6225  test f1: 0.5699  test acc: 0.7029
+
+epoch: 96
+train loss:  0.5642
+  pred loss:  0.368
+  pos loss:  0.6936
+  neg loss:  0.6965
+test auc: 0.7809  test aupr: 0.614  test f1: 0.608  test acc: 0.7363
+
+epoch: 97
+train loss:  0.5622
+  pred loss:  0.3618
+  pos loss:  0.6938
+  neg loss:  0.6976
+test auc: 0.7331  test aupr: 0.5867  test f1: 0.5388  test acc: 0.6446
+
+epoch: 98
+train loss:  0.5608
+  pred loss:  0.3596
+  pos loss:  0.6935
+  neg loss:  0.6964
+test auc: 0.7674  test aupr: 0.6239  test f1: 0.5632  test acc: 0.6665
+
+epoch: 99
+train loss:  0.5615
+  pred loss:  0.3608
+  pos loss:  0.6936
+  neg loss:  0.6971
+test auc: 0.7648  test aupr: 0.6089  test f1: 0.5805  test acc: 0.7021
+
+epoch: 100
+train loss:  0.5647
+  pred loss:  0.3694
+  pos loss:  0.6936
+  neg loss:  0.6963
+test auc: 0.7831  test aupr: 0.6281  test f1: 0.6039  test acc: 0.7029
+
+epoch: 101
+train loss:  0.561
+  pred loss:  0.359
+  pos loss:  0.694
+  neg loss:  0.6972
+test auc: 0.7534  test aupr: 0.6053  test f1: 0.5612  test acc: 0.7083
+
+epoch: 102
+train loss:  0.5643
+  pred loss:  0.3682
+  pos loss:  0.6935
+  neg loss:  0.6967
+test auc: 0.8063  test aupr: 0.6712  test f1: 0.6272  test acc: 0.7667
+
+epoch: 103
+train loss:  0.5632
+  pred loss:  0.3652
+  pos loss:  0.6936
+  neg loss:  0.6967
+test auc: 0.7769  test aupr: 0.634  test f1: 0.5757  test acc: 0.7044
+
+epoch: 104
+train loss:  0.5631
+  pred loss:  0.3652
+  pos loss:  0.6935
+  neg loss:  0.6964
+test auc: 0.778  test aupr: 0.6205  test f1: 0.5906  test acc: 0.6829
+
+epoch: 105
+train loss:  0.5596
+  pred loss:  0.3551
+  pos loss:  0.6939
+  neg loss:  0.6981
+test auc: 0.7108  test aupr: 0.5464  test f1: 0.5299  test acc: 0.712
+
+epoch: 106
+train loss:  0.5637
+  pred loss:  0.3665
+  pos loss:  0.6936
+  neg loss:  0.6966
+test auc: 0.7629  test aupr: 0.5923  test f1: 0.5742  test acc: 0.6927
+
+epoch: 107
+train loss:  0.5627
+  pred loss:  0.3643
+  pos loss:  0.6935
+  neg loss:  0.6965
+test auc: 0.7734  test aupr: 0.6107  test f1: 0.5693  test acc: 0.6955
+
+epoch: 108
+train loss:  0.5635
+  pred loss:  0.3658
+  pos loss:  0.6936
+  neg loss:  0.6968
+test auc: 0.7642  test aupr: 0.6175  test f1: 0.5726  test acc: 0.7433
+
+epoch: 109
+train loss:  0.5642
+  pred loss:  0.3676
+  pos loss:  0.6937
+  neg loss:  0.6967
+test auc: 0.7427  test aupr: 0.586  test f1: 0.5613  test acc: 0.7243
+
+epoch: 110
+train loss:  0.5625
+  pred loss:  0.3634
+  pos loss:  0.6938
+  neg loss:  0.6966
+test auc: 0.7102  test aupr: 0.517  test f1: 0.5331  test acc: 0.6418
+
+epoch: 111
+train loss:  0.5622
+  pred loss:  0.3624
+  pos loss:  0.6939
+  neg loss:  0.697
+test auc: 0.7675  test aupr: 0.6014  test f1: 0.5814  test acc: 0.672
+
+epoch: 112
+train loss:  0.5639
+  pred loss:  0.3666
+  pos loss:  0.6936
+  neg loss:  0.6972
+test auc: 0.794  test aupr: 0.6352  test f1: 0.6061  test acc: 0.7421
+
+epoch: 113
+train loss:  0.5634
+  pred loss:  0.3663
+  pos loss:  0.6935
+  neg loss:  0.696
+test auc: 0.7344  test aupr: 0.5954  test f1: 0.5412  test acc: 0.7011
+
+epoch: 114
+train loss:  0.5647
+  pred loss:  0.3692
+  pos loss:  0.6936
+  neg loss:  0.6966
+test auc: 0.7296  test aupr: 0.5963  test f1: 0.5352  test acc: 0.6916
+
+epoch: 115
+train loss:  0.5619
+  pred loss:  0.3614
+  pos loss:  0.6938
+  neg loss:  0.6974
+test auc: 0.7393  test aupr: 0.5819  test f1: 0.5543  test acc: 0.7234
+
+epoch: 116
+train loss:  0.56
+  pred loss:  0.3569
+  pos loss:  0.6937
+  neg loss:  0.6972
+test auc: 0.7787  test aupr: 0.6171  test f1: 0.5947  test acc: 0.7063
+
+epoch: 117
+train loss:  0.5622
+  pred loss:  0.3626
+  pos loss:  0.6941
+  neg loss:  0.6966
+test auc: 0.78  test aupr: 0.6263  test f1: 0.605  test acc: 0.7457
+
+epoch: 118
+train loss:  0.5619
+  pred loss:  0.3621
+  pos loss:  0.6935
+  neg loss:  0.6966
+test auc: 0.7596  test aupr: 0.6014  test f1: 0.5807  test acc: 0.7121
+
+epoch: 119
+train loss:  0.5616
+  pred loss:  0.3613
+  pos loss:  0.6936
+  neg loss:  0.6966
+test auc: 0.6983  test aupr: 0.5522  test f1: 0.5128  test acc: 0.6315
+
+epoch: 120
+train loss:  0.5635
+  pred loss:  0.3646
+  pos loss:  0.6939
+  neg loss:  0.6982
+test auc: 0.7386  test aupr: 0.5595  test f1: 0.5573  test acc: 0.6862
+
+epoch: 121
+train loss:  0.5625
+  pred loss:  0.3637
+  pos loss:  0.6934
+  neg loss:  0.6967
+test auc: 0.6813  test aupr: 0.533  test f1: 0.4981  test acc: 0.544
+
+epoch: 122
+train loss:  0.5632
+  pred loss:  0.3655
+  pos loss:  0.6937
+  neg loss:  0.6964
+test auc: 0.7462  test aupr: 0.577  test f1: 0.5597  test acc: 0.6699
+
+epoch: 123
+train loss:  0.5624
+  pred loss:  0.3627
+  pos loss:  0.6937
+  neg loss:  0.6974
+test auc: 0.7696  test aupr: 0.6191  test f1: 0.5913  test acc: 0.7355
+
+epoch: 124
+train loss:  0.5626
+  pred loss:  0.3633
+  pos loss:  0.6936
+  neg loss:  0.6974
+test auc: 0.7741  test aupr: 0.6155  test f1: 0.5921  test acc: 0.7489
+
+epoch: 125
+train loss:  0.5655
+  pred loss:  0.3704
+  pos loss:  0.6938
+  neg loss:  0.6972
+test auc: 0.6869  test aupr: 0.5282  test f1: 0.5004  test acc: 0.699
+
+epoch: 126
+train loss:  0.5628
+  pred loss:  0.364
+  pos loss:  0.6938
+  neg loss:  0.6971
+test auc: 0.6813  test aupr: 0.5173  test f1: 0.4908  test acc: 0.625
+
+epoch: 127
+train loss:  0.5645
+  pred loss:  0.3683
+  pos loss:  0.694
+  neg loss:  0.6966
+test auc: 0.768  test aupr: 0.6119  test f1: 0.579  test acc: 0.7093
+
+epoch: 128
+train loss:  0.5624
+  pred loss:  0.3635
+  pos loss:  0.6936
+  neg loss:  0.6964
+test auc: 0.7444  test aupr: 0.5732  test f1: 0.5606  test acc: 0.6804
+
+epoch: 129
+train loss:  0.5631
+  pred loss:  0.364
+  pos loss:  0.6937
+  neg loss:  0.6978
+test auc: 0.7349  test aupr: 0.5537  test f1: 0.5592  test acc: 0.6775
+
+epoch: 130
+train loss:  0.5627
+  pred loss:  0.3639
+  pos loss:  0.6939
+  neg loss:  0.6965
+test auc: 0.6848  test aupr: 0.5312  test f1: 0.5117  test acc: 0.6511
+
+epoch: 131
+train loss:  0.5604
+  pred loss:  0.3573
+  pos loss:  0.6939
+  neg loss:  0.6976
+test auc: 0.7754  test aupr: 0.6303  test f1: 0.5842  test acc: 0.7486
+
+epoch: 132
+train loss:  0.5612
+  pred loss:  0.3604
+  pos loss:  0.6936
+  neg loss:  0.6967
+test auc: 0.7131  test aupr: 0.5758  test f1: 0.5406  test acc: 0.6791
+
+epoch: 133
+train loss:  0.5675
+  pred loss:  0.3747
+  pos loss:  0.6948
+  neg loss:  0.6971
+test auc: 0.7698  test aupr: 0.6012  test f1: 0.5881  test acc: 0.697
+
+epoch: 134
+train loss:  0.5648
+  pred loss:  0.3698
+  pos loss:  0.6935
+  neg loss:  0.696
+test auc: 0.7408  test aupr: 0.6005  test f1: 0.5665  test acc: 0.7231

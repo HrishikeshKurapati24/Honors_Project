@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+.DS_Store
+.env
+.ipynb_checkpoints
+
+# Large Data Files (>100MB)
+data/CCLE/Initial data/DNA_methylation_promoter_CpG_clusters.csv
+data/CCLE/Initial data/gene_expression_data.csv
+data/CCLE/non-csv data files/DNA_methylation_promoter_CpG_clusters.txt
+data/CCLE/non-csv data files/gene_expression_data.txt
+data/CCLE/Processed data/DNA_methylation_promoter_CpG_clusters.csv
+data/CCLE/Processed data/gene_expression_data.csv
