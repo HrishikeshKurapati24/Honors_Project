@@ -1,0 +1,14 @@
+{
+  "model": "RedCDR",
+  "benchmark": "3OmicsBenchmarking",
+  "dataset": "dataset-1",
+  "protocol": "unseen_both",
+  "tuned": false,
+  "reused_from_protocol": "random",
+  "config": {
+    "lr": 0.001,
+    "numk": 5,
+    "rd": 0.25,
+    "pd_weight": 1.0
+  }
+}

@@ -1,0 +1,3 @@
+Logging started: logs/node_experiment_20260315_160015_655285_61027.log
+Command: main.py --k_fold 5 --execution_architecture baseline --genomics_csv ../../final_dataset/genomics_mutation.csv --use_genomics --use_epigenomics --use_transcriptomics
+==========================================

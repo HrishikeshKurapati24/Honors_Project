@@ -1,0 +1,7 @@
+run_name,status,auc,aupr,f1,acc,time(s),log_file
+P2_Baseline_GraphCDR,FAIL,,,,,8,logs/phase2_20260315_143948/P2_Baseline_GraphCDR.log
+P2_6Omics_Mutation_GIN,PASS,0.9161,0.8823,0.8111,0.8357,1028,logs/phase2_20260315_143948/P2_6Omics_Mutation_GIN.log
+P2_Mutation_Expression_GIN,PASS,0.9138,0.8782,0.8067,0.8335,1003,logs/phase2_20260315_143948/P2_Mutation_Expression_GIN.log
+P2_3Omics_Mutation_GIN,PASS,0.9145,0.8798,0.809,0.8348,990,logs/phase2_20260315_143948/P2_3Omics_Mutation_GIN.log
+P2_3Omics_Chromatin_GIN,PASS,0.9151,0.8809,0.8067,0.8295,788,logs/phase2_20260315_143948/P2_3Omics_Chromatin_GIN.log
+P2_3Omics_Mutation_GraphSAGE,PASS,0.9155,0.8827,0.8078,0.8345,1002,logs/phase2_20260315_143948/P2_3Omics_Mutation_GraphSAGE.log

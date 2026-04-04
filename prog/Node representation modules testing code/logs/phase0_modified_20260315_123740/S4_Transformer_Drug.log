@@ -1,0 +1,59 @@
+/usr/local/lib/python3.12/dist-packages/torch_geometric/data/in_memory_dataset.py:300: UserWarning: It is not recommended to directly access the internal storage format `data` of an 'InMemoryDataset'. If you are absolutely certain what you are doing, access the internal storage via `InMemoryDataset._data` instead to suppress this warning. Alternatively, you can access stacked individual attributes of every graph via `dataset.{attr_name}`.
+  warnings.warn(msg)
+/content/drive/MyDrive/CDRP models testing/prog/Node representation modules testing code/model.py:42: RuntimeWarning: divide by zero encountered in power
+  deg_inv_sqrt = np.power(deg, -0.5)
+/usr/local/lib/python3.12/dist-packages/torch_geometric/data/in_memory_dataset.py:300: UserWarning: It is not recommended to directly access the internal storage format `data` of an 'InMemoryDataset'. If you are absolutely certain what you are doing, access the internal storage via `InMemoryDataset._data` instead to suppress this warning. Alternatively, you can access stacked individual attributes of every graph via `dataset.{attr_name}`.
+  warnings.warn(msg)
+/content/drive/MyDrive/CDRP models testing/prog/Node representation modules testing code/model.py:42: RuntimeWarning: divide by zero encountered in power
+  deg_inv_sqrt = np.power(deg, -0.5)
+Logging started: logs/node_experiment_20260315_125218_215750_10462.log
+Command: main.py --epoch 1 --execution_architecture modified --k_fold 1 --genomics_csv ../../final_dataset/genomics_chromatin.csv --gnn_type GIN --use_transcriptomics --use_epigenomics --use_transformer_drug
+==========================================
+Runtime config -> requested_device=auto, resolved_device=cuda, require_gpu=False, num_workers=0, pin_memory=False
+
+Using 2 modalities for training
+
+
+=== Active Modalities ===
+Genomics: ✗
+Epigenomics: ✓
+Transcriptomics: ✓
+Proteomics: ✗
+Metabolomics: ✗
+Pathway: ✗
+Enhanced Drug Representation: ✗
+Transformer Drug Architecture (2GIN+1Transformer): ✓
+Cell Line Module Variation: original
+========================
+
+Loading drug features from: ../../final_dataset/drug_graph_feat
+Loaded 298 drug features.
+Loading Epigenomics -> epigenomics.csv
+Loading Transcriptomics -> transcriptomics.csv
+Loading response pairs: response_pairs.csv
+DATASET SIZE: 109446 pairs | 425 cells | 298 drugs.
+
+Using device: cuda (pin_memory=False, num_workers=0)
+Genomics modality disabled by flag
+Proteomics modality disabled by flag
+Metabolomics modality disabled by flag
+Pathway modality disabled by flag
+Pathway dimensions: 0
+[CellLineRepresentationModule] Initialized with variation: original
+  - Genomics: Disabled (dim=0)
+  - Epigenomics: Enabled (channels=1355)
+  - Transcriptomics: Enabled (dim=32361)
+  - Proteomics: Disabled (dim=0)
+  - Metabolomics: Disabled (dim=0)
+  - Pathway: Disabled (dim=0)
+
+epoch: 0
+train loss:  2.8867
+val loss:  21.9654
+val auc: 0.8137  val aupr: 0.8032  val f1: 0.7436  val acc: 0.7438
+
+[Model Selection] Loaded best model weights (Validation AUC: 0.8137)
+test loss:  21.6167
+test auc: 0.8189  test aupr: 0.8044  test f1: 0.7478  test acc: 0.7546
+
+Final Results (modified) -> AUC=0.8189, AUPR=0.8044, F1=0.7478, ACC=0.7546

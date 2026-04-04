@@ -1,0 +1,229 @@
+Node Representation Modules Testing Code
+Phase-Wise Results Summary
+
+Important interpretation rules:
+- Phase 0 is a smoke-testing phase only. It uses 1 epoch and 1 fold and should be read as pass/fail, not as a meaningful performance comparison.
+- Phase 1 is the first scored comparison phase. The run script uses k_fold=1 and the model default epoch count from main.py (200).
+- Phase 2 is the final 5-fold evaluation phase. The run script uses k_fold=5 and the same default epoch count (200).
+- The logged Phase 2 baseline run failed, so the only usable baseline metrics in this folder come from baseline_results.txt.
+
+============================================================
+PHASE 0
+Modified Architecture Smoke Testing
+============================================================
+
+Goal:
+- Verify that the modified node-representation architecture runs successfully across the planned modality, GNN, cell-module, and drug-module variants.
+
+Protocol:
+- execution_architecture=modified
+- epochs=1
+- k_fold=1
+
+Outcome:
+- Total runs: 24
+- Passed: 24
+- Failed: 0
+
+Stage breakdown:
+- S1 Modality / omics combinations: 12/12 passed
+- S2 GNN variants: 8/8 passed
+- S3 Cell-line module variants: 2/2 passed
+- S4 Drug representation variants: 2/2 passed
+
+Phase 0 tested configurations:
+
+S1 Modality / omics smoke runs
+- S1_6Omics_Chromatin_GIN
+- S1_6Omics_Mutation_GIN
+- S1_3Omics_Chromatin_GIN
+- S1_3Omics_Mutation_GIN
+- S1_Trans_Epi_GIN
+- S1_Genomics_Trans_GIN
+- S1_Trans_Proteomics
+- S1_Trans_Metabolomics
+- S1_Expr_miRNA
+- S1_Mutation_Expression
+- S1_Pathway_Only
+- S1_4Omics_Mut_Meth_Expr_Pathway
+
+S2 GNN smoke runs
+- S2_3Omics_GIN
+- S2_3Omics_GCN
+- S2_3Omics_GraphSAGE
+- S2_3Omics_GAT
+- S2_6Omics_GIN
+- S2_6Omics_GCN
+- S2_6Omics_GraphSAGE
+- S2_6Omics_GAT
+
+S3 Cell-line module smoke runs
+- S3_CellModule_FC
+- S3_CellModule_AE
+
+S4 Drug module smoke runs
+- S4_Transformer_Drug
+- S4_Enhanced_Drug_Active
+
+Phase 0 conclusion:
+- All planned modified-architecture node-representation configurations completed without crashing.
+- This phase established runtime feasibility only.
+
+============================================================
+PHASE 1
+Shortlisting Experiments
+============================================================
+
+Goal:
+- Compare the modified node-representation variants under actual training and identify the strongest candidates for the final 5-fold phase.
+
+Protocol:
+- execution_architecture=modified
+- k_fold=1
+- default epoch count from main.py: 200
+
+Overall best Phase 1 runs by metric:
+- Best AUC:  S1_Expr_miRNA                 AUC 0.9194
+- Best AUPR: S1_Expr_miRNA                 AUPR 0.8850
+- Best F1:   S1_Trans_Epi_GIN               F1 0.8084
+- Best ACC:  S1_Trans_Metabolomics          ACC 0.8431
+
+Important caveat:
+- The log for S1_Expr_miRNA shows:
+  "Proteomics modality enabled but matrix is empty; treating as disabled"
+  Therefore, this run should not be interpreted as a clean transcriptomics+miRNA two-modality win. Its recorded score is real, but the modality interpretation is unreliable.
+
+----------------------------
+Phase 1 - Stage S1
+Modality / Omics Comparison
+----------------------------
+
+run_name                                  AUC     AUPR    F1      ACC     time(s)
+S1_6Omics_Chromatin_GIN                   0.9059  0.8560  0.7933  0.8247  237
+S1_6Omics_Mutation_GIN                    0.9125  0.8723  0.7960  0.8290  286
+S1_3Omics_Chromatin_GIN                   0.9171  0.8815  0.8048  0.8346  237
+S1_3Omics_Mutation_GIN                    0.9166  0.8784  0.8071  0.8396  290
+S1_Trans_Epi_GIN                          0.9187  0.8832  0.8084  0.8415  235
+S1_Genomics_Trans_GIN                     0.9163  0.8800  0.8056  0.8365  234
+S1_Trans_Proteomics                       0.9188  0.8845  0.8084  0.8416  240
+S1_Trans_Metabolomics                     0.9184  0.8837  0.8082  0.8431  237
+S1_Expr_miRNA                             0.9194  0.8850  0.8071  0.8429  233
+S1_Mutation_Expression                    0.9168  0.8803  0.8058  0.8376  285
+S1_Pathway_Only                           0.9182  0.8798  0.8039  0.8366  170
+S1_4Omics_Mut_Meth_Expr_Pathway           0.9117  0.8709  0.7990  0.8335  286
+
+Stage S1 takeaways:
+- Among directly interpretable runs, the strongest modality combinations were:
+  - S1_Trans_Proteomics
+  - S1_Trans_Epi_GIN
+  - S1_Trans_Metabolomics
+  - S1_3Omics_Chromatin_GIN
+  - S1_3Omics_Mutation_GIN
+- Pathway-only performed surprisingly strongly for a single-modality run and was also the fastest S1 run.
+- 6-omics did not outperform the best lighter modality combinations in this 1-fold shortlist phase.
+
+----------------------------
+Phase 1 - Stage S2
+GNN Architecture Comparison
+----------------------------
+
+run_name                                  AUC     AUPR    F1      ACC     time(s)
+S2_3Omics_GIN                             0.9171  0.8811  0.8043  0.8369  236
+S2_3Omics_GCN                             0.9073  0.8641  0.7926  0.8267  234
+S2_3Omics_GraphSAGE                       0.9184  0.8837  0.8068  0.8397  235
+S2_3Omics_GAT                             0.9126  0.8741  0.8004  0.8303  251
+S2_6Omics_GIN                             0.9056  0.8608  0.7898  0.8198  237
+S2_6Omics_GCN                             0.9019  0.8564  0.7839  0.8189  235
+S2_6Omics_GraphSAGE                       0.9073  0.8630  0.7940  0.8257  238
+S2_6Omics_GAT                             0.8925  0.8416  0.7778  0.8102  253
+
+Stage S2 takeaways:
+- Best GNN in Phase 1: S2_3Omics_GraphSAGE
+- 3-omics outperformed 6-omics consistently across all four GNN types in this shortlist phase.
+- GAT was the weakest option here, especially in the 6-omics setting.
+
+----------------------------
+Phase 1 - Stage S3
+Cell-Line Module Variants
+----------------------------
+
+run_name                                  AUC     AUPR    F1      ACC     time(s)
+S3_CellModule_FC                          0.9100  0.8671  0.7974  0.8298  233
+S3_CellModule_AE                          0.9153  0.8750  0.8026  0.8347  239
+
+Stage S3 takeaway:
+- The AE-based cell-line module outperformed the FC variant across all reported metrics.
+
+----------------------------
+Phase 1 - Stage S4
+Drug Representation Variants
+----------------------------
+
+run_name                                  AUC     AUPR    F1      ACC     time(s)
+S4_Transformer_Drug                       0.8894  0.8379  0.7770  0.8088  775
+S4_Enhanced_Drug_Active                   0.9179  0.8821  0.8067  0.8389  239
+
+Stage S4 takeaway:
+- The enhanced drug representation ("active") clearly outperformed the transformer-drug variant.
+- The transformer-drug run was also much slower than the other Phase 1 runs.
+
+Phase 1 shortlist used for Phase 2:
+- P2_6Omics_Mutation_GIN
+- P2_Mutation_Expression_GIN
+- P2_3Omics_Mutation_GIN
+- P2_3Omics_Chromatin_GIN
+- P2_3Omics_Mutation_GraphSAGE
+
+This shortlist is consistent with notes.txt, with a specific note that:
+- P2_3Omics_Chromatin_GIN was considered attractive because it was much faster.
+- P2_6Omics_Mutation_GIN was retained because it was the most comprehensive setting.
+
+============================================================
+PHASE 2
+Final 5-Fold Evaluation
+============================================================
+
+Goal:
+- Re-evaluate the shortlisted modified node-representation configurations with full 5-fold CV.
+
+Protocol:
+- k_fold=5
+- default epoch count from main.py: 200
+
+Phase 2 logged results:
+
+run_name                                  status  AUC     AUPR    F1      ACC     time(s)
+P2_6Omics_Mutation_GIN                    PASS    0.9161  0.8823  0.8111  0.8357  1028
+P2_Mutation_Expression_GIN                PASS    0.9138  0.8782  0.8067  0.8335  1003
+P2_3Omics_Mutation_GIN                    PASS    0.9145  0.8798  0.8090  0.8348  990
+P2_3Omics_Chromatin_GIN                   PASS    0.9151  0.8809  0.8067  0.8295  788
+P2_3Omics_Mutation_GraphSAGE              PASS    0.9155  0.8827  0.8078  0.8345  1002
+
+Phase 2 best modified configurations:
+- Best AUC:  P2_6Omics_Mutation_GIN            0.9161
+- Best AUPR: P2_3Omics_Mutation_GraphSAGE      0.8827
+- Best F1:   P2_6Omics_Mutation_GIN            0.8111
+- Best ACC:  P2_6Omics_Mutation_GIN            0.8357
+- Fastest:   P2_3Omics_Chromatin_GIN           788 s
+
+Phase 2 takeaway:
+- The strongest overall modified configuration in the final 5-fold phase was P2_6Omics_Mutation_GIN.
+- P2_3Omics_Mutation_GraphSAGE was the best modified model in AUPR.
+- P2_3Omics_Chromatin_GIN remained the fastest of the shortlisted final models.
+
+============================================================
+FINAL INTERPRETATION
+============================================================
+
+1. Phase 0 established that all planned modified node-representation experiments were runnable.
+
+2. Phase 1 showed that:
+- lighter modality combinations could match or exceed larger omics combinations,
+- GraphSAGE was the strongest GNN variant in the 3-omics shortlist comparison,
+- the AE cell-line module outperformed the FC cell-line module,
+- the enhanced drug representation clearly outperformed the transformer-drug alternative.
+
+3. Phase 2 showed that:
+- P2_6Omics_Mutation_GIN was the best modified configuration overall,
+- P2_3Omics_Mutation_GraphSAGE was the best modified configuration in AUPR,
+- P2_3Omics_Chromatin_GIN was the fastest shortlisted final model.

@@ -1,0 +1,51 @@
+Logging started: logs/node_experiment_20260315_124014_998391_7079.log
+Command: main.py --epoch 1 --execution_architecture modified --k_fold 1 --genomics_csv ../../final_dataset/genomics_mutation.csv --gnn_type GIN --use_genomics --use_epigenomics --use_transcriptomics
+==========================================
+Runtime config -> requested_device=auto, resolved_device=cuda, require_gpu=False, num_workers=0, pin_memory=False
+
+Using 3 modalities for training
+
+
+=== Active Modalities ===
+Genomics: ✓
+Epigenomics: ✓
+Transcriptomics: ✓
+Proteomics: ✗
+Metabolomics: ✗
+Pathway: ✗
+Enhanced Drug Representation: ✗
+Transformer Drug Architecture (2GIN+1Transformer): ✗
+Cell Line Module Variation: original
+========================
+
+Loading drug features from: ../../final_dataset/drug_graph_feat
+Loaded 298 drug features.
+Loading Genomics -> genomics_mutation.csv
+Loading Epigenomics -> epigenomics.csv
+Loading Transcriptomics -> transcriptomics.csv
+Loading response pairs: response_pairs.csv
+DATASET SIZE: 109446 pairs | 425 cells | 298 drugs.
+
+Using device: cuda (pin_memory=False, num_workers=0)
+Proteomics modality disabled by flag
+Metabolomics modality disabled by flag
+Pathway modality disabled by flag
+Pathway dimensions: 0
+[CellLineRepresentationModule] Initialized with variation: original
+  - Genomics: Enabled (dim=34673)
+  - Epigenomics: Enabled (channels=1355)
+  - Transcriptomics: Enabled (dim=32361)
+  - Proteomics: Disabled (dim=0)
+  - Metabolomics: Disabled (dim=0)
+  - Pathway: Disabled (dim=0)
+
+epoch: 0
+train loss:  1.8439
+val loss:  3.0233
+val auc: 0.8588  val aupr: 0.7572  val f1: 0.7553  val acc: 0.7782
+
+[Model Selection] Loaded best model weights (Validation AUC: 0.8588)
+test loss:  3.0392
+test auc: 0.8644  test aupr: 0.7704  test f1: 0.7561  test acc: 0.7916
+
+Final Results (modified) -> AUC=0.8644, AUPR=0.7704, F1=0.7561, ACC=0.7916

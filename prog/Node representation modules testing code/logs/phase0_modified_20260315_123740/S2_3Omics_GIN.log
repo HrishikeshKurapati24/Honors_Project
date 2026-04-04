@@ -1,0 +1,55 @@
+/usr/local/lib/python3.12/dist-packages/torch_geometric/data/in_memory_dataset.py:300: UserWarning: It is not recommended to directly access the internal storage format `data` of an 'InMemoryDataset'. If you are absolutely certain what you are doing, access the internal storage via `InMemoryDataset._data` instead to suppress this warning. Alternatively, you can access stacked individual attributes of every graph via `dataset.{attr_name}`.
+  warnings.warn(msg)
+/usr/local/lib/python3.12/dist-packages/torch_geometric/data/in_memory_dataset.py:300: UserWarning: It is not recommended to directly access the internal storage format `data` of an 'InMemoryDataset'. If you are absolutely certain what you are doing, access the internal storage via `InMemoryDataset._data` instead to suppress this warning. Alternatively, you can access stacked individual attributes of every graph via `dataset.{attr_name}`.
+  warnings.warn(msg)
+Logging started: logs/node_experiment_20260315_124602_487265_8696.log
+Command: main.py --epoch 1 --execution_architecture modified --k_fold 1 --genomics_csv ../../final_dataset/genomics_chromatin.csv --gnn_type GIN --use_genomics --use_epigenomics --use_transcriptomics
+==========================================
+Runtime config -> requested_device=auto, resolved_device=cuda, require_gpu=False, num_workers=0, pin_memory=False
+
+Using 3 modalities for training
+
+
+=== Active Modalities ===
+Genomics: ✓
+Epigenomics: ✓
+Transcriptomics: ✓
+Proteomics: ✗
+Metabolomics: ✗
+Pathway: ✗
+Enhanced Drug Representation: ✗
+Transformer Drug Architecture (2GIN+1Transformer): ✗
+Cell Line Module Variation: original
+========================
+
+Loading drug features from: ../../final_dataset/drug_graph_feat
+Loaded 298 drug features.
+Loading Genomics -> genomics_chromatin.csv
+Loading Epigenomics -> epigenomics.csv
+Loading Transcriptomics -> transcriptomics.csv
+Loading response pairs: response_pairs.csv
+DATASET SIZE: 109446 pairs | 425 cells | 298 drugs.
+
+Using device: cuda (pin_memory=False, num_workers=0)
+Proteomics modality disabled by flag
+Metabolomics modality disabled by flag
+Pathway modality disabled by flag
+Pathway dimensions: 0
+[CellLineRepresentationModule] Initialized with variation: original
+  - Genomics: Enabled (dim=40)
+  - Epigenomics: Enabled (channels=1355)
+  - Transcriptomics: Enabled (dim=32361)
+  - Proteomics: Disabled (dim=0)
+  - Metabolomics: Disabled (dim=0)
+  - Pathway: Disabled (dim=0)
+
+epoch: 0
+train loss:  1.7118
+val loss:  4.6025
+val auc: 0.8826  val aupr: 0.8255  val f1: 0.7648  val acc: 0.794
+
+[Model Selection] Loaded best model weights (Validation AUC: 0.8826)
+test loss:  4.631
+test auc: 0.8872  test aupr: 0.8312  test f1: 0.7688  test acc: 0.8041
+
+Final Results (modified) -> AUC=0.8872, AUPR=0.8312, F1=0.7688, ACC=0.8041

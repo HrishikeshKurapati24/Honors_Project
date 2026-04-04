@@ -1,0 +1,30 @@
+{
+  "mean": {
+    "auc": 0.9334707688136132,
+    "aupr": 0.9123000481436192,
+    "f1": 0.8277621574374429,
+    "acc": 0.8551862268814455
+  },
+  "std": {
+    "auc": 0.0015739362897342246,
+    "aupr": 0.0018990139410121076,
+    "f1": 0.002836385211810306,
+    "acc": 0.0038638672871109283
+  },
+  "metadata": {
+    "model": "SOULCDR",
+    "prepared_dir": "/content/drive/MyDrive/CDRP models testing/3OmicsBenchmarking/prepared/dataset-2",
+    "split_dir": "/content/drive/MyDrive/CDRP models testing/3OmicsBenchmarking/splits/random/dataset-2",
+    "selected_omics": [
+      "genomics_mutation",
+      "transcriptomics_expression",
+      "epigenomics_methylation"
+    ],
+    "config": {
+      "lr": 0.001,
+      "fusion_channels": 256,
+      "hidden_channels": 256,
+      "output_channels": 64
+    }
+  }
+}

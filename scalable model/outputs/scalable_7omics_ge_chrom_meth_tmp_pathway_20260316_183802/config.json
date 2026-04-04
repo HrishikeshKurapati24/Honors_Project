@@ -1,0 +1,31 @@
+{
+  "epoch": 200,
+  "lr": 0.001,
+  "weight_decay": 1e-05,
+  "hidden_channels": 256,
+  "output_channels": 64,
+  "dropout": 0.2,
+  "num_layers": 2,
+  "heads": 4,
+  "drug_num_gnn_layers": 3,
+  "drug_batch_size": 0,
+  "k_fold": 5,
+  "seed": 0,
+  "top_k": 10,
+  "contrastive_weight": 0.005,
+  "temperature": 0.05,
+  "warmup_epochs": 10,
+  "max_contrastive_pairs": 2048,
+  "device": "auto",
+  "run_name": "scalable_7omics_ge_chrom_meth_tmp_pathway_20260316_183802",
+  "omics": [
+    "genomics_mutation",
+    "epigenomics_chromatin",
+    "epigenomics_methylation",
+    "transcriptomics_expression",
+    "metabolomics_profile",
+    "proteomics_reverse_phase",
+    "pathway"
+  ],
+  "list_omics": false
+}

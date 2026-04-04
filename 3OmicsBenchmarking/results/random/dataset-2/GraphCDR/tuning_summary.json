@@ -1,0 +1,31 @@
+{
+  "trial_count": 9,
+  "best_config": {
+    "model": "GraphCDR",
+    "benchmark": "3OmicsBenchmarking",
+    "dataset": "dataset-2",
+    "protocol": "random",
+    "tuned": true,
+    "selection_metric": "val_auc",
+    "selected_score": 0.8935097600543266,
+    "config": {
+      "alpha": 0.2,
+      "beta": 0.3
+    }
+  },
+  "metadata": {
+    "pilot_folds": [
+      [
+        1
+      ],
+      [
+        1,
+        2
+      ]
+    ],
+    "stage_epochs": [
+      60,
+      120
+    ]
+  }
+}

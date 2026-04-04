@@ -1,0 +1,54 @@
+Logging started: logs/node_experiment_20260315_125300_119783_10651.log
+Command: main.py --epoch 1 --execution_architecture modified --k_fold 1 --genomics_csv ../../final_dataset/genomics_chromatin.csv --use_genomics --use_epigenomics --use_transcriptomics --active
+==========================================
+Runtime config -> requested_device=auto, resolved_device=cuda, require_gpu=False, num_workers=0, pin_memory=False
+
+Using 3 modalities for training
+
+
+=== Active Modalities ===
+Genomics: ✓
+Epigenomics: ✓
+Transcriptomics: ✓
+Proteomics: ✗
+Metabolomics: ✗
+Pathway: ✗
+Enhanced Drug Representation: ✓
+Transformer Drug Architecture (2GIN+1Transformer): ✗
+Cell Line Module Variation: original
+========================
+
+Loading drug features from: ../../final_dataset/drug_graph_feat
+Loaded 298 drug features.
+Loading Genomics -> genomics_chromatin.csv
+Loading Epigenomics -> epigenomics.csv
+Loading Transcriptomics -> transcriptomics.csv
+Loading response pairs: response_pairs.csv
+DATASET SIZE: 109446 pairs | 425 cells | 298 drugs.
+
+Loading physicochemical features from: ../../final_dataset/physicochemical.csv
+Loaded 298 drugs with 63 physicochemical features
+Using device: cuda (pin_memory=False, num_workers=0)
+Proteomics modality disabled by flag
+Metabolomics modality disabled by flag
+Pathway modality disabled by flag
+Created physicochemical tensor with shape: torch.Size([298, 64])
+Pathway dimensions: 0
+[CellLineRepresentationModule] Initialized with variation: original
+  - Genomics: Enabled (dim=40)
+  - Epigenomics: Enabled (channels=1355)
+  - Transcriptomics: Enabled (dim=32361)
+  - Proteomics: Disabled (dim=0)
+  - Metabolomics: Disabled (dim=0)
+  - Pathway: Disabled (dim=0)
+
+epoch: 0
+train loss:  1.8537
+val loss:  6.066
+val auc: 0.8508  val aupr: 0.7352  val f1: 0.7505  val acc: 0.7769
+
+[Model Selection] Loaded best model weights (Validation AUC: 0.8508)
+test loss:  5.9463
+test auc: 0.8555  test aupr: 0.7445  test f1: 0.7499  test acc: 0.7788
+
+Final Results (modified) -> AUC=0.8555, AUPR=0.7445, F1=0.7499, ACC=0.7788

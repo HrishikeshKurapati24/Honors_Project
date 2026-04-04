@@ -1,0 +1,74 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+venv_SOUL/
+v/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# R
+.RData
+.Rhistory
+.Rapp.history
+.Ruserdata
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# PyTorch / Machine Learning
+*.pt
+*.pth
+*.h5
+*.hdf5
+*.ckpt
+
+# IDEs / Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Datasets
+data/
+final_dataset/
+3OmicsBenchmarking/dataset-1/
+3OmicsBenchmarking/dataset-2/
+3OmicsBenchmarking/prepared/
+3OmicsBenchmarking/splits/
+
+# Notes
+*notes*.txt
+notes.txt
+*.notes

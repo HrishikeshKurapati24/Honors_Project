@@ -1,0 +1,15 @@
+{
+  "model": "RedCDR",
+  "benchmark": "3OmicsBenchmarking",
+  "dataset": "dataset-2",
+  "protocol": "random",
+  "tuned": true,
+  "selection_metric": "val_auc",
+  "selected_score": 0.9150397360360859,
+  "config": {
+    "lr": 0.001,
+    "numk": 5,
+    "rd": 0.25,
+    "pd_weight": 1.0
+  }
+}

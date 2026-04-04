@@ -1,0 +1,13 @@
+stage,candidate_id,fold_ids,epochs,auc,config
+1,1,1,40,0.6754028163837266,"{""fusion_channels"": 128, ""hidden_channels"": 128, ""lr"": 0.0001, ""output_channels"": 64}"
+1,2,1,40,0.7369786785771716,"{""fusion_channels"": 128, ""hidden_channels"": 128, ""lr"": 0.0005, ""output_channels"": 64}"
+1,3,1,40,0.749081462471736,"{""fusion_channels"": 256, ""hidden_channels"": 128, ""lr"": 0.001, ""output_channels"": 64}"
+1,4,1,40,0.7295261373668026,"{""fusion_channels"": 256, ""hidden_channels"": 256, ""lr"": 0.0001, ""output_channels"": 64}"
+1,5,1,40,0.752980004397523,"{""fusion_channels"": 256, ""hidden_channels"": 256, ""lr"": 0.0005, ""output_channels"": 64}"
+1,6,1,40,0.7707302185306367,"{""fusion_channels"": 256, ""hidden_channels"": 256, ""lr"": 0.001, ""output_channels"": 128}"
+1,7,1,40,0.7584945244275837,"{""fusion_channels"": 512, ""hidden_channels"": 256, ""lr"": 0.0005, ""output_channels"": 128}"
+1,8,1,40,0.7387888434186474,"{""fusion_channels"": 512, ""hidden_channels"": 512, ""lr"": 0.0001, ""output_channels"": 128}"
+2,1,"1,2",80,0.8028683427295737,"{""fusion_channels"": 256, ""hidden_channels"": 256, ""lr"": 0.001, ""output_channels"": 128}"
+2,2,"1,2",80,0.7884047869612969,"{""fusion_channels"": 512, ""hidden_channels"": 256, ""lr"": 0.0005, ""output_channels"": 128}"
+2,3,"1,2",80,0.7801203483802128,"{""fusion_channels"": 256, ""hidden_channels"": 256, ""lr"": 0.0005, ""output_channels"": 64}"
+2,4,"1,2",80,0.77774557122228,"{""fusion_channels"": 256, ""hidden_channels"": 128, ""lr"": 0.001, ""output_channels"": 64}"

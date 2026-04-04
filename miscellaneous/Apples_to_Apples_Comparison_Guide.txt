@@ -1,0 +1,125 @@
+APPLES-TO-APPLES COMPARISON GUIDE
+
+This document outlines all aspects that must be controlled to ensure
+fair and rigorous comparisons in: 1) Ablation Studies (within your
+model) 2) Benchmark Model Comparisons (against other models)
+
+  ----------------------------------------------
+  PART 1: ABLATION STUDIES (Within Your Model)
+  ----------------------------------------------
+
+Goal: Isolate the effect of ONE component while keeping everything else
+constant.
+
+Must Keep Constant:
+
+1.  Dataset
+    -   Same cell lines
+    -   Same drugs
+    -   Same drug–cell pairs
+    -   Same omics modalities
+    -   Same preprocessing pipeline
+2.  Train/Validation/Test Splits
+    -   Same split indices
+    -   Same random seed
+    -   No reshuffling
+3.  Training Protocol
+    -   Same optimizer
+    -   Same learning rate
+    -   Same batch size
+    -   Same number of epochs
+    -   Same early stopping strategy
+    -   Same weight decay
+    -   Same dropout rate
+4.  Model Capacity
+    -   Comparable parameter count
+    -   If parameters change, report it explicitly
+5.  Hyperparameter Tuning
+    -   Either tune all variants equally
+    -   Or use identical hyperparameters across variants
+6.  Random Seeds
+    -   Run 3–5 seeds minimum
+    -   Report mean ± standard deviation
+    -   Perform statistical testing (e.g., t-test)
+
+Ablation Checklist: - Data identical - Splits identical -
+Hyperparameters identical - Training identical - Evaluation metric
+identical - Parameter budget comparable
+
+  -------------------------------------
+  PART 2: BENCHMARK MODEL COMPARISONS
+  -------------------------------------
+
+Goal: Ensure improvements are due to architecture, not dataset or
+protocol differences.
+
+A. Dataset Fairness
+
+1.  Same Dataset Version
+    -   Same GDSC/CCLE release
+    -   Same IC50 normalization
+    -   Same preprocessing steps
+2.  Same Modalities
+    -   If comparing against 3-omics baseline, restrict your model to 3
+        omics
+    -   Additional omics must be tested separately
+3.  Same Filtering Rules
+    -   Same missing value removal
+    -   Same gene filtering
+    -   Same drug filtering
+4.  Same Evaluation Protocol
+    -   Mixed split vs New cell-line vs New drug must match
+    -   Do not compare different split types
+5.  Same Metrics
+    -   Use identical metrics (AUC, PCC, RMSE, etc.)
+    -   Do not compare across different evaluation metrics
+6.  Hyperparameter Fairness
+    -   Preferably retune baselines on your dataset
+    -   Otherwise use published hyperparameters consistently
+7.  Parameter Count Transparency
+    -   Report parameter counts for all models
+    -   Ensure gains are not purely from larger capacity
+8.  Statistical Significance
+    -   Run multiple seeds
+    -   Report mean ± std
+    -   Provide p-values where possible
+
+  ----------------------------------
+  COMMON UNFAIR PRACTICES TO AVOID
+  ----------------------------------
+
+-   Comparing 6-omics model vs 3-omics baseline directly
+-   Using different dataset sizes
+-   Using different splits
+-   Using different preprocessing pipelines
+-   Reporting only best run instead of mean
+-   Ignoring statistical testing
+-   Ignoring parameter count differences
+
+  ----------------------------------------
+  RECOMMENDED STRUCTURE FOR STRONG PAPER
+  ----------------------------------------
+
+1.  Main Comparison
+    -   All models on identical dataset and identical modalities
+2.  Omics Scaling Study
+    -   3-omics
+    -   4-omics
+    -   5-omics
+    -   6-omics
+3.  Ablation Study
+    -   Remove dual-branch
+    -   Remove contrastive learning
+    -   Remove pathway modality
+    -   Remove graph transformer
+    -   Keep everything else fixed
+
+  -----------------
+  FINAL PRINCIPLE
+  -----------------
+
+If performance improves, ensure no external factor (data size,
+preprocessing, split type, hyperparameter tuning, parameter count) could
+explain the gain.
+
+Only then is the comparison truly apples-to-apples.

@@ -1,0 +1,35 @@
+Logging started: logs/node_experiment_20260315_161308_507766_64449.log
+Command: main.py --k_fold 5 --execution_architecture graphCDR --genomics_csv ../../final_dataset/genomics_mutation.csv --use_genomics --use_epigenomics --use_transcriptomics
+==========================================
+Runtime config -> requested_device=auto, resolved_device=cuda, require_gpu=False, num_workers=0, pin_memory=False
+
+Using 3 modalities for training
+
+
+=== Active Modalities ===
+Genomics: ✓
+Epigenomics: ✓
+Transcriptomics: ✓
+Proteomics: ✗
+Metabolomics: ✗
+Pathway: ✗
+Enhanced Drug Representation: ✗
+Transformer Drug Architecture (2GIN+1Transformer): ✗
+Cell Line Module Variation: original
+========================
+
+Loading drug features from: ../../final_dataset/drug_graph_feat
+Loaded 298 drug features.
+Loading Genomics -> genomics_mutation.csv
+Loading Epigenomics -> epigenomics.csv
+Loading Transcriptomics -> transcriptomics.csv
+Loading response pairs: response_pairs.csv
+DATASET SIZE: 109446 pairs | 425 cells | 298 drugs.
+
+
+=== Running Baseline GraphCDR ===
+
+--- Running Fold 1/5 for graphCDR ---
+Using device: cuda (pin_memory=False, num_workers=0)
+
+epoch: 0

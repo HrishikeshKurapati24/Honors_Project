@@ -1,0 +1,23 @@
+{
+  "mean": {
+    "auc": 0.805144085979791,
+    "aupr": 0.41838877793689455,
+    "f1": 0.4339396955439301,
+    "acc": 0.866439737771054
+  },
+  "std": {
+    "auc": 0.0018071011709357432,
+    "aupr": 0.0004261281535082595,
+    "f1": 0.0025423891466236914,
+    "acc": 0.0026979324256177772
+  },
+  "metadata": {
+    "model": "GraphCDR",
+    "prepared_dir": "/content/drive/MyDrive/CDRP models testing/3OmicsBenchmarking/prepared/dataset-1",
+    "split_dir": "/content/drive/MyDrive/CDRP models testing/3OmicsBenchmarking/splits/random/dataset-1",
+    "config": {
+      "alpha": 0.3,
+      "beta": 0.2
+    }
+  }
+}

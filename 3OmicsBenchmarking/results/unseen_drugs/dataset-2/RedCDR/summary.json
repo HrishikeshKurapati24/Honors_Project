@@ -1,0 +1,25 @@
+{
+  "mean": {
+    "auc": 0.5252267772350435,
+    "aupr": 0.4329096042813706,
+    "f1": 0.5847441046935782,
+    "acc": 0.4271856321750458
+  },
+  "std": {
+    "auc": 0.045640016245327555,
+    "aupr": 0.07566882823204141,
+    "f1": 0.028723606918474986,
+    "acc": 0.016437017750562853
+  },
+  "metadata": {
+    "model": "RedCDR",
+    "prepared_dir": "/content/drive/MyDrive/CDRP models testing/3OmicsBenchmarking/prepared/dataset-2",
+    "split_dir": "/content/drive/MyDrive/CDRP models testing/3OmicsBenchmarking/splits/unseen_drugs/dataset-2",
+    "config": {
+      "lr": 0.001,
+      "numk": 5,
+      "rd": 0.25,
+      "pd_weight": 1.0
+    }
+  }
+}

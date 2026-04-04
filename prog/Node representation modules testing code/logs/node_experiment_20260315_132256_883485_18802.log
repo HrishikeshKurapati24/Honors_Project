@@ -1,0 +1,1046 @@
+Logging started: logs/node_experiment_20260315_132256_883485_18802.log
+Command: main.py --execution_architecture modified --k_fold 1 --genomics_csv ../../final_dataset/genomics_chromatin.csv --use_transcriptomics --use_metabolomics
+==========================================
+Runtime config -> requested_device=auto, resolved_device=cuda, require_gpu=False, num_workers=0, pin_memory=False
+
+Using 2 modalities for training
+
+
+=== Active Modalities ===
+Genomics: ✗
+Epigenomics: ✗
+Transcriptomics: ✓
+Proteomics: ✗
+Metabolomics: ✓
+Pathway: ✗
+Enhanced Drug Representation: ✗
+Transformer Drug Architecture (2GIN+1Transformer): ✗
+Cell Line Module Variation: original
+========================
+
+Loading drug features from: ../../final_dataset/drug_graph_feat
+Loaded 298 drug features.
+Loading Transcriptomics -> transcriptomics.csv
+Loading Metabolomics -> metabolomics.csv
+Loading response pairs: response_pairs.csv
+DATASET SIZE: 109446 pairs | 425 cells | 298 drugs.
+
+Using device: cuda (pin_memory=False, num_workers=0)
+Genomics modality disabled by flag
+Epigenomics modality disabled by flag
+Proteomics modality disabled by flag
+Pathway modality disabled by flag
+Pathway dimensions: 0
+[CellLineRepresentationModule] Initialized with variation: original
+  - Genomics: Disabled (dim=0)
+  - Epigenomics: Disabled (channels=0)
+  - Transcriptomics: Enabled (dim=32361)
+  - Proteomics: Disabled (dim=0)
+  - Metabolomics: Enabled (dim=225)
+  - Pathway: Disabled (dim=0)
+
+epoch: 0
+train loss:  1.7712
+val loss:  3.0947
+val auc: 0.8778  val aupr: 0.8076  val f1: 0.7631  val acc: 0.7936
+
+epoch: 1
+train loss:  1.4942
+val loss:  2.6672
+val auc: 0.8801  val aupr: 0.815  val f1: 0.7686  val acc: 0.7979
+
+epoch: 2
+train loss:  1.3656
+val loss:  2.505
+val auc: 0.8811  val aupr: 0.8172  val f1: 0.7712  val acc: 0.8027
+
+epoch: 3
+train loss:  1.2335
+val loss:  2.0633
+val auc: 0.8639  val aupr: 0.7889  val f1: 0.7609  val acc: 0.796
+
+epoch: 4
+train loss:  1.1725
+val loss:  1.7417
+val auc: 0.8435  val aupr: 0.7614  val f1: 0.7406  val acc: 0.7735
+
+epoch: 5
+train loss:  1.1381
+val loss:  1.5475
+val auc: 0.8391  val aupr: 0.7612  val f1: 0.7368  val acc: 0.7773
+
+epoch: 6
+train loss:  1.0848
+val loss:  1.3857
+val auc: 0.8395  val aupr: 0.7617  val f1: 0.7362  val acc: 0.7701
+
+epoch: 7
+train loss:  1.0367
+val loss:  1.2921
+val auc: 0.8407  val aupr: 0.7577  val f1: 0.7371  val acc: 0.7653
+
+epoch: 8
+train loss:  0.9841
+val loss:  1.2374
+val auc: 0.833  val aupr: 0.7386  val f1: 0.7316  val acc: 0.7567
+
+epoch: 9
+train loss:  0.9149
+val loss:  1.1745
+val auc: 0.7853  val aupr: 0.6507  val f1: 0.6977  val acc: 0.7241
+
+epoch: 10
+train loss:  0.8425
+val loss:  1.1412
+val auc: 0.6762  val aupr: 0.513  val f1: 0.6334  val acc: 0.606
+
+epoch: 11
+train loss:  0.7567
+val loss:  1.1682
+val auc: 0.5928  val aupr: 0.4483  val f1: 0.5941  val acc: 0.4842
+
+epoch: 12
+train loss:  0.6795
+val loss:  1.2394
+val auc: 0.4852  val aupr: 0.3778  val f1: 0.5797  val acc: 0.4256
+
+epoch: 13
+train loss:  0.6144
+val loss:  1.347
+val auc: 0.3859  val aupr: 0.3342  val f1: 0.5775  val acc: 0.41
+
+epoch: 14
+train loss:  0.5746
+val loss:  1.3579
+val auc: 0.2754  val aupr: 0.2863  val f1: 0.5755  val acc: 0.4042
+
+epoch: 15
+train loss:  0.5322
+val loss:  1.4765
+val auc: 0.223  val aupr: 0.2713  val f1: 0.575  val acc: 0.4035
+
+epoch: 16
+train loss:  0.5034
+val loss:  1.5874
+val auc: 0.2314  val aupr: 0.2732  val f1: 0.5751  val acc: 0.4037
+
+epoch: 17
+train loss:  0.4799
+val loss:  1.6854
+val auc: 0.2259  val aupr: 0.2711  val f1: 0.575  val acc: 0.4035
+
+epoch: 18
+train loss:  0.4603
+val loss:  1.6344
+val auc: 0.413  val aupr: 0.3362  val f1: 0.5754  val acc: 0.4041
+
+epoch: 19
+train loss:  0.4439
+val loss:  1.7811
+val auc: 0.5043  val aupr: 0.3857  val f1: 0.5753  val acc: 0.404
+
+epoch: 20
+train loss:  0.4166
+val loss:  1.8626
+val auc: 0.5649  val aupr: 0.4255  val f1: 0.5754  val acc: 0.4041
+
+epoch: 21
+train loss:  0.4
+val loss:  2.1768
+val auc: 0.4429  val aupr: 0.3516  val f1: 0.5753  val acc: 0.4039
+
+epoch: 22
+train loss:  0.3775
+val loss:  2.5595
+val auc: 0.3289  val aupr: 0.3016  val f1: 0.575  val acc: 0.4035
+
+epoch: 23
+train loss:  0.3751
+val loss:  2.0379
+val auc: 0.3964  val aupr: 0.3283  val f1: 0.575  val acc: 0.4036
+
+epoch: 24
+train loss:  0.3649
+val loss:  1.6064
+val auc: 0.4718  val aupr: 0.3599  val f1: 0.5761  val acc: 0.4059
+
+epoch: 25
+train loss:  0.3432
+val loss:  1.5598
+val auc: 0.4968  val aupr: 0.3738  val f1: 0.5782  val acc: 0.4211
+
+epoch: 26
+train loss:  0.3341
+val loss:  1.317
+val auc: 0.5702  val aupr: 0.4263  val f1: 0.5806  val acc: 0.4352
+
+epoch: 27
+train loss:  0.3412
+val loss:  1.3557
+val auc: 0.6194  val aupr: 0.4705  val f1: 0.5908  val acc: 0.4812
+
+epoch: 28
+train loss:  0.3142
+val loss:  0.9282
+val auc: 0.7017  val aupr: 0.5747  val f1: 0.6119  val acc: 0.603
+
+epoch: 29
+train loss:  0.328
+val loss:  0.6585
+val auc: 0.7921  val aupr: 0.7127  val f1: 0.6834  val acc: 0.7215
+
+epoch: 30
+train loss:  0.3056
+val loss:  0.6034
+val auc: 0.8201  val aupr: 0.7419  val f1: 0.712  val acc: 0.7546
+
+epoch: 31
+train loss:  0.3067
+val loss:  0.6627
+val auc: 0.8214  val aupr: 0.7454  val f1: 0.7099  val acc: 0.7454
+
+epoch: 32
+train loss:  0.2905
+val loss:  0.7982
+val auc: 0.8294  val aupr: 0.7656  val f1: 0.7217  val acc: 0.7684
+
+epoch: 33
+train loss:  0.303
+val loss:  0.7159
+val auc: 0.8448  val aupr: 0.784  val f1: 0.7384  val acc: 0.7846
+
+epoch: 34
+train loss:  0.2831
+val loss:  0.6627
+val auc: 0.856  val aupr: 0.7961  val f1: 0.7468  val acc: 0.7931
+
+epoch: 35
+train loss:  0.2766
+val loss:  0.7566
+val auc: 0.8481  val aupr: 0.7877  val f1: 0.7377  val acc: 0.7793
+
+epoch: 36
+train loss:  0.2649
+val loss:  0.881
+val auc: 0.8357  val aupr: 0.7798  val f1: 0.7295  val acc: 0.7798
+
+epoch: 37
+train loss:  0.2721
+val loss:  0.6763
+val auc: 0.8383  val aupr: 0.7862  val f1: 0.7312  val acc: 0.7782
+
+epoch: 38
+train loss:  0.2583
+val loss:  0.6306
+val auc: 0.8416  val aupr: 0.7963  val f1: 0.7367  val acc: 0.7805
+
+epoch: 39
+train loss:  0.262
+val loss:  0.6824
+val auc: 0.8311  val aupr: 0.7902  val f1: 0.7286  val acc: 0.7775
+
+epoch: 40
+train loss:  0.2699
+val loss:  0.752
+val auc: 0.8337  val aupr: 0.7826  val f1: 0.727  val acc: 0.775
+
+epoch: 41
+train loss:  0.2652
+val loss:  0.6323
+val auc: 0.8559  val aupr: 0.7993  val f1: 0.7506  val acc: 0.79
+
+epoch: 42
+train loss:  0.25
+val loss:  0.6088
+val auc: 0.864  val aupr: 0.8115  val f1: 0.7558  val acc: 0.7968
+
+epoch: 43
+train loss:  0.2508
+val loss:  0.8034
+val auc: 0.843  val aupr: 0.7922  val f1: 0.7325  val acc: 0.7741
+
+epoch: 44
+train loss:  0.2427
+val loss:  0.9643
+val auc: 0.8102  val aupr: 0.7527  val f1: 0.6968  val acc: 0.7418
+
+epoch: 45
+train loss:  0.2583
+val loss:  0.7968
+val auc: 0.8043  val aupr: 0.7239  val f1: 0.697  val acc: 0.7281
+
+epoch: 46
+train loss:  0.233
+val loss:  1.3534
+val auc: 0.7478  val aupr: 0.5943  val f1: 0.6664  val acc: 0.6781
+
+epoch: 47
+train loss:  0.2568
+val loss:  2.1633
+val auc: 0.6909  val aupr: 0.5172  val f1: 0.6349  val acc: 0.6198
+
+epoch: 48
+train loss:  0.2293
+val loss:  1.7163
+val auc: 0.7143  val aupr: 0.5597  val f1: 0.6382  val acc: 0.6103
+
+epoch: 49
+train loss:  0.2531
+val loss:  1.0686
+val auc: 0.7339  val aupr: 0.5946  val f1: 0.6469  val acc: 0.6589
+
+epoch: 50
+train loss:  0.221
+val loss:  0.8595
+val auc: 0.7744  val aupr: 0.6736  val f1: 0.669  val acc: 0.695
+
+epoch: 51
+train loss:  0.2225
+val loss:  0.7501
+val auc: 0.8142  val aupr: 0.7335  val f1: 0.7022  val acc: 0.7366
+
+epoch: 52
+train loss:  0.2231
+val loss:  0.8586
+val auc: 0.8041  val aupr: 0.7256  val f1: 0.6904  val acc: 0.7262
+
+epoch: 53
+train loss:  0.216
+val loss:  0.8076
+val auc: 0.7944  val aupr: 0.6971  val f1: 0.6847  val acc: 0.7083
+
+epoch: 54
+train loss:  0.2189
+val loss:  0.7397
+val auc: 0.7868  val aupr: 0.6731  val f1: 0.6817  val acc: 0.7063
+
+epoch: 55
+train loss:  0.2269
+val loss:  0.7196
+val auc: 0.8011  val aupr: 0.7145  val f1: 0.6904  val acc: 0.7234
+
+epoch: 56
+train loss:  0.2054
+val loss:  0.726
+val auc: 0.8163  val aupr: 0.7545  val f1: 0.7039  val acc: 0.7449
+
+epoch: 57
+train loss:  0.2077
+val loss:  0.6406
+val auc: 0.8369  val aupr: 0.7802  val f1: 0.7233  val acc: 0.7597
+
+epoch: 58
+train loss:  0.2003
+val loss:  0.5049
+val auc: 0.8593  val aupr: 0.7912  val f1: 0.7496  val acc: 0.7798
+
+epoch: 59
+train loss:  0.1977
+val loss:  0.4787
+val auc: 0.8647  val aupr: 0.7922  val f1: 0.7554  val acc: 0.7878
+
+epoch: 60
+train loss:  0.2038
+val loss:  0.5933
+val auc: 0.8467  val aupr: 0.786  val f1: 0.7364  val acc: 0.7735
+
+epoch: 61
+train loss:  0.2158
+val loss:  0.5346
+val auc: 0.8674  val aupr: 0.8138  val f1: 0.7546  val acc: 0.7937
+
+epoch: 62
+train loss:  0.2058
+val loss:  0.4273
+val auc: 0.8854  val aupr: 0.8219  val f1: 0.776  val acc: 0.8062
+
+epoch: 63
+train loss:  0.2344
+val loss:  0.4251
+val auc: 0.8961  val aupr: 0.8418  val f1: 0.7887  val acc: 0.82
+
+epoch: 64
+train loss:  0.217
+val loss:  0.4202
+val auc: 0.8956  val aupr: 0.8412  val f1: 0.7874  val acc: 0.8179
+
+epoch: 65
+train loss:  0.2119
+val loss:  0.4361
+val auc: 0.8862  val aupr: 0.8232  val f1: 0.7796  val acc: 0.8078
+
+epoch: 66
+train loss:  0.1901
+val loss:  0.5524
+val auc: 0.8562  val aupr: 0.7761  val f1: 0.7457  val acc: 0.7777
+
+epoch: 67
+train loss:  0.2089
+val loss:  0.4597
+val auc: 0.867  val aupr: 0.7873  val f1: 0.7527  val acc: 0.7884
+
+epoch: 68
+train loss:  0.2109
+val loss:  0.4162
+val auc: 0.8927  val aupr: 0.8281  val f1: 0.7855  val acc: 0.8115
+
+epoch: 69
+train loss:  0.1902
+val loss:  0.4224
+val auc: 0.8902  val aupr: 0.8297  val f1: 0.781  val acc: 0.8087
+
+epoch: 70
+train loss:  0.1963
+val loss:  0.4404
+val auc: 0.8888  val aupr: 0.8266  val f1: 0.7839  val acc: 0.8136
+
+epoch: 71
+train loss:  0.2068
+val loss:  0.4564
+val auc: 0.8835  val aupr: 0.8208  val f1: 0.7765  val acc: 0.8074
+
+epoch: 72
+train loss:  0.2071
+val loss:  0.5121
+val auc: 0.8865  val aupr: 0.8371  val f1: 0.7785  val acc: 0.8111
+
+epoch: 73
+train loss:  0.201
+val loss:  0.5553
+val auc: 0.8867  val aupr: 0.842  val f1: 0.7752  val acc: 0.808
+
+epoch: 74
+train loss:  0.2082
+val loss:  0.5469
+val auc: 0.8782  val aupr: 0.8289  val f1: 0.7682  val acc: 0.8005
+
+epoch: 75
+train loss:  0.1809
+val loss:  0.7133
+val auc: 0.849  val aupr: 0.7798  val f1: 0.7388  val acc: 0.7796
+
+epoch: 76
+train loss:  0.1889
+val loss:  1.1406
+val auc: 0.8094  val aupr: 0.7584  val f1: 0.6834  val acc: 0.74
+
+epoch: 77
+train loss:  0.2039
+val loss:  0.8075
+val auc: 0.8466  val aupr: 0.8048  val f1: 0.7251  val acc: 0.7778
+
+epoch: 78
+train loss:  0.1746
+val loss:  0.514
+val auc: 0.8764  val aupr: 0.8298  val f1: 0.7601  val acc: 0.796
+
+epoch: 79
+train loss:  0.1775
+val loss:  0.5686
+val auc: 0.8724  val aupr: 0.8287  val f1: 0.756  val acc: 0.7979
+
+epoch: 80
+train loss:  0.1924
+val loss:  1.1012
+val auc: 0.8248  val aupr: 0.7873  val f1: 0.7019  val acc: 0.7528
+
+epoch: 81
+train loss:  0.1901
+val loss:  1.1138
+val auc: 0.826  val aupr: 0.7869  val f1: 0.7046  val acc: 0.7571
+
+epoch: 82
+train loss:  0.1781
+val loss:  0.8554
+val auc: 0.852  val aupr: 0.8066  val f1: 0.736  val acc: 0.7684
+
+epoch: 83
+train loss:  0.1749
+val loss:  0.6529
+val auc: 0.8684  val aupr: 0.8229  val f1: 0.7539  val acc: 0.791
+
+epoch: 84
+train loss:  0.1758
+val loss:  0.69
+val auc: 0.8589  val aupr: 0.823  val f1: 0.7473  val acc: 0.8005
+
+epoch: 85
+train loss:  0.1777
+val loss:  0.7642
+val auc: 0.8474  val aupr: 0.8136  val f1: 0.7348  val acc: 0.7829
+
+epoch: 86
+train loss:  0.1716
+val loss:  0.833
+val auc: 0.8408  val aupr: 0.803  val f1: 0.7276  val acc: 0.7751
+
+epoch: 87
+train loss:  0.1706
+val loss:  0.6405
+val auc: 0.8625  val aupr: 0.8205  val f1: 0.751  val acc: 0.7947
+
+epoch: 88
+train loss:  0.1722
+val loss:  0.4564
+val auc: 0.8838  val aupr: 0.8385  val f1: 0.7743  val acc: 0.8087
+
+epoch: 89
+train loss:  0.1761
+val loss:  0.475
+val auc: 0.878  val aupr: 0.8312  val f1: 0.7678  val acc: 0.8
+
+epoch: 90
+train loss:  0.1691
+val loss:  0.511
+val auc: 0.8698  val aupr: 0.8231  val f1: 0.7595  val acc: 0.7967
+
+epoch: 91
+train loss:  0.1679
+val loss:  0.4679
+val auc: 0.8806  val aupr: 0.8333  val f1: 0.7696  val acc: 0.8021
+
+epoch: 92
+train loss:  0.1636
+val loss:  0.4549
+val auc: 0.8906  val aupr: 0.8421  val f1: 0.7773  val acc: 0.8073
+
+epoch: 93
+train loss:  0.1601
+val loss:  0.4823
+val auc: 0.8938  val aupr: 0.8425  val f1: 0.7804  val acc: 0.8067
+
+epoch: 94
+train loss:  0.1647
+val loss:  0.5379
+val auc: 0.8888  val aupr: 0.8313  val f1: 0.7765  val acc: 0.8047
+
+epoch: 95
+train loss:  0.157
+val loss:  0.56
+val auc: 0.8815  val aupr: 0.8153  val f1: 0.7711  val acc: 0.7998
+
+epoch: 96
+train loss:  0.1597
+val loss:  0.5681
+val auc: 0.8803  val aupr: 0.81  val f1: 0.7711  val acc: 0.7972
+
+epoch: 97
+train loss:  0.1569
+val loss:  0.6121
+val auc: 0.8831  val aupr: 0.8119  val f1: 0.7744  val acc: 0.8002
+
+epoch: 98
+train loss:  0.1601
+val loss:  0.6532
+val auc: 0.8886  val aupr: 0.8202  val f1: 0.7795  val acc: 0.7968
+
+epoch: 99
+train loss:  0.1628
+val loss:  0.6179
+val auc: 0.8962  val aupr: 0.8357  val f1: 0.7876  val acc: 0.8108
+
+epoch: 100
+train loss:  0.1562
+val loss:  0.6163
+val auc: 0.9012  val aupr: 0.8466  val f1: 0.7923  val acc: 0.8203
+
+epoch: 101
+train loss:  0.1564
+val loss:  0.6905
+val auc: 0.9016  val aupr: 0.8479  val f1: 0.7927  val acc: 0.8204
+
+epoch: 102
+train loss:  0.1541
+val loss:  0.7207
+val auc: 0.9034  val aupr: 0.852  val f1: 0.7943  val acc: 0.8216
+
+epoch: 103
+train loss:  0.1568
+val loss:  0.8883
+val auc: 0.9006  val aupr: 0.8462  val f1: 0.7919  val acc: 0.8201
+
+epoch: 104
+train loss:  0.1534
+val loss:  0.9698
+val auc: 0.9001  val aupr: 0.8458  val f1: 0.7902  val acc: 0.8188
+
+epoch: 105
+train loss:  0.1604
+val loss:  0.7201
+val auc: 0.9057  val aupr: 0.8583  val f1: 0.7963  val acc: 0.8223
+
+epoch: 106
+train loss:  0.1545
+val loss:  0.5667
+val auc: 0.9057  val aupr: 0.8604  val f1: 0.7945  val acc: 0.8163
+
+epoch: 107
+train loss:  0.1616
+val loss:  0.6542
+val auc: 0.9005  val aupr: 0.8494  val f1: 0.7887  val acc: 0.815
+
+epoch: 108
+train loss:  0.1518
+val loss:  0.724
+val auc: 0.8949  val aupr: 0.8381  val f1: 0.7841  val acc: 0.8075
+
+epoch: 109
+train loss:  0.1592
+val loss:  0.6238
+val auc: 0.8971  val aupr: 0.842  val f1: 0.7877  val acc: 0.8137
+
+epoch: 110
+train loss:  0.1547
+val loss:  0.4967
+val auc: 0.8976  val aupr: 0.8454  val f1: 0.7901  val acc: 0.8171
+
+epoch: 111
+train loss:  0.155
+val loss:  0.4354
+val auc: 0.8971  val aupr: 0.8483  val f1: 0.7894  val acc: 0.8219
+
+epoch: 112
+train loss:  0.1574
+val loss:  0.4217
+val auc: 0.8982  val aupr: 0.8496  val f1: 0.7904  val acc: 0.8177
+
+epoch: 113
+train loss:  0.1592
+val loss:  0.5253
+val auc: 0.8938  val aupr: 0.8357  val f1: 0.785  val acc: 0.806
+
+epoch: 114
+train loss:  0.1597
+val loss:  0.5624
+val auc: 0.8909  val aupr: 0.8299  val f1: 0.7808  val acc: 0.8005
+
+epoch: 115
+train loss:  0.158
+val loss:  0.4749
+val auc: 0.8974  val aupr: 0.8453  val f1: 0.7863  val acc: 0.8136
+
+epoch: 116
+train loss:  0.1505
+val loss:  0.4219
+val auc: 0.8988  val aupr: 0.8503  val f1: 0.788  val acc: 0.8118
+
+epoch: 117
+train loss:  0.1514
+val loss:  0.4227
+val auc: 0.8973  val aupr: 0.8466  val f1: 0.7867  val acc: 0.8092
+
+epoch: 118
+train loss:  0.1539
+val loss:  0.4587
+val auc: 0.8912  val aupr: 0.8309  val f1: 0.7831  val acc: 0.8087
+
+epoch: 119
+train loss:  0.1518
+val loss:  0.4636
+val auc: 0.8852  val aupr: 0.8175  val f1: 0.7792  val acc: 0.8007
+
+epoch: 120
+train loss:  0.1498
+val loss:  0.4546
+val auc: 0.8808  val aupr: 0.8105  val f1: 0.7757  val acc: 0.7978
+
+epoch: 121
+train loss:  0.1489
+val loss:  0.4565
+val auc: 0.8776  val aupr: 0.805  val f1: 0.7726  val acc: 0.7938
+
+epoch: 122
+train loss:  0.1493
+val loss:  0.46
+val auc: 0.8796  val aupr: 0.8084  val f1: 0.7731  val acc: 0.7959
+
+epoch: 123
+train loss:  0.1483
+val loss:  0.464
+val auc: 0.8862  val aupr: 0.8204  val f1: 0.7799  val acc: 0.8079
+
+epoch: 124
+train loss:  0.1478
+val loss:  0.446
+val auc: 0.8953  val aupr: 0.8394  val f1: 0.7874  val acc: 0.8121
+
+epoch: 125
+train loss:  0.1498
+val loss:  0.3972
+val auc: 0.9015  val aupr: 0.854  val f1: 0.793  val acc: 0.8156
+
+epoch: 126
+train loss:  0.15
+val loss:  0.3848
+val auc: 0.9046  val aupr: 0.8607  val f1: 0.7938  val acc: 0.8215
+
+epoch: 127
+train loss:  0.1493
+val loss:  0.3833
+val auc: 0.9063  val aupr: 0.8627  val f1: 0.7942  val acc: 0.8196
+
+epoch: 128
+train loss:  0.1473
+val loss:  0.3942
+val auc: 0.9069  val aupr: 0.8627  val f1: 0.7938  val acc: 0.8223
+
+epoch: 129
+train loss:  0.1487
+val loss:  0.4128
+val auc: 0.909  val aupr: 0.8665  val f1: 0.7949  val acc: 0.8204
+
+epoch: 130
+train loss:  0.1495
+val loss:  0.4069
+val auc: 0.9117  val aupr: 0.8731  val f1: 0.7988  val acc: 0.8272
+
+epoch: 131
+train loss:  0.1516
+val loss:  0.3825
+val auc: 0.9104  val aupr: 0.8744  val f1: 0.7991  val acc: 0.8289
+
+epoch: 132
+train loss:  0.1516
+val loss:  0.3815
+val auc: 0.9101  val aupr: 0.874  val f1: 0.7993  val acc: 0.8277
+
+epoch: 133
+train loss:  0.1536
+val loss:  0.3954
+val auc: 0.9105  val aupr: 0.8721  val f1: 0.7979  val acc: 0.8301
+
+epoch: 134
+train loss:  0.1449
+val loss:  0.4368
+val auc: 0.9048  val aupr: 0.8596  val f1: 0.7924  val acc: 0.8174
+
+epoch: 135
+train loss:  0.1532
+val loss:  0.4072
+val auc: 0.9031  val aupr: 0.8577  val f1: 0.791  val acc: 0.8145
+
+epoch: 136
+train loss:  0.1521
+val loss:  0.3852
+val auc: 0.9051  val aupr: 0.8648  val f1: 0.7954  val acc: 0.8217
+
+epoch: 137
+train loss:  0.1484
+val loss:  0.3913
+val auc: 0.9064  val aupr: 0.8686  val f1: 0.7977  val acc: 0.8241
+
+epoch: 138
+train loss:  0.1547
+val loss:  0.3878
+val auc: 0.9101  val aupr: 0.8709  val f1: 0.8004  val acc: 0.8302
+
+epoch: 139
+train loss:  0.1483
+val loss:  0.4845
+val auc: 0.9094  val aupr: 0.8651  val f1: 0.7994  val acc: 0.8293
+
+epoch: 140
+train loss:  0.1598
+val loss:  0.4849
+val auc: 0.9088  val aupr: 0.8641  val f1: 0.7981  val acc: 0.8269
+
+epoch: 141
+train loss:  0.1507
+val loss:  0.424
+val auc: 0.908  val aupr: 0.8652  val f1: 0.7988  val acc: 0.8293
+
+epoch: 142
+train loss:  0.1472
+val loss:  0.3955
+val auc: 0.9063  val aupr: 0.8644  val f1: 0.7979  val acc: 0.828
+
+epoch: 143
+train loss:  0.1553
+val loss:  0.3868
+val auc: 0.9081  val aupr: 0.8649  val f1: 0.7998  val acc: 0.8283
+
+epoch: 144
+train loss:  0.147
+val loss:  0.4081
+val auc: 0.9085  val aupr: 0.8621  val f1: 0.799  val acc: 0.8272
+
+epoch: 145
+train loss:  0.1482
+val loss:  0.4267
+val auc: 0.9077  val aupr: 0.8595  val f1: 0.7978  val acc: 0.8314
+
+epoch: 146
+train loss:  0.1481
+val loss:  0.4119
+val auc: 0.9072  val aupr: 0.8594  val f1: 0.797  val acc: 0.8273
+
+epoch: 147
+train loss:  0.1458
+val loss:  0.3928
+val auc: 0.9051  val aupr: 0.8587  val f1: 0.7968  val acc: 0.8282
+
+epoch: 148
+train loss:  0.1478
+val loss:  0.3963
+val auc: 0.9041  val aupr: 0.8576  val f1: 0.7954  val acc: 0.8257
+
+epoch: 149
+train loss:  0.1461
+val loss:  0.4068
+val auc: 0.904  val aupr: 0.8562  val f1: 0.7946  val acc: 0.8254
+
+epoch: 150
+train loss:  0.1447
+val loss:  0.4064
+val auc: 0.9033  val aupr: 0.8559  val f1: 0.7935  val acc: 0.8204
+
+epoch: 151
+train loss:  0.146
+val loss:  0.4085
+val auc: 0.9032  val aupr: 0.8571  val f1: 0.7927  val acc: 0.8199
+
+epoch: 152
+train loss:  0.1454
+val loss:  0.3961
+val auc: 0.9052  val aupr: 0.8624  val f1: 0.7947  val acc: 0.8219
+
+epoch: 153
+train loss:  0.1442
+val loss:  0.3897
+val auc: 0.9072  val aupr: 0.8665  val f1: 0.797  val acc: 0.827
+
+epoch: 154
+train loss:  0.1436
+val loss:  0.3823
+val auc: 0.9083  val aupr: 0.8693  val f1: 0.797  val acc: 0.8249
+
+epoch: 155
+train loss:  0.1443
+val loss:  0.3785
+val auc: 0.9095  val aupr: 0.8715  val f1: 0.7973  val acc: 0.829
+
+epoch: 156
+train loss:  0.1425
+val loss:  0.3766
+val auc: 0.9101  val aupr: 0.8728  val f1: 0.7978  val acc: 0.8242
+
+epoch: 157
+train loss:  0.1451
+val loss:  0.3778
+val auc: 0.9113  val aupr: 0.8742  val f1: 0.7985  val acc: 0.8264
+
+epoch: 158
+train loss:  0.1443
+val loss:  0.379
+val auc: 0.9109  val aupr: 0.8732  val f1: 0.7971  val acc: 0.8227
+
+epoch: 159
+train loss:  0.1472
+val loss:  0.373
+val auc: 0.9101  val aupr: 0.8726  val f1: 0.7975  val acc: 0.8263
+
+epoch: 160
+train loss:  0.1434
+val loss:  0.3763
+val auc: 0.9092  val aupr: 0.8716  val f1: 0.7981  val acc: 0.8264
+
+epoch: 161
+train loss:  0.1449
+val loss:  0.3745
+val auc: 0.9097  val aupr: 0.8714  val f1: 0.798  val acc: 0.8282
+
+epoch: 162
+train loss:  0.1431
+val loss:  0.3941
+val auc: 0.9096  val aupr: 0.8697  val f1: 0.7977  val acc: 0.8281
+
+epoch: 163
+train loss:  0.1427
+val loss:  0.4248
+val auc: 0.9086  val aupr: 0.8671  val f1: 0.7958  val acc: 0.8221
+
+epoch: 164
+train loss:  0.1459
+val loss:  0.4115
+val auc: 0.9094  val aupr: 0.869  val f1: 0.7967  val acc: 0.8219
+
+epoch: 165
+train loss:  0.1427
+val loss:  0.3892
+val auc: 0.9103  val aupr: 0.8717  val f1: 0.7975  val acc: 0.8226
+
+epoch: 166
+train loss:  0.1443
+val loss:  0.3752
+val auc: 0.9109  val aupr: 0.8734  val f1: 0.7983  val acc: 0.8264
+
+epoch: 167
+train loss:  0.1443
+val loss:  0.3756
+val auc: 0.9117  val aupr: 0.8737  val f1: 0.7996  val acc: 0.8294
+
+epoch: 168
+train loss:  0.142
+val loss:  0.3812
+val auc: 0.9122  val aupr: 0.8743  val f1: 0.7996  val acc: 0.8249
+
+epoch: 169
+train loss:  0.1437
+val loss:  0.3807
+val auc: 0.9134  val aupr: 0.8771  val f1: 0.8007  val acc: 0.8285
+
+epoch: 170
+train loss:  0.1433
+val loss:  0.3704
+val auc: 0.9137  val aupr: 0.8784  val f1: 0.8013  val acc: 0.8331
+
+epoch: 171
+train loss:  0.1424
+val loss:  0.3754
+val auc: 0.9124  val aupr: 0.8775  val f1: 0.8009  val acc: 0.8334
+
+epoch: 172
+train loss:  0.143
+val loss:  0.3756
+val auc: 0.9125  val aupr: 0.8774  val f1: 0.8009  val acc: 0.8323
+
+epoch: 173
+train loss:  0.1443
+val loss:  0.3688
+val auc: 0.913  val aupr: 0.876  val f1: 0.801  val acc: 0.8315
+
+epoch: 174
+train loss:  0.1419
+val loss:  0.3895
+val auc: 0.9107  val aupr: 0.8692  val f1: 0.799  val acc: 0.8302
+
+epoch: 175
+train loss:  0.1454
+val loss:  0.385
+val auc: 0.9105  val aupr: 0.8683  val f1: 0.7995  val acc: 0.8313
+
+epoch: 176
+train loss:  0.1464
+val loss:  0.369
+val auc: 0.9127  val aupr: 0.8753  val f1: 0.8017  val acc: 0.8325
+
+epoch: 177
+train loss:  0.1416
+val loss:  0.3757
+val auc: 0.9114  val aupr: 0.8752  val f1: 0.8005  val acc: 0.8298
+
+epoch: 178
+train loss:  0.1417
+val loss:  0.3752
+val auc: 0.9112  val aupr: 0.875  val f1: 0.8001  val acc: 0.8312
+
+epoch: 179
+train loss:  0.145
+val loss:  0.3734
+val auc: 0.9133  val aupr: 0.8763  val f1: 0.8016  val acc: 0.8328
+
+epoch: 180
+train loss:  0.1433
+val loss:  0.381
+val auc: 0.9132  val aupr: 0.8744  val f1: 0.8006  val acc: 0.8301
+
+epoch: 181
+train loss:  0.1425
+val loss:  0.3801
+val auc: 0.9127  val aupr: 0.8735  val f1: 0.8003  val acc: 0.8295
+
+epoch: 182
+train loss:  0.1413
+val loss:  0.3847
+val auc: 0.9128  val aupr: 0.8742  val f1: 0.8002  val acc: 0.8307
+
+epoch: 183
+train loss:  0.1421
+val loss:  0.3827
+val auc: 0.9133  val aupr: 0.8762  val f1: 0.7993  val acc: 0.8323
+
+epoch: 184
+train loss:  0.1416
+val loss:  0.3854
+val auc: 0.9132  val aupr: 0.8767  val f1: 0.7983  val acc: 0.8298
+
+epoch: 185
+train loss:  0.1415
+val loss:  0.3959
+val auc: 0.9127  val aupr: 0.8761  val f1: 0.7978  val acc: 0.8261
+
+epoch: 186
+train loss:  0.1421
+val loss:  0.4308
+val auc: 0.9121  val aupr: 0.8742  val f1: 0.797  val acc: 0.8212
+
+epoch: 187
+train loss:  0.1414
+val loss:  0.4412
+val auc: 0.912  val aupr: 0.8738  val f1: 0.7969  val acc: 0.8259
+
+epoch: 188
+train loss:  0.145
+val loss:  0.4053
+val auc: 0.9124  val aupr: 0.8756  val f1: 0.7981  val acc: 0.8264
+
+epoch: 189
+train loss:  0.1449
+val loss:  0.3979
+val auc: 0.9126  val aupr: 0.8763  val f1: 0.7992  val acc: 0.8263
+
+epoch: 190
+train loss:  0.1418
+val loss:  0.3859
+val auc: 0.9133  val aupr: 0.8772  val f1: 0.8002  val acc: 0.828
+
+epoch: 191
+train loss:  0.1424
+val loss:  0.3711
+val auc: 0.9129  val aupr: 0.8774  val f1: 0.801  val acc: 0.8323
+
+epoch: 192
+train loss:  0.1451
+val loss:  0.3687
+val auc: 0.9132  val aupr: 0.8773  val f1: 0.8018  val acc: 0.831
+
+epoch: 193
+train loss:  0.1416
+val loss:  0.3747
+val auc: 0.9134  val aupr: 0.8765  val f1: 0.8005  val acc: 0.8293
+
+epoch: 194
+train loss:  0.1421
+val loss:  0.3751
+val auc: 0.9134  val aupr: 0.8768  val f1: 0.8011  val acc: 0.8292
+
+epoch: 195
+train loss:  0.1501
+val loss:  0.3738
+val auc: 0.912  val aupr: 0.8764  val f1: 0.8016  val acc: 0.8309
+
+epoch: 196
+train loss:  0.1433
+val loss:  0.3822
+val auc: 0.9105  val aupr: 0.8746  val f1: 0.7996  val acc: 0.8316
+
+epoch: 197
+train loss:  0.142
+val loss:  0.3873
+val auc: 0.9116  val aupr: 0.8754  val f1: 0.7997  val acc: 0.8288
+
+epoch: 198
+train loss:  0.1428
+val loss:  0.4095
+val auc: 0.913  val aupr: 0.8765  val f1: 0.8  val acc: 0.8286
+
+epoch: 199
+train loss:  0.1428
+val loss:  0.4046
+val auc: 0.9133  val aupr: 0.877  val f1: 0.8007  val acc: 0.8313
+
+[Model Selection] Loaded best model weights (Validation AUC: 0.9137)
+test loss:  0.3589
+test auc: 0.9184  test aupr: 0.8837  test f1: 0.8082  test acc: 0.8431
+
+Final Results (modified) -> AUC=0.9184, AUPR=0.8837, F1=0.8082, ACC=0.8431

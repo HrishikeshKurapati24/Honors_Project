@@ -1,0 +1,24 @@
+Pearson similarity statistics:
+  Mean: 0.0825
+  Std : 0.1649
+  Min : -0.2943
+  Max : 0.9725
+
+Cosine similarity statistics:
+  Mean: 0.0825
+  Std : 0.1649
+  Min : -0.2943
+  Max : 0.9725
+
+Spearman similarity statistics:
+  Mean: 0.1627
+  Std : 0.2080
+  Min : -0.3500
+  Max : 0.9475
+
+Comparing rank agreement (Pearson vs Cosine)...
+  Cell TGFb: rank correlation = 1.000
+  Cell Trail: rank correlation = 1.000
+  Cell Androgen: rank correlation = 1.000
+  Cell VEGF: rank correlation = 1.000
+  Cell MAPK: rank correlation = 1.000

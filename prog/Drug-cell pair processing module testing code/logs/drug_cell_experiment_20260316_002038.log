@@ -1,0 +1,2642 @@
+Logging started: logs/drug_cell_experiment_20260316_002038.log
+Command: main.py --k_fold 2 --graph_GNN_type heterogenous --global_gnn_type SAGE --use_graph_transformer --use_contrastive --contrastive_weight 0.05 --temperature 0.005 --warmup_epochs 10 --hyperparameter_tuning --drug_gnn_type GIN --use_genomics --use_epigenomics --use_transcriptomics
+==========================================
+Loading data...
+Loading drug features from: ../../final_dataset/drug_graph_feat
+Loaded 298 drug features.
+Loading Genomics -> genomics_mutation.csv
+Loading Epigenomics -> epigenomics.csv
+Loading Transcriptomics -> transcriptomics.csv
+Loading Similarity -> similarity.csv
+Loading Physicochemical data -> physicochemical.csv
+Loading response pairs: response_pairs.csv
+DATASET SIZE: 109446 pairs | 425 cells | 298 drugs.
+
+
+--- Running Fold 1/2 ---
+Using device: cuda
+Running Stage-1 SOULCDR Model Experiment with Real Graph Batching
+Created physicochemical tensor with shape: torch.Size([298, 63])
+Constructing Global Heterogeneous Graph from Loaded Features...
+[CellLineRepresentationModule] Initialized with variation: original
+  - Genomics: Enabled (dim=34673)
+  - Epigenomics: Enabled (channels=1)
+  - Transcriptomics: Enabled (dim=32361)
+  - Proteomics: Disabled (dim=0)
+  - Metabolomics: Disabled (dim=0)
+  - Pathway: Disabled (dim=0)
+
+epoch: 0
+
+epoch: 0 | loss: 0.6844
+Loss: 0.6844 (Cls: 0.6844, Cont: 0.0000)
+val auc: 0.5464  val aupr: 0.4564
+--- Best model updated at epoch 0 (Val AUC: 0.5464) ---
+
+epoch: 1
+
+epoch: 1 | loss: 0.6822
+Loss: 0.6822 (Cls: 0.6822, Cont: 0.0000)
+val auc: 0.5621  val aupr: 0.4752
+--- Best model updated at epoch 1 (Val AUC: 0.5621) ---
+
+epoch: 2
+
+epoch: 2 | loss: 0.6571
+Loss: 0.6571 (Cls: 0.6571, Cont: 0.0000)
+val auc: 0.5743  val aupr: 0.4811
+--- Best model updated at epoch 2 (Val AUC: 0.5743) ---
+
+epoch: 3
+
+epoch: 3 | loss: 0.6451
+Loss: 0.6451 (Cls: 0.6451, Cont: 0.0000)
+val auc: 0.5818  val aupr: 0.4845
+--- Best model updated at epoch 3 (Val AUC: 0.5818) ---
+
+epoch: 4
+
+epoch: 4 | loss: 0.6203
+Loss: 0.6203 (Cls: 0.6203, Cont: 0.0000)
+val auc: 0.5911  val aupr: 0.4899
+--- Best model updated at epoch 4 (Val AUC: 0.5911) ---
+
+epoch: 5
+
+epoch: 5 | loss: 0.5929
+Loss: 0.5929 (Cls: 0.5929, Cont: 0.0000)
+val auc: 0.5978  val aupr: 0.4934
+--- Best model updated at epoch 5 (Val AUC: 0.5978) ---
+
+epoch: 6
+
+epoch: 6 | loss: 0.5592
+Loss: 0.5592 (Cls: 0.5592, Cont: 0.0000)
+val auc: 0.6032  val aupr: 0.5011
+--- Best model updated at epoch 6 (Val AUC: 0.6032) ---
+
+epoch: 7
+
+epoch: 7 | loss: 0.5247
+Loss: 0.5247 (Cls: 0.5247, Cont: 0.0000)
+val auc: 0.6046  val aupr: 0.5052
+--- Best model updated at epoch 7 (Val AUC: 0.6046) ---
+
+epoch: 8
+
+epoch: 8 | loss: 0.4972
+Loss: 0.4972 (Cls: 0.4972, Cont: 0.0000)
+val auc: 0.6098  val aupr: 0.5065
+--- Best model updated at epoch 8 (Val AUC: 0.6098) ---
+
+epoch: 9
+
+epoch: 9 | loss: 0.4742
+Loss: 0.4742 (Cls: 0.4742, Cont: 0.0000)
+val auc: 0.6106  val aupr: 0.5056
+--- Best model updated at epoch 9 (Val AUC: 0.6106) ---
+
+epoch: 10
+
+epoch: 10 | loss: 0.7026
+Loss: 0.7026 (Cls: 0.4719, Cont: 4.6144)
+val auc: 0.6127  val aupr: 0.5103
+--- Best model updated at epoch 10 (Val AUC: 0.6127) ---
+
+epoch: 11
+
+epoch: 11 | loss: 0.5548
+Loss: 0.5548 (Cls: 0.4527, Cont: 2.0430)
+val auc: 0.6138  val aupr: 0.5118
+--- Best model updated at epoch 11 (Val AUC: 0.6138) ---
+
+epoch: 12
+
+epoch: 12 | loss: 0.492
+Loss: 0.4920 (Cls: 0.4432, Cont: 0.9761)
+val auc: 0.6135  val aupr: 0.5107
+
+epoch: 13
+
+epoch: 13 | loss: 0.4599
+Loss: 0.4599 (Cls: 0.4283, Cont: 0.6333)
+val auc: 0.6161  val aupr: 0.5136
+--- Best model updated at epoch 13 (Val AUC: 0.6161) ---
+
+epoch: 14
+
+epoch: 14 | loss: 0.4513
+Loss: 0.4513 (Cls: 0.4228, Cont: 0.5700)
+val auc: 0.6212  val aupr: 0.5214
+--- Best model updated at epoch 14 (Val AUC: 0.6212) ---
+
+epoch: 15
+
+epoch: 15 | loss: 0.4472
+Loss: 0.4472 (Cls: 0.4194, Cont: 0.5559)
+val auc: 0.6245  val aupr: 0.5247
+--- Best model updated at epoch 15 (Val AUC: 0.6245) ---
+
+epoch: 16
+
+epoch: 16 | loss: 0.4444
+Loss: 0.4444 (Cls: 0.4169, Cont: 0.5511)
+val auc: 0.6249  val aupr: 0.5252
+--- Best model updated at epoch 16 (Val AUC: 0.6249) ---
+
+epoch: 17
+
+epoch: 17 | loss: 0.4408
+Loss: 0.4408 (Cls: 0.4134, Cont: 0.5481)
+val auc: 0.6275  val aupr: 0.5286
+--- Best model updated at epoch 17 (Val AUC: 0.6275) ---
+
+epoch: 18
+
+epoch: 18 | loss: 0.4294
+Loss: 0.4294 (Cls: 0.4020, Cont: 0.5465)
+val auc: 0.6345  val aupr: 0.5386
+--- Best model updated at epoch 18 (Val AUC: 0.6345) ---
+
+epoch: 19
+
+epoch: 19 | loss: 0.4286
+Loss: 0.4286 (Cls: 0.4013, Cont: 0.5460)
+val auc: 0.6385  val aupr: 0.5467
+--- Best model updated at epoch 19 (Val AUC: 0.6385) ---
+
+epoch: 20
+
+epoch: 20 | loss: 0.4246
+Loss: 0.4246 (Cls: 0.3973, Cont: 0.5454)
+val auc: 0.6451  val aupr: 0.5569
+--- Best model updated at epoch 20 (Val AUC: 0.6451) ---
+
+epoch: 21
+
+epoch: 21 | loss: 0.4236
+Loss: 0.4236 (Cls: 0.3963, Cont: 0.5450)
+val auc: 0.6509  val aupr: 0.5644
+--- Best model updated at epoch 21 (Val AUC: 0.6509) ---
+
+epoch: 22
+
+epoch: 22 | loss: 0.4287
+Loss: 0.4287 (Cls: 0.4014, Cont: 0.5446)
+val auc: 0.6581  val aupr: 0.5706
+--- Best model updated at epoch 22 (Val AUC: 0.6581) ---
+
+epoch: 23
+
+epoch: 23 | loss: 0.4179
+Loss: 0.4179 (Cls: 0.3907, Cont: 0.5446)
+val auc: 0.6688  val aupr: 0.5802
+--- Best model updated at epoch 23 (Val AUC: 0.6688) ---
+
+epoch: 24
+
+epoch: 24 | loss: 0.4235
+Loss: 0.4235 (Cls: 0.3963, Cont: 0.5441)
+val auc: 0.6919  val aupr: 0.6107
+--- Best model updated at epoch 24 (Val AUC: 0.6919) ---
+
+epoch: 25
+
+epoch: 25 | loss: 0.4254
+Loss: 0.4254 (Cls: 0.3982, Cont: 0.5439)
+val auc: 0.7171  val aupr: 0.645
+--- Best model updated at epoch 25 (Val AUC: 0.7171) ---
+
+epoch: 26
+
+epoch: 26 | loss: 0.4154
+Loss: 0.4154 (Cls: 0.3882, Cont: 0.5436)
+val auc: 0.7348  val aupr: 0.6706
+--- Best model updated at epoch 26 (Val AUC: 0.7348) ---
+
+epoch: 27
+
+epoch: 27 | loss: 0.4184
+Loss: 0.4184 (Cls: 0.3912, Cont: 0.5438)
+val auc: 0.7479  val aupr: 0.6889
+--- Best model updated at epoch 27 (Val AUC: 0.7479) ---
+
+epoch: 28
+
+epoch: 28 | loss: 0.4112
+Loss: 0.4112 (Cls: 0.3840, Cont: 0.5436)
+val auc: 0.7716  val aupr: 0.7129
+--- Best model updated at epoch 28 (Val AUC: 0.7716) ---
+
+epoch: 29
+
+epoch: 29 | loss: 0.4107
+Loss: 0.4107 (Cls: 0.3835, Cont: 0.5433)
+val auc: 0.7864  val aupr: 0.728
+--- Best model updated at epoch 29 (Val AUC: 0.7864) ---
+
+epoch: 30
+
+epoch: 30 | loss: 0.411
+Loss: 0.4110 (Cls: 0.3838, Cont: 0.5434)
+val auc: 0.8017  val aupr: 0.7442
+--- Best model updated at epoch 30 (Val AUC: 0.8017) ---
+
+epoch: 31
+
+epoch: 31 | loss: 0.4088
+Loss: 0.4088 (Cls: 0.3816, Cont: 0.5432)
+val auc: 0.8256  val aupr: 0.7697
+--- Best model updated at epoch 31 (Val AUC: 0.8256) ---
+
+epoch: 32
+
+epoch: 32 | loss: 0.4067
+Loss: 0.4067 (Cls: 0.3796, Cont: 0.5431)
+val auc: 0.842  val aupr: 0.7894
+--- Best model updated at epoch 32 (Val AUC: 0.8420) ---
+
+epoch: 33
+
+epoch: 33 | loss: 0.4067
+Loss: 0.4067 (Cls: 0.3796, Cont: 0.5429)
+val auc: 0.8591  val aupr: 0.8086
+--- Best model updated at epoch 33 (Val AUC: 0.8591) ---
+
+epoch: 34
+
+epoch: 34 | loss: 0.4032
+Loss: 0.4032 (Cls: 0.3761, Cont: 0.5427)
+val auc: 0.8695  val aupr: 0.8211
+--- Best model updated at epoch 34 (Val AUC: 0.8695) ---
+
+epoch: 35
+
+epoch: 35 | loss: 0.4037
+Loss: 0.4037 (Cls: 0.3766, Cont: 0.5424)
+val auc: 0.8794  val aupr: 0.8327
+--- Best model updated at epoch 35 (Val AUC: 0.8794) ---
+
+epoch: 36
+
+epoch: 36 | loss: 0.4037
+Loss: 0.4037 (Cls: 0.3766, Cont: 0.5427)
+val auc: 0.8822  val aupr: 0.836
+--- Best model updated at epoch 36 (Val AUC: 0.8822) ---
+
+epoch: 37
+
+epoch: 37 | loss: 0.4027
+Loss: 0.4027 (Cls: 0.3756, Cont: 0.5423)
+val auc: 0.8905  val aupr: 0.8471
+--- Best model updated at epoch 37 (Val AUC: 0.8905) ---
+
+epoch: 38
+
+epoch: 38 | loss: 0.4014
+Loss: 0.4014 (Cls: 0.3742, Cont: 0.5425)
+val auc: 0.8975  val aupr: 0.857
+--- Best model updated at epoch 38 (Val AUC: 0.8975) ---
+
+epoch: 39
+
+epoch: 39 | loss: 0.4
+Loss: 0.4000 (Cls: 0.3729, Cont: 0.5418)
+val auc: 0.9024  val aupr: 0.8643
+--- Best model updated at epoch 39 (Val AUC: 0.9024) ---
+
+epoch: 40
+
+epoch: 40 | loss: 0.3981
+Loss: 0.3981 (Cls: 0.3710, Cont: 0.5416)
+val auc: 0.9039  val aupr: 0.8676
+--- Best model updated at epoch 40 (Val AUC: 0.9039) ---
+
+epoch: 41
+
+epoch: 41 | loss: 0.3995
+Loss: 0.3995 (Cls: 0.3724, Cont: 0.5416)
+val auc: 0.9042  val aupr: 0.8681
+--- Best model updated at epoch 41 (Val AUC: 0.9042) ---
+
+epoch: 42
+
+epoch: 42 | loss: 0.3976
+Loss: 0.3976 (Cls: 0.3705, Cont: 0.5411)
+val auc: 0.9055  val aupr: 0.8713
+--- Best model updated at epoch 42 (Val AUC: 0.9055) ---
+
+epoch: 43
+
+epoch: 43 | loss: 0.3966
+Loss: 0.3966 (Cls: 0.3695, Cont: 0.5407)
+val auc: 0.9057  val aupr: 0.8716
+--- Best model updated at epoch 43 (Val AUC: 0.9057) ---
+
+epoch: 44
+
+epoch: 44 | loss: 0.3989
+Loss: 0.3989 (Cls: 0.3718, Cont: 0.5402)
+val auc: 0.908  val aupr: 0.8745
+--- Best model updated at epoch 44 (Val AUC: 0.9080) ---
+
+epoch: 45
+
+epoch: 45 | loss: 0.3961
+Loss: 0.3961 (Cls: 0.3691, Cont: 0.5405)
+val auc: 0.9099  val aupr: 0.8773
+--- Best model updated at epoch 45 (Val AUC: 0.9099) ---
+
+epoch: 46
+
+epoch: 46 | loss: 0.3949
+Loss: 0.3949 (Cls: 0.3679, Cont: 0.5397)
+val auc: 0.9099  val aupr: 0.8772
+
+epoch: 47
+
+epoch: 47 | loss: 0.3954
+Loss: 0.3954 (Cls: 0.3684, Cont: 0.5392)
+val auc: 0.9098  val aupr: 0.8768
+
+epoch: 48
+
+epoch: 48 | loss: 0.3949
+Loss: 0.3949 (Cls: 0.3679, Cont: 0.5390)
+val auc: 0.9096  val aupr: 0.8769
+
+epoch: 49
+
+epoch: 49 | loss: 0.3924
+Loss: 0.3924 (Cls: 0.3655, Cont: 0.5384)
+val auc: 0.9078  val aupr: 0.8744
+
+epoch: 50
+
+epoch: 50 | loss: 0.3922
+Loss: 0.3922 (Cls: 0.3653, Cont: 0.5379)
+val auc: 0.9081  val aupr: 0.8747
+
+epoch: 51
+
+epoch: 51 | loss: 0.3919
+Loss: 0.3919 (Cls: 0.3650, Cont: 0.5375)
+val auc: 0.9101  val aupr: 0.8775
+--- Best model updated at epoch 51 (Val AUC: 0.9101) ---
+
+epoch: 52
+
+epoch: 52 | loss: 0.3912
+Loss: 0.3912 (Cls: 0.3644, Cont: 0.5370)
+val auc: 0.9113  val aupr: 0.8789
+--- Best model updated at epoch 52 (Val AUC: 0.9113) ---
+
+epoch: 53
+
+epoch: 53 | loss: 0.3914
+Loss: 0.3914 (Cls: 0.3645, Cont: 0.5382)
+val auc: 0.9114  val aupr: 0.8788
+--- Best model updated at epoch 53 (Val AUC: 0.9114) ---
+
+epoch: 54
+
+epoch: 54 | loss: 0.3926
+Loss: 0.3926 (Cls: 0.3658, Cont: 0.5370)
+val auc: 0.9115  val aupr: 0.879
+--- Best model updated at epoch 54 (Val AUC: 0.9115) ---
+
+epoch: 55
+
+epoch: 55 | loss: 0.3908
+Loss: 0.3908 (Cls: 0.3640, Cont: 0.5357)
+val auc: 0.9121  val aupr: 0.8801
+--- Best model updated at epoch 55 (Val AUC: 0.9121) ---
+
+epoch: 56
+
+epoch: 56 | loss: 0.3897
+Loss: 0.3897 (Cls: 0.3629, Cont: 0.5371)
+val auc: 0.9124  val aupr: 0.8809
+--- Best model updated at epoch 56 (Val AUC: 0.9124) ---
+
+epoch: 57
+
+epoch: 57 | loss: 0.3903
+Loss: 0.3903 (Cls: 0.3634, Cont: 0.5376)
+val auc: 0.9118  val aupr: 0.8803
+
+epoch: 58
+
+epoch: 58 | loss: 0.3893
+Loss: 0.3893 (Cls: 0.3625, Cont: 0.5367)
+val auc: 0.9116  val aupr: 0.8803
+
+epoch: 59
+
+epoch: 59 | loss: 0.3885
+Loss: 0.3885 (Cls: 0.3617, Cont: 0.5367)
+val auc: 0.912  val aupr: 0.8805
+
+epoch: 60
+
+epoch: 60 | loss: 0.3862
+Loss: 0.3862 (Cls: 0.3594, Cont: 0.5373)
+val auc: 0.9123  val aupr: 0.8808
+
+epoch: 61
+
+epoch: 61 | loss: 0.3881
+Loss: 0.3881 (Cls: 0.3612, Cont: 0.5380)
+val auc: 0.9127  val aupr: 0.8814
+--- Best model updated at epoch 61 (Val AUC: 0.9127) ---
+
+epoch: 62
+
+epoch: 62 | loss: 0.3858
+Loss: 0.3858 (Cls: 0.3589, Cont: 0.5370)
+val auc: 0.9123  val aupr: 0.881
+
+epoch: 63
+
+epoch: 63 | loss: 0.3843
+Loss: 0.3843 (Cls: 0.3575, Cont: 0.5354)
+val auc: 0.913  val aupr: 0.8817
+--- Best model updated at epoch 63 (Val AUC: 0.9130) ---
+
+epoch: 64
+
+epoch: 64 | loss: 0.3863
+Loss: 0.3863 (Cls: 0.3594, Cont: 0.5378)
+val auc: 0.9137  val aupr: 0.8826
+--- Best model updated at epoch 64 (Val AUC: 0.9137) ---
+
+epoch: 65
+
+epoch: 65 | loss: 0.3847
+Loss: 0.3847 (Cls: 0.3578, Cont: 0.5367)
+val auc: 0.9139  val aupr: 0.8829
+--- Best model updated at epoch 65 (Val AUC: 0.9139) ---
+
+epoch: 66
+
+epoch: 66 | loss: 0.383
+Loss: 0.3830 (Cls: 0.3562, Cont: 0.5363)
+val auc: 0.9142  val aupr: 0.8833
+--- Best model updated at epoch 66 (Val AUC: 0.9142) ---
+
+epoch: 67
+
+epoch: 67 | loss: 0.3846
+Loss: 0.3846 (Cls: 0.3578, Cont: 0.5365)
+val auc: 0.9141  val aupr: 0.8834
+
+epoch: 68
+
+epoch: 68 | loss: 0.3824
+Loss: 0.3824 (Cls: 0.3556, Cont: 0.5362)
+val auc: 0.9139  val aupr: 0.8827
+
+epoch: 69
+
+epoch: 69 | loss: 0.3844
+Loss: 0.3844 (Cls: 0.3575, Cont: 0.5370)
+val auc: 0.9145  val aupr: 0.8834
+--- Best model updated at epoch 69 (Val AUC: 0.9145) ---
+
+epoch: 70
+
+epoch: 70 | loss: 0.381
+Loss: 0.3810 (Cls: 0.3542, Cont: 0.5361)
+val auc: 0.9148  val aupr: 0.8837
+--- Best model updated at epoch 70 (Val AUC: 0.9148) ---
+
+epoch: 71
+
+epoch: 71 | loss: 0.3822
+Loss: 0.3822 (Cls: 0.3554, Cont: 0.5357)
+val auc: 0.9138  val aupr: 0.8825
+
+epoch: 72
+
+epoch: 72 | loss: 0.3813
+Loss: 0.3813 (Cls: 0.3545, Cont: 0.5364)
+val auc: 0.9143  val aupr: 0.8832
+
+epoch: 73
+
+epoch: 73 | loss: 0.3817
+Loss: 0.3817 (Cls: 0.3549, Cont: 0.5350)
+val auc: 0.914  val aupr: 0.8831
+
+epoch: 74
+
+epoch: 74 | loss: 0.3815
+Loss: 0.3815 (Cls: 0.3546, Cont: 0.5365)
+val auc: 0.9143  val aupr: 0.8837
+
+epoch: 75
+
+epoch: 75 | loss: 0.3793
+Loss: 0.3793 (Cls: 0.3524, Cont: 0.5369)
+val auc: 0.915  val aupr: 0.8847
+--- Best model updated at epoch 75 (Val AUC: 0.9150) ---
+
+epoch: 76
+
+epoch: 76 | loss: 0.3796
+Loss: 0.3796 (Cls: 0.3528, Cont: 0.5352)
+val auc: 0.9154  val aupr: 0.8851
+--- Best model updated at epoch 76 (Val AUC: 0.9154) ---
+
+epoch: 77
+
+epoch: 77 | loss: 0.3783
+Loss: 0.3783 (Cls: 0.3514, Cont: 0.5364)
+val auc: 0.9151  val aupr: 0.8845
+
+epoch: 78
+
+epoch: 78 | loss: 0.3798
+Loss: 0.3798 (Cls: 0.3531, Cont: 0.5355)
+val auc: 0.9151  val aupr: 0.8844
+
+epoch: 79
+
+epoch: 79 | loss: 0.3796
+Loss: 0.3796 (Cls: 0.3528, Cont: 0.5363)
+val auc: 0.9149  val aupr: 0.8843
+
+epoch: 80
+
+epoch: 80 | loss: 0.3801
+Loss: 0.3801 (Cls: 0.3533, Cont: 0.5365)
+val auc: 0.9151  val aupr: 0.8846
+
+epoch: 81
+
+epoch: 81 | loss: 0.3772
+Loss: 0.3772 (Cls: 0.3504, Cont: 0.5362)
+val auc: 0.9153  val aupr: 0.8848
+
+epoch: 82
+
+epoch: 82 | loss: 0.3776
+Loss: 0.3776 (Cls: 0.3508, Cont: 0.5364)
+val auc: 0.9157  val aupr: 0.8853
+--- Best model updated at epoch 82 (Val AUC: 0.9157) ---
+
+epoch: 83
+
+epoch: 83 | loss: 0.3768
+Loss: 0.3768 (Cls: 0.3500, Cont: 0.5350)
+val auc: 0.9158  val aupr: 0.8853
+--- Best model updated at epoch 83 (Val AUC: 0.9158) ---
+
+epoch: 84
+
+epoch: 84 | loss: 0.3757
+Loss: 0.3757 (Cls: 0.3489, Cont: 0.5355)
+val auc: 0.9153  val aupr: 0.8847
+
+epoch: 85
+
+epoch: 85 | loss: 0.377
+Loss: 0.3770 (Cls: 0.3502, Cont: 0.5360)
+val auc: 0.9148  val aupr: 0.8844
+
+epoch: 86
+
+epoch: 86 | loss: 0.3758
+Loss: 0.3758 (Cls: 0.3490, Cont: 0.5362)
+val auc: 0.9148  val aupr: 0.8845
+
+epoch: 87
+
+epoch: 87 | loss: 0.3759
+Loss: 0.3759 (Cls: 0.3491, Cont: 0.5350)
+val auc: 0.9152  val aupr: 0.8849
+
+epoch: 88
+
+epoch: 88 | loss: 0.3748
+Loss: 0.3748 (Cls: 0.3480, Cont: 0.5365)
+val auc: 0.9153  val aupr: 0.8848
+
+epoch: 89
+
+epoch: 89 | loss: 0.3746
+Loss: 0.3746 (Cls: 0.3477, Cont: 0.5365)
+val auc: 0.9154  val aupr: 0.8845
+
+epoch: 90
+
+epoch: 90 | loss: 0.3742
+Loss: 0.3742 (Cls: 0.3474, Cont: 0.5367)
+val auc: 0.9159  val aupr: 0.8852
+--- Best model updated at epoch 90 (Val AUC: 0.9159) ---
+
+epoch: 91
+
+epoch: 91 | loss: 0.3739
+Loss: 0.3739 (Cls: 0.3471, Cont: 0.5366)
+val auc: 0.9162  val aupr: 0.8857
+--- Best model updated at epoch 91 (Val AUC: 0.9162) ---
+
+epoch: 92
+
+epoch: 92 | loss: 0.3734
+Loss: 0.3734 (Cls: 0.3466, Cont: 0.5348)
+val auc: 0.9162  val aupr: 0.886
+--- Best model updated at epoch 92 (Val AUC: 0.9162) ---
+
+epoch: 93
+
+epoch: 93 | loss: 0.3734
+Loss: 0.3734 (Cls: 0.3466, Cont: 0.5354)
+val auc: 0.916  val aupr: 0.886
+
+epoch: 94
+
+epoch: 94 | loss: 0.3725
+Loss: 0.3725 (Cls: 0.3457, Cont: 0.5358)
+val auc: 0.9159  val aupr: 0.8863
+
+epoch: 95
+
+epoch: 95 | loss: 0.3716
+Loss: 0.3716 (Cls: 0.3449, Cont: 0.5358)
+val auc: 0.9157  val aupr: 0.886
+
+epoch: 96
+
+epoch: 96 | loss: 0.3718
+Loss: 0.3718 (Cls: 0.3450, Cont: 0.5346)
+val auc: 0.9156  val aupr: 0.8857
+
+epoch: 97
+
+epoch: 97 | loss: 0.3724
+Loss: 0.3724 (Cls: 0.3456, Cont: 0.5355)
+val auc: 0.9156  val aupr: 0.8857
+
+epoch: 98
+
+epoch: 98 | loss: 0.371
+Loss: 0.3710 (Cls: 0.3442, Cont: 0.5360)
+val auc: 0.9156  val aupr: 0.8858
+
+epoch: 99
+
+epoch: 99 | loss: 0.3696
+Loss: 0.3696 (Cls: 0.3429, Cont: 0.5354)
+val auc: 0.9157  val aupr: 0.886
+
+epoch: 100
+
+epoch: 100 | loss: 0.3718
+Loss: 0.3718 (Cls: 0.3450, Cont: 0.5357)
+val auc: 0.9164  val aupr: 0.8868
+--- Best model updated at epoch 100 (Val AUC: 0.9164) ---
+
+epoch: 101
+
+epoch: 101 | loss: 0.3722
+Loss: 0.3722 (Cls: 0.3454, Cont: 0.5371)
+val auc: 0.9168  val aupr: 0.8871
+--- Best model updated at epoch 101 (Val AUC: 0.9168) ---
+
+epoch: 102
+
+epoch: 102 | loss: 0.3697
+Loss: 0.3697 (Cls: 0.3429, Cont: 0.5352)
+val auc: 0.9171  val aupr: 0.8873
+--- Best model updated at epoch 102 (Val AUC: 0.9171) ---
+
+epoch: 103
+
+epoch: 103 | loss: 0.3697
+Loss: 0.3697 (Cls: 0.3429, Cont: 0.5357)
+val auc: 0.9174  val aupr: 0.8876
+--- Best model updated at epoch 103 (Val AUC: 0.9174) ---
+
+epoch: 104
+
+epoch: 104 | loss: 0.3681
+Loss: 0.3681 (Cls: 0.3413, Cont: 0.5363)
+val auc: 0.9174  val aupr: 0.8876
+
+epoch: 105
+
+epoch: 105 | loss: 0.3689
+Loss: 0.3689 (Cls: 0.3421, Cont: 0.5362)
+val auc: 0.9175  val aupr: 0.8879
+--- Best model updated at epoch 105 (Val AUC: 0.9175) ---
+
+epoch: 106
+
+epoch: 106 | loss: 0.3686
+Loss: 0.3686 (Cls: 0.3419, Cont: 0.5343)
+val auc: 0.9177  val aupr: 0.8881
+--- Best model updated at epoch 106 (Val AUC: 0.9177) ---
+
+epoch: 107
+
+epoch: 107 | loss: 0.3667
+Loss: 0.3667 (Cls: 0.3399, Cont: 0.5351)
+val auc: 0.9181  val aupr: 0.8886
+--- Best model updated at epoch 107 (Val AUC: 0.9181) ---
+
+epoch: 108
+
+epoch: 108 | loss: 0.3678
+Loss: 0.3678 (Cls: 0.3410, Cont: 0.5355)
+val auc: 0.9184  val aupr: 0.8886
+--- Best model updated at epoch 108 (Val AUC: 0.9184) ---
+
+epoch: 109
+
+epoch: 109 | loss: 0.3673
+Loss: 0.3673 (Cls: 0.3405, Cont: 0.5349)
+val auc: 0.9184  val aupr: 0.8885
+
+epoch: 110
+
+epoch: 110 | loss: 0.3666
+Loss: 0.3666 (Cls: 0.3399, Cont: 0.5345)
+val auc: 0.9184  val aupr: 0.8882
+--- Best model updated at epoch 110 (Val AUC: 0.9184) ---
+
+epoch: 111
+
+epoch: 111 | loss: 0.3659
+Loss: 0.3659 (Cls: 0.3392, Cont: 0.5355)
+val auc: 0.9182  val aupr: 0.8879
+
+epoch: 112
+
+epoch: 112 | loss: 0.3659
+Loss: 0.3659 (Cls: 0.3391, Cont: 0.5355)
+val auc: 0.9182  val aupr: 0.8882
+
+epoch: 113
+
+epoch: 113 | loss: 0.3658
+Loss: 0.3658 (Cls: 0.3390, Cont: 0.5352)
+val auc: 0.918  val aupr: 0.8883
+
+epoch: 114
+
+epoch: 114 | loss: 0.3654
+Loss: 0.3654 (Cls: 0.3386, Cont: 0.5346)
+val auc: 0.9181  val aupr: 0.8886
+
+epoch: 115
+
+epoch: 115 | loss: 0.3654
+Loss: 0.3654 (Cls: 0.3386, Cont: 0.5357)
+val auc: 0.9181  val aupr: 0.8888
+
+epoch: 116
+
+epoch: 116 | loss: 0.3634
+Loss: 0.3634 (Cls: 0.3366, Cont: 0.5353)
+val auc: 0.9178  val aupr: 0.8887
+
+epoch: 117
+
+epoch: 117 | loss: 0.3627
+Loss: 0.3627 (Cls: 0.3360, Cont: 0.5347)
+val auc: 0.9172  val aupr: 0.8883
+
+epoch: 118
+
+epoch: 118 | loss: 0.3629
+Loss: 0.3629 (Cls: 0.3362, Cont: 0.5339)
+val auc: 0.9177  val aupr: 0.8886
+
+epoch: 119
+
+epoch: 119 | loss: 0.3628
+Loss: 0.3628 (Cls: 0.3360, Cont: 0.5350)
+val auc: 0.9183  val aupr: 0.889
+
+epoch: 120
+
+epoch: 120 | loss: 0.3619
+Loss: 0.3619 (Cls: 0.3351, Cont: 0.5368)
+val auc: 0.9185  val aupr: 0.8891
+--- Best model updated at epoch 120 (Val AUC: 0.9185) ---
+
+epoch: 121
+
+epoch: 121 | loss: 0.3623
+Loss: 0.3623 (Cls: 0.3355, Cont: 0.5358)
+val auc: 0.9187  val aupr: 0.8898
+--- Best model updated at epoch 121 (Val AUC: 0.9187) ---
+
+epoch: 122
+
+epoch: 122 | loss: 0.3598
+Loss: 0.3598 (Cls: 0.3331, Cont: 0.5356)
+val auc: 0.9187  val aupr: 0.8903
+
+epoch: 123
+
+epoch: 123 | loss: 0.3619
+Loss: 0.3619 (Cls: 0.3351, Cont: 0.5355)
+val auc: 0.919  val aupr: 0.8906
+--- Best model updated at epoch 123 (Val AUC: 0.9190) ---
+
+epoch: 124
+
+epoch: 124 | loss: 0.3604
+Loss: 0.3604 (Cls: 0.3336, Cont: 0.5360)
+val auc: 0.9191  val aupr: 0.8904
+--- Best model updated at epoch 124 (Val AUC: 0.9191) ---
+
+epoch: 125
+
+epoch: 125 | loss: 0.3598
+Loss: 0.3598 (Cls: 0.3330, Cont: 0.5355)
+val auc: 0.9196  val aupr: 0.8911
+--- Best model updated at epoch 125 (Val AUC: 0.9196) ---
+
+epoch: 126
+
+epoch: 126 | loss: 0.3593
+Loss: 0.3593 (Cls: 0.3326, Cont: 0.5351)
+val auc: 0.9196  val aupr: 0.8914
+
+epoch: 127
+
+epoch: 127 | loss: 0.3576
+Loss: 0.3576 (Cls: 0.3308, Cont: 0.5352)
+val auc: 0.9197  val aupr: 0.8915
+--- Best model updated at epoch 127 (Val AUC: 0.9197) ---
+
+epoch: 128
+
+epoch: 128 | loss: 0.3593
+Loss: 0.3593 (Cls: 0.3326, Cont: 0.5351)
+val auc: 0.9198  val aupr: 0.8914
+--- Best model updated at epoch 128 (Val AUC: 0.9198) ---
+
+epoch: 129
+
+epoch: 129 | loss: 0.3576
+Loss: 0.3576 (Cls: 0.3308, Cont: 0.5347)
+val auc: 0.9196  val aupr: 0.8904
+
+epoch: 130
+
+epoch: 130 | loss: 0.3602
+Loss: 0.3602 (Cls: 0.3334, Cont: 0.5358)
+val auc: 0.9196  val aupr: 0.8907
+
+epoch: 131
+
+epoch: 131 | loss: 0.3577
+Loss: 0.3577 (Cls: 0.3310, Cont: 0.5345)
+val auc: 0.9185  val aupr: 0.8897
+
+epoch: 132
+
+epoch: 132 | loss: 0.359
+Loss: 0.3590 (Cls: 0.3323, Cont: 0.5346)
+val auc: 0.9193  val aupr: 0.8906
+
+epoch: 133
+
+epoch: 133 | loss: 0.3567
+Loss: 0.3567 (Cls: 0.3299, Cont: 0.5346)
+val auc: 0.9199  val aupr: 0.8913
+--- Best model updated at epoch 133 (Val AUC: 0.9199) ---
+
+epoch: 134
+
+epoch: 134 | loss: 0.3583
+Loss: 0.3583 (Cls: 0.3316, Cont: 0.5344)
+val auc: 0.92  val aupr: 0.8919
+--- Best model updated at epoch 134 (Val AUC: 0.9200) ---
+
+epoch: 135
+
+epoch: 135 | loss: 0.3577
+Loss: 0.3577 (Cls: 0.3309, Cont: 0.5358)
+val auc: 0.92  val aupr: 0.8925
+--- Best model updated at epoch 135 (Val AUC: 0.9200) ---
+
+epoch: 136
+
+epoch: 136 | loss: 0.3549
+Loss: 0.3549 (Cls: 0.3282, Cont: 0.5346)
+val auc: 0.92  val aupr: 0.8928
+
+epoch: 137
+
+epoch: 137 | loss: 0.3567
+Loss: 0.3567 (Cls: 0.3299, Cont: 0.5363)
+val auc: 0.9207  val aupr: 0.8935
+--- Best model updated at epoch 137 (Val AUC: 0.9207) ---
+
+epoch: 138
+
+epoch: 138 | loss: 0.3541
+Loss: 0.3541 (Cls: 0.3273, Cont: 0.5348)
+val auc: 0.9205  val aupr: 0.8925
+
+epoch: 139
+
+epoch: 139 | loss: 0.3545
+Loss: 0.3545 (Cls: 0.3278, Cont: 0.5347)
+val auc: 0.9211  val aupr: 0.893
+--- Best model updated at epoch 139 (Val AUC: 0.9211) ---
+
+epoch: 140
+
+epoch: 140 | loss: 0.3544
+Loss: 0.3544 (Cls: 0.3277, Cont: 0.5351)
+val auc: 0.9216  val aupr: 0.8936
+--- Best model updated at epoch 140 (Val AUC: 0.9216) ---
+
+epoch: 141
+
+epoch: 141 | loss: 0.3529
+Loss: 0.3529 (Cls: 0.3261, Cont: 0.5346)
+val auc: 0.9215  val aupr: 0.8937
+
+epoch: 142
+
+epoch: 142 | loss: 0.3517
+Loss: 0.3517 (Cls: 0.3249, Cont: 0.5354)
+val auc: 0.9213  val aupr: 0.8939
+
+epoch: 143
+
+epoch: 143 | loss: 0.3517
+Loss: 0.3517 (Cls: 0.3250, Cont: 0.5350)
+val auc: 0.9212  val aupr: 0.8944
+
+epoch: 144
+
+epoch: 144 | loss: 0.3525
+Loss: 0.3525 (Cls: 0.3258, Cont: 0.5339)
+val auc: 0.9212  val aupr: 0.8945
+
+epoch: 145
+
+epoch: 145 | loss: 0.3535
+Loss: 0.3535 (Cls: 0.3268, Cont: 0.5353)
+val auc: 0.9213  val aupr: 0.8943
+
+epoch: 146
+
+epoch: 146 | loss: 0.3511
+Loss: 0.3511 (Cls: 0.3243, Cont: 0.5358)
+val auc: 0.9215  val aupr: 0.8941
+
+epoch: 147
+
+epoch: 147 | loss: 0.3515
+Loss: 0.3515 (Cls: 0.3248, Cont: 0.5343)
+val auc: 0.9217  val aupr: 0.8942
+--- Best model updated at epoch 147 (Val AUC: 0.9217) ---
+
+epoch: 148
+
+epoch: 148 | loss: 0.3518
+Loss: 0.3518 (Cls: 0.3251, Cont: 0.5351)
+val auc: 0.9218  val aupr: 0.8945
+--- Best model updated at epoch 148 (Val AUC: 0.9218) ---
+
+epoch: 149
+
+epoch: 149 | loss: 0.3513
+Loss: 0.3513 (Cls: 0.3245, Cont: 0.5346)
+val auc: 0.9219  val aupr: 0.8947
+--- Best model updated at epoch 149 (Val AUC: 0.9219) ---
+
+epoch: 150
+
+epoch: 150 | loss: 0.3507
+Loss: 0.3507 (Cls: 0.3239, Cont: 0.5351)
+val auc: 0.922  val aupr: 0.8946
+--- Best model updated at epoch 150 (Val AUC: 0.9220) ---
+
+epoch: 151
+
+epoch: 151 | loss: 0.3499
+Loss: 0.3499 (Cls: 0.3231, Cont: 0.5346)
+val auc: 0.9217  val aupr: 0.8941
+
+epoch: 152
+
+epoch: 152 | loss: 0.3505
+Loss: 0.3505 (Cls: 0.3238, Cont: 0.5357)
+val auc: 0.9217  val aupr: 0.8944
+
+epoch: 153
+
+epoch: 153 | loss: 0.3485
+Loss: 0.3485 (Cls: 0.3218, Cont: 0.5345)
+val auc: 0.9214  val aupr: 0.8941
+
+epoch: 154
+
+epoch: 154 | loss: 0.3509
+Loss: 0.3509 (Cls: 0.3242, Cont: 0.5348)
+val auc: 0.9212  val aupr: 0.8941
+
+epoch: 155
+
+epoch: 155 | loss: 0.3487
+Loss: 0.3487 (Cls: 0.3220, Cont: 0.5339)
+val auc: 0.9216  val aupr: 0.8949
+
+epoch: 156
+
+epoch: 156 | loss: 0.3487
+Loss: 0.3487 (Cls: 0.3220, Cont: 0.5355)
+val auc: 0.9217  val aupr: 0.895
+
+epoch: 157
+
+epoch: 157 | loss: 0.3497
+Loss: 0.3497 (Cls: 0.3230, Cont: 0.5341)
+val auc: 0.9221  val aupr: 0.8952
+--- Best model updated at epoch 157 (Val AUC: 0.9221) ---
+
+epoch: 158
+
+epoch: 158 | loss: 0.3477
+Loss: 0.3477 (Cls: 0.3210, Cont: 0.5341)
+val auc: 0.9227  val aupr: 0.8957
+--- Best model updated at epoch 158 (Val AUC: 0.9227) ---
+
+epoch: 159
+
+epoch: 159 | loss: 0.3473
+Loss: 0.3473 (Cls: 0.3206, Cont: 0.5343)
+val auc: 0.9229  val aupr: 0.896
+--- Best model updated at epoch 159 (Val AUC: 0.9229) ---
+
+epoch: 160
+
+epoch: 160 | loss: 0.3478
+Loss: 0.3478 (Cls: 0.3211, Cont: 0.5347)
+val auc: 0.9229  val aupr: 0.8959
+
+epoch: 161
+
+epoch: 161 | loss: 0.3467
+Loss: 0.3467 (Cls: 0.3200, Cont: 0.5338)
+val auc: 0.9223  val aupr: 0.8952
+
+epoch: 162
+
+epoch: 162 | loss: 0.3456
+Loss: 0.3456 (Cls: 0.3189, Cont: 0.5340)
+val auc: 0.9219  val aupr: 0.8944
+
+epoch: 163
+
+epoch: 163 | loss: 0.347
+Loss: 0.3470 (Cls: 0.3203, Cont: 0.5343)
+val auc: 0.9221  val aupr: 0.8947
+
+epoch: 164
+
+epoch: 164 | loss: 0.3459
+Loss: 0.3459 (Cls: 0.3192, Cont: 0.5343)
+val auc: 0.9223  val aupr: 0.8953
+
+epoch: 165
+
+epoch: 165 | loss: 0.3467
+Loss: 0.3467 (Cls: 0.3199, Cont: 0.5349)
+val auc: 0.9222  val aupr: 0.8952
+
+epoch: 166
+
+epoch: 166 | loss: 0.3466
+Loss: 0.3466 (Cls: 0.3200, Cont: 0.5331)
+val auc: 0.9222  val aupr: 0.8953
+
+epoch: 167
+
+epoch: 167 | loss: 0.3457
+Loss: 0.3457 (Cls: 0.3189, Cont: 0.5355)
+val auc: 0.922  val aupr: 0.8954
+
+epoch: 168
+
+epoch: 168 | loss: 0.3453
+Loss: 0.3453 (Cls: 0.3185, Cont: 0.5347)
+val auc: 0.9221  val aupr: 0.8956
+
+epoch: 169
+
+epoch: 169 | loss: 0.3455
+Loss: 0.3455 (Cls: 0.3188, Cont: 0.5342)
+val auc: 0.922  val aupr: 0.8956
+
+epoch: 170
+
+epoch: 170 | loss: 0.3431
+Loss: 0.3431 (Cls: 0.3164, Cont: 0.5347)
+val auc: 0.9224  val aupr: 0.896
+
+epoch: 171
+
+epoch: 171 | loss: 0.344
+Loss: 0.3440 (Cls: 0.3173, Cont: 0.5346)
+val auc: 0.9232  val aupr: 0.8969
+--- Best model updated at epoch 171 (Val AUC: 0.9232) ---
+
+epoch: 172
+
+epoch: 172 | loss: 0.3445
+Loss: 0.3445 (Cls: 0.3178, Cont: 0.5335)
+val auc: 0.9236  val aupr: 0.8975
+--- Best model updated at epoch 172 (Val AUC: 0.9236) ---
+
+epoch: 173
+
+epoch: 173 | loss: 0.3447
+Loss: 0.3447 (Cls: 0.3180, Cont: 0.5340)
+val auc: 0.9234  val aupr: 0.8975
+
+epoch: 174
+
+epoch: 174 | loss: 0.343
+Loss: 0.3430 (Cls: 0.3163, Cont: 0.5344)
+val auc: 0.923  val aupr: 0.8971
+
+epoch: 175
+
+epoch: 175 | loss: 0.3441
+Loss: 0.3441 (Cls: 0.3175, Cont: 0.5329)
+val auc: 0.9226  val aupr: 0.8962
+
+epoch: 176
+
+epoch: 176 | loss: 0.3438
+Loss: 0.3438 (Cls: 0.3170, Cont: 0.5345)
+val auc: 0.9225  val aupr: 0.8961
+
+epoch: 177
+
+epoch: 177 | loss: 0.3437
+Loss: 0.3437 (Cls: 0.3170, Cont: 0.5345)
+val auc: 0.9225  val aupr: 0.8962
+
+epoch: 178
+
+epoch: 178 | loss: 0.3436
+Loss: 0.3436 (Cls: 0.3169, Cont: 0.5338)
+val auc: 0.923  val aupr: 0.8971
+
+epoch: 179
+
+epoch: 179 | loss: 0.3436
+Loss: 0.3436 (Cls: 0.3170, Cont: 0.5330)
+val auc: 0.9232  val aupr: 0.8975
+
+epoch: 180
+
+epoch: 180 | loss: 0.3433
+Loss: 0.3433 (Cls: 0.3166, Cont: 0.5345)
+val auc: 0.9236  val aupr: 0.8975
+--- Best model updated at epoch 180 (Val AUC: 0.9236) ---
+
+epoch: 181
+
+epoch: 181 | loss: 0.3416
+Loss: 0.3416 (Cls: 0.3149, Cont: 0.5325)
+val auc: 0.9237  val aupr: 0.8975
+--- Best model updated at epoch 181 (Val AUC: 0.9237) ---
+
+epoch: 182
+
+epoch: 182 | loss: 0.3412
+Loss: 0.3412 (Cls: 0.3145, Cont: 0.5326)
+val auc: 0.9235  val aupr: 0.8976
+
+epoch: 183
+
+epoch: 183 | loss: 0.3427
+Loss: 0.3427 (Cls: 0.3160, Cont: 0.5329)
+val auc: 0.9233  val aupr: 0.8977
+
+epoch: 184
+
+epoch: 184 | loss: 0.3411
+Loss: 0.3411 (Cls: 0.3144, Cont: 0.5345)
+val auc: 0.9228  val aupr: 0.8973
+
+epoch: 185
+
+epoch: 185 | loss: 0.3412
+Loss: 0.3412 (Cls: 0.3146, Cont: 0.5323)
+val auc: 0.9225  val aupr: 0.8966
+
+epoch: 186
+
+epoch: 186 | loss: 0.3437
+Loss: 0.3437 (Cls: 0.3170, Cont: 0.5344)
+val auc: 0.9235  val aupr: 0.8976
+
+epoch: 187
+
+epoch: 187 | loss: 0.3424
+Loss: 0.3424 (Cls: 0.3157, Cont: 0.5333)
+val auc: 0.9234  val aupr: 0.8977
+
+epoch: 188
+
+epoch: 188 | loss: 0.3421
+Loss: 0.3421 (Cls: 0.3155, Cont: 0.5327)
+val auc: 0.9231  val aupr: 0.8973
+
+epoch: 189
+
+epoch: 189 | loss: 0.3397
+Loss: 0.3397 (Cls: 0.3131, Cont: 0.5330)
+val auc: 0.922  val aupr: 0.896
+
+epoch: 190
+
+epoch: 190 | loss: 0.3417
+Loss: 0.3417 (Cls: 0.3150, Cont: 0.5337)
+val auc: 0.9222  val aupr: 0.8962
+
+epoch: 191
+
+epoch: 191 | loss: 0.3401
+Loss: 0.3401 (Cls: 0.3135, Cont: 0.5336)
+val auc: 0.9227  val aupr: 0.8967
+
+epoch: 192
+
+epoch: 192 | loss: 0.3395
+Loss: 0.3395 (Cls: 0.3128, Cont: 0.5343)
+val auc: 0.9229  val aupr: 0.8968
+
+epoch: 193
+
+epoch: 193 | loss: 0.3395
+Loss: 0.3395 (Cls: 0.3128, Cont: 0.5349)
+val auc: 0.923  val aupr: 0.8969
+
+epoch: 194
+
+epoch: 194 | loss: 0.3389
+Loss: 0.3389 (Cls: 0.3123, Cont: 0.5324)
+val auc: 0.9227  val aupr: 0.8964
+
+epoch: 195
+
+epoch: 195 | loss: 0.3402
+Loss: 0.3402 (Cls: 0.3136, Cont: 0.5335)
+val auc: 0.9227  val aupr: 0.8963
+
+epoch: 196
+
+epoch: 196 | loss: 0.3405
+Loss: 0.3405 (Cls: 0.3139, Cont: 0.5326)
+val auc: 0.9229  val aupr: 0.8963
+
+epoch: 197
+
+epoch: 197 | loss: 0.339
+Loss: 0.3390 (Cls: 0.3123, Cont: 0.5336)
+val auc: 0.9231  val aupr: 0.8963
+
+epoch: 198
+
+epoch: 198 | loss: 0.3406
+Loss: 0.3406 (Cls: 0.3139, Cont: 0.5333)
+val auc: 0.9235  val aupr: 0.8966
+
+epoch: 199
+
+epoch: 199 | loss: 0.3396
+Loss: 0.3396 (Cls: 0.3129, Cont: 0.5327)
+val auc: 0.9238  val aupr: 0.8975
+--- Best model updated at epoch 199 (Val AUC: 0.9238) ---
+
+[Model Selection] Loaded best model weights (Validation AUC: 0.9238)
+
+FINAL TEST RESULTS:
+test auc: 0.9239  test aupr: 0.8961
+Fold 1 Results -> AUC: 0.9239, AUPR: 0.8961, F1: 0.8156
+
+--- Running Fold 2/2 ---
+Using device: cuda
+Running Stage-1 SOULCDR Model Experiment with Real Graph Batching
+Created physicochemical tensor with shape: torch.Size([298, 63])
+Constructing Global Heterogeneous Graph from Loaded Features...
+[CellLineRepresentationModule] Initialized with variation: original
+  - Genomics: Enabled (dim=34673)
+  - Epigenomics: Enabled (channels=1)
+  - Transcriptomics: Enabled (dim=32361)
+  - Proteomics: Disabled (dim=0)
+  - Metabolomics: Disabled (dim=0)
+  - Pathway: Disabled (dim=0)
+
+epoch: 0
+
+epoch: 0 | loss: 0.6848
+Loss: 0.6848 (Cls: 0.6848, Cont: 0.0000)
+val auc: 0.551  val aupr: 0.4581
+--- Best model updated at epoch 0 (Val AUC: 0.5510) ---
+
+epoch: 1
+
+epoch: 1 | loss: 0.6808
+Loss: 0.6808 (Cls: 0.6808, Cont: 0.0000)
+val auc: 0.5663  val aupr: 0.475
+--- Best model updated at epoch 1 (Val AUC: 0.5663) ---
+
+epoch: 2
+
+epoch: 2 | loss: 0.6564
+Loss: 0.6564 (Cls: 0.6564, Cont: 0.0000)
+val auc: 0.5719  val aupr: 0.4788
+--- Best model updated at epoch 2 (Val AUC: 0.5719) ---
+
+epoch: 3
+
+epoch: 3 | loss: 0.6435
+Loss: 0.6435 (Cls: 0.6435, Cont: 0.0000)
+val auc: 0.5853  val aupr: 0.4866
+--- Best model updated at epoch 3 (Val AUC: 0.5853) ---
+
+epoch: 4
+
+epoch: 4 | loss: 0.6187
+Loss: 0.6187 (Cls: 0.6187, Cont: 0.0000)
+val auc: 0.5968  val aupr: 0.4981
+--- Best model updated at epoch 4 (Val AUC: 0.5968) ---
+
+epoch: 5
+
+epoch: 5 | loss: 0.5897
+Loss: 0.5897 (Cls: 0.5897, Cont: 0.0000)
+val auc: 0.6042  val aupr: 0.5032
+--- Best model updated at epoch 5 (Val AUC: 0.6042) ---
+
+epoch: 6
+
+epoch: 6 | loss: 0.5534
+Loss: 0.5534 (Cls: 0.5534, Cont: 0.0000)
+val auc: 0.6106  val aupr: 0.5098
+--- Best model updated at epoch 6 (Val AUC: 0.6106) ---
+
+epoch: 7
+
+epoch: 7 | loss: 0.518
+Loss: 0.5180 (Cls: 0.5180, Cont: 0.0000)
+val auc: 0.6129  val aupr: 0.5106
+--- Best model updated at epoch 7 (Val AUC: 0.6129) ---
+
+epoch: 8
+
+epoch: 8 | loss: 0.4971
+Loss: 0.4971 (Cls: 0.4971, Cont: 0.0000)
+val auc: 0.6125  val aupr: 0.508
+
+epoch: 9
+
+epoch: 9 | loss: 0.4854
+Loss: 0.4854 (Cls: 0.4854, Cont: 0.0000)
+val auc: 0.6113  val aupr: 0.5039
+
+epoch: 10
+
+epoch: 10 | loss: 0.7048
+Loss: 0.7048 (Cls: 0.4705, Cont: 4.6871)
+val auc: 0.61  val aupr: 0.5031
+
+epoch: 11
+
+epoch: 11 | loss: 0.5573
+Loss: 0.5573 (Cls: 0.4547, Cont: 2.0523)
+val auc: 0.6131  val aupr: 0.5031
+--- Best model updated at epoch 11 (Val AUC: 0.6131) ---
+
+epoch: 12
+
+epoch: 12 | loss: 0.4887
+Loss: 0.4887 (Cls: 0.4395, Cont: 0.9842)
+val auc: 0.6175  val aupr: 0.5088
+--- Best model updated at epoch 12 (Val AUC: 0.6175) ---
+
+epoch: 13
+
+epoch: 13 | loss: 0.4735
+Loss: 0.4735 (Cls: 0.4414, Cont: 0.6437)
+val auc: 0.6196  val aupr: 0.511
+--- Best model updated at epoch 13 (Val AUC: 0.6196) ---
+
+epoch: 14
+
+epoch: 14 | loss: 0.4508
+Loss: 0.4508 (Cls: 0.4221, Cont: 0.5742)
+val auc: 0.6262  val aupr: 0.5171
+--- Best model updated at epoch 14 (Val AUC: 0.6262) ---
+
+epoch: 15
+
+epoch: 15 | loss: 0.4525
+Loss: 0.4525 (Cls: 0.4246, Cont: 0.5574)
+val auc: 0.631  val aupr: 0.5254
+--- Best model updated at epoch 15 (Val AUC: 0.6310) ---
+
+epoch: 16
+
+epoch: 16 | loss: 0.4405
+Loss: 0.4405 (Cls: 0.4129, Cont: 0.5507)
+val auc: 0.6341  val aupr: 0.5301
+--- Best model updated at epoch 16 (Val AUC: 0.6341) ---
+
+epoch: 17
+
+epoch: 17 | loss: 0.4341
+Loss: 0.4341 (Cls: 0.4066, Cont: 0.5481)
+val auc: 0.6414  val aupr: 0.5385
+--- Best model updated at epoch 17 (Val AUC: 0.6414) ---
+
+epoch: 18
+
+epoch: 18 | loss: 0.431
+Loss: 0.4310 (Cls: 0.4036, Cont: 0.5466)
+val auc: 0.6522  val aupr: 0.5519
+--- Best model updated at epoch 18 (Val AUC: 0.6522) ---
+
+epoch: 19
+
+epoch: 19 | loss: 0.4261
+Loss: 0.4261 (Cls: 0.3988, Cont: 0.5454)
+val auc: 0.6664  val aupr: 0.5716
+--- Best model updated at epoch 19 (Val AUC: 0.6664) ---
+
+epoch: 20
+
+epoch: 20 | loss: 0.4283
+Loss: 0.4283 (Cls: 0.4011, Cont: 0.5453)
+val auc: 0.6797  val aupr: 0.5909
+--- Best model updated at epoch 20 (Val AUC: 0.6797) ---
+
+epoch: 21
+
+epoch: 21 | loss: 0.4216
+Loss: 0.4216 (Cls: 0.3944, Cont: 0.5444)
+val auc: 0.6844  val aupr: 0.5969
+--- Best model updated at epoch 21 (Val AUC: 0.6844) ---
+
+epoch: 22
+
+epoch: 22 | loss: 0.4225
+Loss: 0.4225 (Cls: 0.3953, Cont: 0.5444)
+val auc: 0.7027  val aupr: 0.6157
+--- Best model updated at epoch 22 (Val AUC: 0.7027) ---
+
+epoch: 23
+
+epoch: 23 | loss: 0.4161
+Loss: 0.4161 (Cls: 0.3889, Cont: 0.5442)
+val auc: 0.7163  val aupr: 0.6292
+--- Best model updated at epoch 23 (Val AUC: 0.7163) ---
+
+epoch: 24
+
+epoch: 24 | loss: 0.4194
+Loss: 0.4194 (Cls: 0.3922, Cont: 0.5437)
+val auc: 0.7287  val aupr: 0.646
+--- Best model updated at epoch 24 (Val AUC: 0.7287) ---
+
+epoch: 25
+
+epoch: 25 | loss: 0.4153
+Loss: 0.4153 (Cls: 0.3881, Cont: 0.5435)
+val auc: 0.7347  val aupr: 0.6528
+--- Best model updated at epoch 25 (Val AUC: 0.7347) ---
+
+epoch: 26
+
+epoch: 26 | loss: 0.4149
+Loss: 0.4149 (Cls: 0.3877, Cont: 0.5436)
+val auc: 0.7478  val aupr: 0.6665
+--- Best model updated at epoch 26 (Val AUC: 0.7478) ---
+
+epoch: 27
+
+epoch: 27 | loss: 0.4171
+Loss: 0.4171 (Cls: 0.3899, Cont: 0.5434)
+val auc: 0.7701  val aupr: 0.6923
+--- Best model updated at epoch 27 (Val AUC: 0.7701) ---
+
+epoch: 28
+
+epoch: 28 | loss: 0.4107
+Loss: 0.4107 (Cls: 0.3835, Cont: 0.5434)
+val auc: 0.7944  val aupr: 0.7198
+--- Best model updated at epoch 28 (Val AUC: 0.7944) ---
+
+epoch: 29
+
+epoch: 29 | loss: 0.4119
+Loss: 0.4119 (Cls: 0.3848, Cont: 0.5432)
+val auc: 0.8146  val aupr: 0.741
+--- Best model updated at epoch 29 (Val AUC: 0.8146) ---
+
+epoch: 30
+
+epoch: 30 | loss: 0.4042
+Loss: 0.4042 (Cls: 0.3771, Cont: 0.5428)
+val auc: 0.8286  val aupr: 0.7561
+--- Best model updated at epoch 30 (Val AUC: 0.8286) ---
+
+epoch: 31
+
+epoch: 31 | loss: 0.4076
+Loss: 0.4076 (Cls: 0.3805, Cont: 0.5429)
+val auc: 0.8417  val aupr: 0.7783
+--- Best model updated at epoch 31 (Val AUC: 0.8417) ---
+
+epoch: 32
+
+epoch: 32 | loss: 0.4019
+Loss: 0.4019 (Cls: 0.3748, Cont: 0.5426)
+val auc: 0.8549  val aupr: 0.7999
+--- Best model updated at epoch 32 (Val AUC: 0.8549) ---
+
+epoch: 33
+
+epoch: 33 | loss: 0.4044
+Loss: 0.4044 (Cls: 0.3773, Cont: 0.5421)
+val auc: 0.8699  val aupr: 0.8217
+--- Best model updated at epoch 33 (Val AUC: 0.8699) ---
+
+epoch: 34
+
+epoch: 34 | loss: 0.4031
+Loss: 0.4031 (Cls: 0.3760, Cont: 0.5421)
+val auc: 0.8813  val aupr: 0.8354
+--- Best model updated at epoch 34 (Val AUC: 0.8813) ---
+
+epoch: 35
+
+epoch: 35 | loss: 0.4032
+Loss: 0.4032 (Cls: 0.3761, Cont: 0.5417)
+val auc: 0.8862  val aupr: 0.8405
+--- Best model updated at epoch 35 (Val AUC: 0.8862) ---
+
+epoch: 36
+
+epoch: 36 | loss: 0.4001
+Loss: 0.4001 (Cls: 0.3730, Cont: 0.5415)
+val auc: 0.8924  val aupr: 0.8485
+--- Best model updated at epoch 36 (Val AUC: 0.8924) ---
+
+epoch: 37
+
+epoch: 37 | loss: 0.4013
+Loss: 0.4013 (Cls: 0.3743, Cont: 0.5412)
+val auc: 0.8999  val aupr: 0.8605
+--- Best model updated at epoch 37 (Val AUC: 0.8999) ---
+
+epoch: 38
+
+epoch: 38 | loss: 0.4017
+Loss: 0.4017 (Cls: 0.3747, Cont: 0.5412)
+val auc: 0.904  val aupr: 0.867
+--- Best model updated at epoch 38 (Val AUC: 0.9040) ---
+
+epoch: 39
+
+epoch: 39 | loss: 0.3987
+Loss: 0.3987 (Cls: 0.3717, Cont: 0.5408)
+val auc: 0.9054  val aupr: 0.8679
+--- Best model updated at epoch 39 (Val AUC: 0.9054) ---
+
+epoch: 40
+
+epoch: 40 | loss: 0.3998
+Loss: 0.3998 (Cls: 0.3727, Cont: 0.5409)
+val auc: 0.9054  val aupr: 0.8658
+
+epoch: 41
+
+epoch: 41 | loss: 0.3975
+Loss: 0.3975 (Cls: 0.3705, Cont: 0.5402)
+val auc: 0.9056  val aupr: 0.8677
+--- Best model updated at epoch 41 (Val AUC: 0.9056) ---
+
+epoch: 42
+
+epoch: 42 | loss: 0.3991
+Loss: 0.3991 (Cls: 0.3721, Cont: 0.5395)
+val auc: 0.9072  val aupr: 0.8714
+--- Best model updated at epoch 42 (Val AUC: 0.9072) ---
+
+epoch: 43
+
+epoch: 43 | loss: 0.3959
+Loss: 0.3959 (Cls: 0.3689, Cont: 0.5400)
+val auc: 0.9091  val aupr: 0.874
+--- Best model updated at epoch 43 (Val AUC: 0.9091) ---
+
+epoch: 44
+
+epoch: 44 | loss: 0.3982
+Loss: 0.3982 (Cls: 0.3712, Cont: 0.5391)
+val auc: 0.9106  val aupr: 0.8756
+--- Best model updated at epoch 44 (Val AUC: 0.9106) ---
+
+epoch: 45
+
+epoch: 45 | loss: 0.3946
+Loss: 0.3946 (Cls: 0.3677, Cont: 0.5383)
+val auc: 0.9091  val aupr: 0.8729
+
+epoch: 46
+
+epoch: 46 | loss: 0.3944
+Loss: 0.3944 (Cls: 0.3676, Cont: 0.5373)
+val auc: 0.9082  val aupr: 0.8718
+
+epoch: 47
+
+epoch: 47 | loss: 0.3948
+Loss: 0.3948 (Cls: 0.3679, Cont: 0.5385)
+val auc: 0.9099  val aupr: 0.8744
+
+epoch: 48
+
+epoch: 48 | loss: 0.3916
+Loss: 0.3916 (Cls: 0.3648, Cont: 0.5372)
+val auc: 0.9121  val aupr: 0.8777
+--- Best model updated at epoch 48 (Val AUC: 0.9121) ---
+
+epoch: 49
+
+epoch: 49 | loss: 0.3935
+Loss: 0.3935 (Cls: 0.3666, Cont: 0.5378)
+val auc: 0.913  val aupr: 0.8794
+--- Best model updated at epoch 49 (Val AUC: 0.9130) ---
+
+epoch: 50
+
+epoch: 50 | loss: 0.3893
+Loss: 0.3893 (Cls: 0.3625, Cont: 0.5366)
+val auc: 0.9126  val aupr: 0.879
+
+epoch: 51
+
+epoch: 51 | loss: 0.3912
+Loss: 0.3912 (Cls: 0.3643, Cont: 0.5376)
+val auc: 0.9131  val aupr: 0.8793
+--- Best model updated at epoch 51 (Val AUC: 0.9131) ---
+
+epoch: 52
+
+epoch: 52 | loss: 0.3893
+Loss: 0.3893 (Cls: 0.3624, Cont: 0.5373)
+val auc: 0.9143  val aupr: 0.8807
+--- Best model updated at epoch 52 (Val AUC: 0.9143) ---
+
+epoch: 53
+
+epoch: 53 | loss: 0.3884
+Loss: 0.3884 (Cls: 0.3615, Cont: 0.5384)
+val auc: 0.915  val aupr: 0.8812
+--- Best model updated at epoch 53 (Val AUC: 0.9150) ---
+
+epoch: 54
+
+epoch: 54 | loss: 0.3876
+Loss: 0.3876 (Cls: 0.3608, Cont: 0.5362)
+val auc: 0.915  val aupr: 0.8812
+
+epoch: 55
+
+epoch: 55 | loss: 0.3888
+Loss: 0.3888 (Cls: 0.3620, Cont: 0.5362)
+val auc: 0.9154  val aupr: 0.8825
+--- Best model updated at epoch 55 (Val AUC: 0.9154) ---
+
+epoch: 56
+
+epoch: 56 | loss: 0.3866
+Loss: 0.3866 (Cls: 0.3598, Cont: 0.5365)
+val auc: 0.9154  val aupr: 0.8835
+
+epoch: 57
+
+epoch: 57 | loss: 0.3889
+Loss: 0.3889 (Cls: 0.3621, Cont: 0.5365)
+val auc: 0.9156  val aupr: 0.8837
+--- Best model updated at epoch 57 (Val AUC: 0.9156) ---
+
+epoch: 58
+
+epoch: 58 | loss: 0.387
+Loss: 0.3870 (Cls: 0.3602, Cont: 0.5364)
+val auc: 0.9159  val aupr: 0.8838
+--- Best model updated at epoch 58 (Val AUC: 0.9159) ---
+
+epoch: 59
+
+epoch: 59 | loss: 0.3856
+Loss: 0.3856 (Cls: 0.3588, Cont: 0.5365)
+val auc: 0.9164  val aupr: 0.8842
+--- Best model updated at epoch 59 (Val AUC: 0.9164) ---
+
+epoch: 60
+
+epoch: 60 | loss: 0.3839
+Loss: 0.3839 (Cls: 0.3570, Cont: 0.5368)
+val auc: 0.9165  val aupr: 0.8844
+--- Best model updated at epoch 60 (Val AUC: 0.9165) ---
+
+epoch: 61
+
+epoch: 61 | loss: 0.3855
+Loss: 0.3855 (Cls: 0.3587, Cont: 0.5366)
+val auc: 0.9166  val aupr: 0.8845
+--- Best model updated at epoch 61 (Val AUC: 0.9166) ---
+
+epoch: 62
+
+epoch: 62 | loss: 0.3835
+Loss: 0.3835 (Cls: 0.3567, Cont: 0.5357)
+val auc: 0.9164  val aupr: 0.8846
+
+epoch: 63
+
+epoch: 63 | loss: 0.3837
+Loss: 0.3837 (Cls: 0.3569, Cont: 0.5358)
+val auc: 0.9155  val aupr: 0.8837
+
+epoch: 64
+
+epoch: 64 | loss: 0.3846
+Loss: 0.3846 (Cls: 0.3578, Cont: 0.5354)
+val auc: 0.9142  val aupr: 0.882
+
+epoch: 65
+
+epoch: 65 | loss: 0.3828
+Loss: 0.3828 (Cls: 0.3560, Cont: 0.5364)
+val auc: 0.914  val aupr: 0.8817
+
+epoch: 66
+
+epoch: 66 | loss: 0.3809
+Loss: 0.3809 (Cls: 0.3541, Cont: 0.5360)
+val auc: 0.9149  val aupr: 0.883
+
+epoch: 67
+
+epoch: 67 | loss: 0.382
+Loss: 0.3820 (Cls: 0.3551, Cont: 0.5364)
+val auc: 0.9158  val aupr: 0.8845
+
+epoch: 68
+
+epoch: 68 | loss: 0.3812
+Loss: 0.3812 (Cls: 0.3545, Cont: 0.5352)
+val auc: 0.9161  val aupr: 0.885
+
+epoch: 69
+
+epoch: 69 | loss: 0.3791
+Loss: 0.3791 (Cls: 0.3523, Cont: 0.5359)
+val auc: 0.9159  val aupr: 0.8849
+
+epoch: 70
+
+epoch: 70 | loss: 0.3801
+Loss: 0.3801 (Cls: 0.3533, Cont: 0.5359)
+val auc: 0.9156  val aupr: 0.8845
+
+epoch: 71
+
+epoch: 71 | loss: 0.3787
+Loss: 0.3787 (Cls: 0.3519, Cont: 0.5362)
+val auc: 0.9166  val aupr: 0.8857
+--- Best model updated at epoch 71 (Val AUC: 0.9166) ---
+
+epoch: 72
+
+epoch: 72 | loss: 0.3771
+Loss: 0.3771 (Cls: 0.3503, Cont: 0.5359)
+val auc: 0.9176  val aupr: 0.8866
+--- Best model updated at epoch 72 (Val AUC: 0.9176) ---
+
+epoch: 73
+
+epoch: 73 | loss: 0.3795
+Loss: 0.3795 (Cls: 0.3527, Cont: 0.5352)
+val auc: 0.9181  val aupr: 0.8868
+--- Best model updated at epoch 73 (Val AUC: 0.9181) ---
+
+epoch: 74
+
+epoch: 74 | loss: 0.3783
+Loss: 0.3783 (Cls: 0.3515, Cont: 0.5359)
+val auc: 0.9183  val aupr: 0.8872
+--- Best model updated at epoch 74 (Val AUC: 0.9183) ---
+
+epoch: 75
+
+epoch: 75 | loss: 0.3767
+Loss: 0.3767 (Cls: 0.3499, Cont: 0.5358)
+val auc: 0.9184  val aupr: 0.8875
+--- Best model updated at epoch 75 (Val AUC: 0.9184) ---
+
+epoch: 76
+
+epoch: 76 | loss: 0.3747
+Loss: 0.3747 (Cls: 0.3479, Cont: 0.5358)
+val auc: 0.9184  val aupr: 0.8877
+--- Best model updated at epoch 76 (Val AUC: 0.9184) ---
+
+epoch: 77
+
+epoch: 77 | loss: 0.3765
+Loss: 0.3765 (Cls: 0.3497, Cont: 0.5360)
+val auc: 0.9186  val aupr: 0.8877
+--- Best model updated at epoch 77 (Val AUC: 0.9186) ---
+
+epoch: 78
+
+epoch: 78 | loss: 0.3757
+Loss: 0.3757 (Cls: 0.3488, Cont: 0.5371)
+val auc: 0.9186  val aupr: 0.8877
+--- Best model updated at epoch 78 (Val AUC: 0.9186) ---
+
+epoch: 79
+
+epoch: 79 | loss: 0.3751
+Loss: 0.3751 (Cls: 0.3484, Cont: 0.5349)
+val auc: 0.9188  val aupr: 0.8883
+--- Best model updated at epoch 79 (Val AUC: 0.9188) ---
+
+epoch: 80
+
+epoch: 80 | loss: 0.3754
+Loss: 0.3754 (Cls: 0.3486, Cont: 0.5355)
+val auc: 0.9189  val aupr: 0.8885
+--- Best model updated at epoch 80 (Val AUC: 0.9189) ---
+
+epoch: 81
+
+epoch: 81 | loss: 0.3742
+Loss: 0.3742 (Cls: 0.3474, Cont: 0.5361)
+val auc: 0.9193  val aupr: 0.8887
+--- Best model updated at epoch 81 (Val AUC: 0.9193) ---
+
+epoch: 82
+
+epoch: 82 | loss: 0.3742
+Loss: 0.3742 (Cls: 0.3475, Cont: 0.5352)
+val auc: 0.9194  val aupr: 0.8888
+--- Best model updated at epoch 82 (Val AUC: 0.9194) ---
+
+epoch: 83
+
+epoch: 83 | loss: 0.3715
+Loss: 0.3715 (Cls: 0.3446, Cont: 0.5366)
+val auc: 0.9193  val aupr: 0.889
+
+epoch: 84
+
+epoch: 84 | loss: 0.3715
+Loss: 0.3715 (Cls: 0.3447, Cont: 0.5357)
+val auc: 0.9193  val aupr: 0.8892
+
+epoch: 85
+
+epoch: 85 | loss: 0.3736
+Loss: 0.3736 (Cls: 0.3468, Cont: 0.5362)
+val auc: 0.9198  val aupr: 0.8898
+--- Best model updated at epoch 85 (Val AUC: 0.9198) ---
+
+epoch: 86
+
+epoch: 86 | loss: 0.3705
+Loss: 0.3705 (Cls: 0.3437, Cont: 0.5363)
+val auc: 0.9201  val aupr: 0.8903
+--- Best model updated at epoch 86 (Val AUC: 0.9201) ---
+
+epoch: 87
+
+epoch: 87 | loss: 0.3687
+Loss: 0.3687 (Cls: 0.3420, Cont: 0.5340)
+val auc: 0.9198  val aupr: 0.8901
+
+epoch: 88
+
+epoch: 88 | loss: 0.3679
+Loss: 0.3679 (Cls: 0.3412, Cont: 0.5347)
+val auc: 0.9198  val aupr: 0.8897
+
+epoch: 89
+
+epoch: 89 | loss: 0.3701
+Loss: 0.3701 (Cls: 0.3435, Cont: 0.5340)
+val auc: 0.92  val aupr: 0.89
+
+epoch: 90
+
+epoch: 90 | loss: 0.3689
+Loss: 0.3689 (Cls: 0.3422, Cont: 0.5341)
+val auc: 0.9202  val aupr: 0.8905
+--- Best model updated at epoch 90 (Val AUC: 0.9202) ---
+
+epoch: 91
+
+epoch: 91 | loss: 0.3676
+Loss: 0.3676 (Cls: 0.3408, Cont: 0.5356)
+val auc: 0.92  val aupr: 0.8903
+
+epoch: 92
+
+epoch: 92 | loss: 0.3662
+Loss: 0.3662 (Cls: 0.3395, Cont: 0.5344)
+val auc: 0.9198  val aupr: 0.8898
+
+epoch: 93
+
+epoch: 93 | loss: 0.3664
+Loss: 0.3664 (Cls: 0.3397, Cont: 0.5352)
+val auc: 0.9198  val aupr: 0.8894
+
+epoch: 94
+
+epoch: 94 | loss: 0.3675
+Loss: 0.3675 (Cls: 0.3408, Cont: 0.5345)
+val auc: 0.9199  val aupr: 0.8898
+
+epoch: 95
+
+epoch: 95 | loss: 0.3656
+Loss: 0.3656 (Cls: 0.3389, Cont: 0.5351)
+val auc: 0.92  val aupr: 0.8903
+
+epoch: 96
+
+epoch: 96 | loss: 0.3651
+Loss: 0.3651 (Cls: 0.3384, Cont: 0.5339)
+val auc: 0.9203  val aupr: 0.8906
+--- Best model updated at epoch 96 (Val AUC: 0.9203) ---
+
+epoch: 97
+
+epoch: 97 | loss: 0.3653
+Loss: 0.3653 (Cls: 0.3386, Cont: 0.5345)
+val auc: 0.9202  val aupr: 0.8902
+
+epoch: 98
+
+epoch: 98 | loss: 0.3644
+Loss: 0.3644 (Cls: 0.3376, Cont: 0.5344)
+val auc: 0.9202  val aupr: 0.8905
+
+epoch: 99
+
+epoch: 99 | loss: 0.3649
+Loss: 0.3649 (Cls: 0.3382, Cont: 0.5351)
+val auc: 0.9206  val aupr: 0.8912
+--- Best model updated at epoch 99 (Val AUC: 0.9206) ---
+
+epoch: 100
+
+epoch: 100 | loss: 0.363
+Loss: 0.3630 (Cls: 0.3362, Cont: 0.5366)
+val auc: 0.921  val aupr: 0.8916
+--- Best model updated at epoch 100 (Val AUC: 0.9210) ---
+
+epoch: 101
+
+epoch: 101 | loss: 0.362
+Loss: 0.3620 (Cls: 0.3352, Cont: 0.5361)
+val auc: 0.9211  val aupr: 0.8918
+--- Best model updated at epoch 101 (Val AUC: 0.9211) ---
+
+epoch: 102
+
+epoch: 102 | loss: 0.3627
+Loss: 0.3627 (Cls: 0.3359, Cont: 0.5355)
+val auc: 0.9212  val aupr: 0.8918
+--- Best model updated at epoch 102 (Val AUC: 0.9212) ---
+
+epoch: 103
+
+epoch: 103 | loss: 0.3595
+Loss: 0.3595 (Cls: 0.3328, Cont: 0.5341)
+val auc: 0.921  val aupr: 0.8911
+
+epoch: 104
+
+epoch: 104 | loss: 0.3615
+Loss: 0.3615 (Cls: 0.3348, Cont: 0.5348)
+val auc: 0.9199  val aupr: 0.8885
+
+epoch: 105
+
+epoch: 105 | loss: 0.3609
+Loss: 0.3609 (Cls: 0.3342, Cont: 0.5352)
+val auc: 0.9206  val aupr: 0.8899
+
+epoch: 106
+
+epoch: 106 | loss: 0.3608
+Loss: 0.3608 (Cls: 0.3340, Cont: 0.5352)
+val auc: 0.9207  val aupr: 0.8906
+
+epoch: 107
+
+epoch: 107 | loss: 0.3596
+Loss: 0.3596 (Cls: 0.3328, Cont: 0.5357)
+val auc: 0.9212  val aupr: 0.8916
+
+epoch: 108
+
+epoch: 108 | loss: 0.3597
+Loss: 0.3597 (Cls: 0.3329, Cont: 0.5358)
+val auc: 0.9212  val aupr: 0.8924
+
+epoch: 109
+
+epoch: 109 | loss: 0.3579
+Loss: 0.3579 (Cls: 0.3312, Cont: 0.5350)
+val auc: 0.921  val aupr: 0.8925
+
+epoch: 110
+
+epoch: 110 | loss: 0.359
+Loss: 0.3590 (Cls: 0.3322, Cont: 0.5357)
+val auc: 0.9219  val aupr: 0.8933
+--- Best model updated at epoch 110 (Val AUC: 0.9219) ---
+
+epoch: 111
+
+epoch: 111 | loss: 0.3566
+Loss: 0.3566 (Cls: 0.3297, Cont: 0.5361)
+val auc: 0.9227  val aupr: 0.8936
+--- Best model updated at epoch 111 (Val AUC: 0.9227) ---
+
+epoch: 112
+
+epoch: 112 | loss: 0.3565
+Loss: 0.3565 (Cls: 0.3298, Cont: 0.5343)
+val auc: 0.9231  val aupr: 0.8933
+--- Best model updated at epoch 112 (Val AUC: 0.9231) ---
+
+epoch: 113
+
+epoch: 113 | loss: 0.3573
+Loss: 0.3573 (Cls: 0.3305, Cont: 0.5350)
+val auc: 0.9229  val aupr: 0.8931
+
+epoch: 114
+
+epoch: 114 | loss: 0.3564
+Loss: 0.3564 (Cls: 0.3297, Cont: 0.5342)
+val auc: 0.9221  val aupr: 0.893
+
+epoch: 115
+
+epoch: 115 | loss: 0.3555
+Loss: 0.3555 (Cls: 0.3287, Cont: 0.5349)
+val auc: 0.9213  val aupr: 0.8925
+
+epoch: 116
+
+epoch: 116 | loss: 0.3533
+Loss: 0.3533 (Cls: 0.3265, Cont: 0.5344)
+val auc: 0.9207  val aupr: 0.892
+
+epoch: 117
+
+epoch: 117 | loss: 0.3566
+Loss: 0.3566 (Cls: 0.3299, Cont: 0.5342)
+val auc: 0.921  val aupr: 0.8928
+
+epoch: 118
+
+epoch: 118 | loss: 0.3531
+Loss: 0.3531 (Cls: 0.3264, Cont: 0.5350)
+val auc: 0.9213  val aupr: 0.8935
+
+epoch: 119
+
+epoch: 119 | loss: 0.3531
+Loss: 0.3531 (Cls: 0.3264, Cont: 0.5351)
+val auc: 0.9217  val aupr: 0.8937
+
+epoch: 120
+
+epoch: 120 | loss: 0.3525
+Loss: 0.3525 (Cls: 0.3257, Cont: 0.5344)
+val auc: 0.9217  val aupr: 0.8937
+
+epoch: 121
+
+epoch: 121 | loss: 0.3539
+Loss: 0.3539 (Cls: 0.3272, Cont: 0.5344)
+val auc: 0.9219  val aupr: 0.8941
+
+epoch: 122
+
+epoch: 122 | loss: 0.3516
+Loss: 0.3516 (Cls: 0.3249, Cont: 0.5340)
+val auc: 0.9209  val aupr: 0.8931
+
+epoch: 123
+
+epoch: 123 | loss: 0.3532
+Loss: 0.3532 (Cls: 0.3264, Cont: 0.5365)
+val auc: 0.9214  val aupr: 0.8933
+
+epoch: 124
+
+epoch: 124 | loss: 0.3514
+Loss: 0.3514 (Cls: 0.3246, Cont: 0.5348)
+val auc: 0.9215  val aupr: 0.8929
+
+epoch: 125
+
+epoch: 125 | loss: 0.352
+Loss: 0.3520 (Cls: 0.3253, Cont: 0.5337)
+val auc: 0.9219  val aupr: 0.8935
+
+epoch: 126
+
+epoch: 126 | loss: 0.3524
+Loss: 0.3524 (Cls: 0.3256, Cont: 0.5350)
+val auc: 0.9223  val aupr: 0.8942
+
+epoch: 127
+
+epoch: 127 | loss: 0.3524
+Loss: 0.3524 (Cls: 0.3257, Cont: 0.5344)
+val auc: 0.923  val aupr: 0.8948
+
+epoch: 128
+
+epoch: 128 | loss: 0.3501
+Loss: 0.3501 (Cls: 0.3234, Cont: 0.5348)
+val auc: 0.9233  val aupr: 0.8949
+--- Best model updated at epoch 128 (Val AUC: 0.9233) ---
+
+epoch: 129
+
+epoch: 129 | loss: 0.3492
+Loss: 0.3492 (Cls: 0.3225, Cont: 0.5341)
+val auc: 0.9232  val aupr: 0.8955
+
+epoch: 130
+
+epoch: 130 | loss: 0.351
+Loss: 0.3510 (Cls: 0.3243, Cont: 0.5338)
+val auc: 0.9227  val aupr: 0.8955
+
+epoch: 131
+
+epoch: 131 | loss: 0.35
+Loss: 0.3500 (Cls: 0.3233, Cont: 0.5340)
+val auc: 0.9217  val aupr: 0.8942
+
+epoch: 132
+
+epoch: 132 | loss: 0.3484
+Loss: 0.3484 (Cls: 0.3217, Cont: 0.5333)
+val auc: 0.9214  val aupr: 0.8929
+
+epoch: 133
+
+epoch: 133 | loss: 0.3498
+Loss: 0.3498 (Cls: 0.3231, Cont: 0.5348)
+val auc: 0.9219  val aupr: 0.8939
+
+epoch: 134
+
+epoch: 134 | loss: 0.3473
+Loss: 0.3473 (Cls: 0.3206, Cont: 0.5340)
+val auc: 0.9234  val aupr: 0.8963
+--- Best model updated at epoch 134 (Val AUC: 0.9234) ---
+
+epoch: 135
+
+epoch: 135 | loss: 0.3473
+Loss: 0.3473 (Cls: 0.3206, Cont: 0.5335)
+val auc: 0.9236  val aupr: 0.8962
+--- Best model updated at epoch 135 (Val AUC: 0.9236) ---
+
+epoch: 136
+
+epoch: 136 | loss: 0.3502
+Loss: 0.3502 (Cls: 0.3235, Cont: 0.5347)
+val auc: 0.9236  val aupr: 0.896
+--- Best model updated at epoch 136 (Val AUC: 0.9236) ---
+
+epoch: 137
+
+epoch: 137 | loss: 0.3469
+Loss: 0.3469 (Cls: 0.3202, Cont: 0.5344)
+val auc: 0.9221  val aupr: 0.8938
+
+epoch: 138
+
+epoch: 138 | loss: 0.3469
+Loss: 0.3469 (Cls: 0.3203, Cont: 0.5335)
+val auc: 0.9219  val aupr: 0.8938
+
+epoch: 139
+
+epoch: 139 | loss: 0.3478
+Loss: 0.3478 (Cls: 0.3211, Cont: 0.5332)
+val auc: 0.9221  val aupr: 0.8944
+
+epoch: 140
+
+epoch: 140 | loss: 0.3473
+Loss: 0.3473 (Cls: 0.3206, Cont: 0.5347)
+val auc: 0.9229  val aupr: 0.8958
+
+epoch: 141
+
+epoch: 141 | loss: 0.3469
+Loss: 0.3469 (Cls: 0.3201, Cont: 0.5346)
+val auc: 0.9227  val aupr: 0.8958
+
+epoch: 142
+
+epoch: 142 | loss: 0.3469
+Loss: 0.3469 (Cls: 0.3202, Cont: 0.5353)
+val auc: 0.9229  val aupr: 0.8959
+
+epoch: 143
+
+epoch: 143 | loss: 0.3465
+Loss: 0.3465 (Cls: 0.3198, Cont: 0.5332)
+val auc: 0.923  val aupr: 0.8962
+
+epoch: 144
+
+epoch: 144 | loss: 0.3464
+Loss: 0.3464 (Cls: 0.3197, Cont: 0.5340)
+val auc: 0.9229  val aupr: 0.8964
+
+epoch: 145
+
+epoch: 145 | loss: 0.346
+Loss: 0.3460 (Cls: 0.3194, Cont: 0.5335)
+val auc: 0.9231  val aupr: 0.8967
+
+epoch: 146
+
+epoch: 146 | loss: 0.3443
+Loss: 0.3443 (Cls: 0.3176, Cont: 0.5331)
+val auc: 0.9237  val aupr: 0.8974
+--- Best model updated at epoch 146 (Val AUC: 0.9237) ---
+
+epoch: 147
+
+epoch: 147 | loss: 0.3452
+Loss: 0.3452 (Cls: 0.3185, Cont: 0.5343)
+val auc: 0.9243  val aupr: 0.8981
+--- Best model updated at epoch 147 (Val AUC: 0.9243) ---
+
+epoch: 148
+
+epoch: 148 | loss: 0.3444
+Loss: 0.3444 (Cls: 0.3177, Cont: 0.5343)
+val auc: 0.9243  val aupr: 0.8982
+
+epoch: 149
+
+epoch: 149 | loss: 0.3447
+Loss: 0.3447 (Cls: 0.3180, Cont: 0.5333)
+val auc: 0.9239  val aupr: 0.8974
+
+epoch: 150
+
+epoch: 150 | loss: 0.3452
+Loss: 0.3452 (Cls: 0.3185, Cont: 0.5346)
+val auc: 0.9229  val aupr: 0.8956
+
+epoch: 151
+
+epoch: 151 | loss: 0.3446
+Loss: 0.3446 (Cls: 0.3179, Cont: 0.5339)
+val auc: 0.9228  val aupr: 0.8953
+
+epoch: 152
+
+epoch: 152 | loss: 0.3429
+Loss: 0.3429 (Cls: 0.3163, Cont: 0.5323)
+val auc: 0.9224  val aupr: 0.8949
+
+epoch: 153
+
+epoch: 153 | loss: 0.3442
+Loss: 0.3442 (Cls: 0.3176, Cont: 0.5333)
+val auc: 0.9229  val aupr: 0.8955
+
+epoch: 154
+
+epoch: 154 | loss: 0.3441
+Loss: 0.3441 (Cls: 0.3175, Cont: 0.5329)
+val auc: 0.9219  val aupr: 0.8941
+
+epoch: 155
+
+epoch: 155 | loss: 0.344
+Loss: 0.3440 (Cls: 0.3173, Cont: 0.5327)
+val auc: 0.9222  val aupr: 0.8945
+
+epoch: 156
+
+epoch: 156 | loss: 0.3424
+Loss: 0.3424 (Cls: 0.3157, Cont: 0.5336)
+val auc: 0.9226  val aupr: 0.8954
+
+epoch: 157
+
+epoch: 157 | loss: 0.3432
+Loss: 0.3432 (Cls: 0.3165, Cont: 0.5349)
+val auc: 0.9227  val aupr: 0.8955
+
+epoch: 158
+
+epoch: 158 | loss: 0.3426
+Loss: 0.3426 (Cls: 0.3160, Cont: 0.5334)
+val auc: 0.9224  val aupr: 0.8945
+
+epoch: 159
+
+epoch: 159 | loss: 0.3417
+Loss: 0.3417 (Cls: 0.3151, Cont: 0.5323)
+val auc: 0.9225  val aupr: 0.8948
+
+epoch: 160
+
+epoch: 160 | loss: 0.3436
+Loss: 0.3436 (Cls: 0.3170, Cont: 0.5332)
+val auc: 0.9225  val aupr: 0.8956
+
+epoch: 161
+
+epoch: 161 | loss: 0.3422
+Loss: 0.3422 (Cls: 0.3155, Cont: 0.5341)
+val auc: 0.9223  val aupr: 0.8957
+
+epoch: 162
+
+epoch: 162 | loss: 0.3423
+Loss: 0.3423 (Cls: 0.3156, Cont: 0.5326)
+val auc: 0.9225  val aupr: 0.8955
+
+epoch: 163
+
+epoch: 163 | loss: 0.3428
+Loss: 0.3428 (Cls: 0.3161, Cont: 0.5333)
+val auc: 0.9221  val aupr: 0.8943
+
+epoch: 164
+
+epoch: 164 | loss: 0.3428
+Loss: 0.3428 (Cls: 0.3162, Cont: 0.5321)
+val auc: 0.9227  val aupr: 0.895
+
+epoch: 165
+
+epoch: 165 | loss: 0.3407
+Loss: 0.3407 (Cls: 0.3141, Cont: 0.5329)
+val auc: 0.9234  val aupr: 0.8962
+
+epoch: 166
+
+epoch: 166 | loss: 0.3426
+Loss: 0.3426 (Cls: 0.3159, Cont: 0.5336)
+val auc: 0.9237  val aupr: 0.8963
+
+epoch: 167
+
+epoch: 167 | loss: 0.3424
+Loss: 0.3424 (Cls: 0.3158, Cont: 0.5326)
+val auc: 0.9239  val aupr: 0.8965
+
+epoch: 168
+
+epoch: 168 | loss: 0.3407
+Loss: 0.3407 (Cls: 0.3141, Cont: 0.5320)
+val auc: 0.9236  val aupr: 0.8966
+
+epoch: 169
+
+epoch: 169 | loss: 0.3402
+Loss: 0.3402 (Cls: 0.3135, Cont: 0.5340)
+val auc: 0.9235  val aupr: 0.897
+
+epoch: 170
+
+epoch: 170 | loss: 0.3402
+Loss: 0.3402 (Cls: 0.3135, Cont: 0.5327)
+val auc: 0.9236  val aupr: 0.8973
+
+epoch: 171
+
+epoch: 171 | loss: 0.3386
+Loss: 0.3386 (Cls: 0.3120, Cont: 0.5333)
+val auc: 0.9236  val aupr: 0.897
+
+epoch: 172
+
+epoch: 172 | loss: 0.3401
+Loss: 0.3401 (Cls: 0.3135, Cont: 0.5330)
+val auc: 0.9234  val aupr: 0.8965
+
+epoch: 173
+
+epoch: 173 | loss: 0.3401
+Loss: 0.3401 (Cls: 0.3135, Cont: 0.5328)
+val auc: 0.9235  val aupr: 0.8964
+
+epoch: 174
+
+epoch: 174 | loss: 0.3388
+Loss: 0.3388 (Cls: 0.3121, Cont: 0.5332)
+val auc: 0.9239  val aupr: 0.8967
+
+epoch: 175
+
+epoch: 175 | loss: 0.3392
+Loss: 0.3392 (Cls: 0.3126, Cont: 0.5319)
+val auc: 0.924  val aupr: 0.897
+
+epoch: 176
+
+epoch: 176 | loss: 0.3392
+Loss: 0.3392 (Cls: 0.3125, Cont: 0.5329)
+val auc: 0.9234  val aupr: 0.8963
+
+epoch: 177
+
+epoch: 177 | loss: 0.3385
+Loss: 0.3385 (Cls: 0.3119, Cont: 0.5324)
+val auc: 0.9224  val aupr: 0.8953
+
+epoch: 178
+
+epoch: 178 | loss: 0.3393
+Loss: 0.3393 (Cls: 0.3126, Cont: 0.5344)
+val auc: 0.9222  val aupr: 0.8949
+
+epoch: 179
+
+epoch: 179 | loss: 0.3385
+Loss: 0.3385 (Cls: 0.3119, Cont: 0.5333)
+val auc: 0.923  val aupr: 0.8958
+
+epoch: 180
+
+epoch: 180 | loss: 0.3392
+Loss: 0.3392 (Cls: 0.3126, Cont: 0.5326)
+val auc: 0.9242  val aupr: 0.8969
+
+epoch: 181
+
+epoch: 181 | loss: 0.3382
+Loss: 0.3382 (Cls: 0.3115, Cont: 0.5331)
+val auc: 0.9245  val aupr: 0.8972
+--- Best model updated at epoch 181 (Val AUC: 0.9245) ---
+
+epoch: 182
+
+epoch: 182 | loss: 0.3385
+Loss: 0.3385 (Cls: 0.3119, Cont: 0.5322)
+val auc: 0.9242  val aupr: 0.8974
+
+epoch: 183
+
+epoch: 183 | loss: 0.3378
+Loss: 0.3378 (Cls: 0.3111, Cont: 0.5332)
+val auc: 0.924  val aupr: 0.8976
+
+epoch: 184
+
+epoch: 184 | loss: 0.3369
+Loss: 0.3369 (Cls: 0.3103, Cont: 0.5323)
+val auc: 0.9241  val aupr: 0.8974
+
+epoch: 185
+
+epoch: 185 | loss: 0.3381
+Loss: 0.3381 (Cls: 0.3114, Cont: 0.5334)
+val auc: 0.9239  val aupr: 0.8967
+
+epoch: 186
+
+epoch: 186 | loss: 0.3374
+Loss: 0.3374 (Cls: 0.3108, Cont: 0.5325)
+val auc: 0.9243  val aupr: 0.897
+
+epoch: 187
+
+epoch: 187 | loss: 0.3383
+Loss: 0.3383 (Cls: 0.3116, Cont: 0.5328)
+val auc: 0.9252  val aupr: 0.8984
+--- Best model updated at epoch 187 (Val AUC: 0.9252) ---
+
+epoch: 188
+
+epoch: 188 | loss: 0.3377
+Loss: 0.3377 (Cls: 0.3110, Cont: 0.5336)
+val auc: 0.9254  val aupr: 0.899
+--- Best model updated at epoch 188 (Val AUC: 0.9254) ---
+
+epoch: 189
+
+epoch: 189 | loss: 0.3362
+Loss: 0.3362 (Cls: 0.3096, Cont: 0.5326)
+val auc: 0.9249  val aupr: 0.8984
+
+epoch: 190
+
+epoch: 190 | loss: 0.3368
+Loss: 0.3368 (Cls: 0.3101, Cont: 0.5344)
+val auc: 0.924  val aupr: 0.8973
+
+epoch: 191
+
+epoch: 191 | loss: 0.3362
+Loss: 0.3362 (Cls: 0.3096, Cont: 0.5334)
+val auc: 0.923  val aupr: 0.8958
+
+epoch: 192
+
+epoch: 192 | loss: 0.337
+Loss: 0.3370 (Cls: 0.3104, Cont: 0.5325)
+val auc: 0.923  val aupr: 0.8957
+
+epoch: 193
+
+epoch: 193 | loss: 0.3368
+Loss: 0.3368 (Cls: 0.3101, Cont: 0.5333)
+val auc: 0.9233  val aupr: 0.8964
+
+epoch: 194
+
+epoch: 194 | loss: 0.3351
+Loss: 0.3351 (Cls: 0.3085, Cont: 0.5325)
+val auc: 0.924  val aupr: 0.8975
+
+epoch: 195
+
+epoch: 195 | loss: 0.3351
+Loss: 0.3351 (Cls: 0.3084, Cont: 0.5332)
+val auc: 0.9245  val aupr: 0.8981
+
+epoch: 196
+
+epoch: 196 | loss: 0.336
+Loss: 0.3360 (Cls: 0.3093, Cont: 0.5330)
+val auc: 0.925  val aupr: 0.8987
+
+epoch: 197
+
+epoch: 197 | loss: 0.3362
+Loss: 0.3362 (Cls: 0.3096, Cont: 0.5323)
+val auc: 0.9253  val aupr: 0.8993
+
+epoch: 198
+
+epoch: 198 | loss: 0.3353
+Loss: 0.3353 (Cls: 0.3088, Cont: 0.5314)
+val auc: 0.9251  val aupr: 0.899
+
+epoch: 199
+
+epoch: 199 | loss: 0.3335
+Loss: 0.3335 (Cls: 0.3069, Cont: 0.5322)
+val auc: 0.9248  val aupr: 0.8984
+
+[Model Selection] Loaded best model weights (Validation AUC: 0.9254)
+
+FINAL TEST RESULTS:
+test auc: 0.9227  test aupr: 0.8951
+Fold 2 Results -> AUC: 0.9227, AUPR: 0.8951, F1: 0.8134
+
+Experiment Completed. Saving results to soulcdr_results.txt
+Average Total Epochs: 200.00
+Average Final_AUC: 0.9233 +/- 0.0006
+Average Final_AUPR: 0.8956 +/- 0.0005
+Average Final_F1: 0.8145 +/- 0.0011
+Average Final_ACC: 0.8418 +/- 0.0017

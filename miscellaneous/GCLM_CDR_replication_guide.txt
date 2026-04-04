@@ -1,0 +1,154 @@
+GCLM-CDR End-to-End Replication Guide
+
+Paper: GCLM-CDR: A Graph Contrastive Learning Method with Multi-Omics
+for Cancer Drug Response Prediction (BIBM 2024)
+
+  ------------------------
+  1. DATASET PREPARATION
+  ------------------------
+
+1.1 Multi-Omics (Cell Line Features) – From CCLE / DepMap
+
+Three omics types: - Genomic mutation: 34,673 features - DNA
+methylation: 808 features - Gene expression: 697 features
+
+Preprocessing: - Align cell line IDs with GDSC. - Standardize each omics
+independently (z-score recommended). - Handle missing values via zero
+fill or column mean. - Ensure final feature matrices are aligned with
+drug-response pairs.
+
+  ------------------------------------------------------------
+  1.2 Drug Response Labels – From GDSC
+  ------------------------------------------------------------
+  1.3 Drug Molecular Graphs – From PubChem
+
+  - Obtain SMILES strings. - Convert using DeepChem
+  ConvMolFeaturizer. - Each atom: 75-dimensional feature
+  vector. - Nodes = atoms. - Edges = chemical bonds.
+  ------------------------------------------------------------
+
+2. MODEL ARCHITECTURE OVERVIEW
+
+Three modules: 1. Multi-Omics Feature Representation Module 2. Graph
+Contrastive Learning Module 3. Drug Response Prediction Module
+
+  -------------------------------
+  3. MULTI-OMICS FEATURE MODULE
+  -------------------------------
+
+3.1 Omics Encoding (DNN per Omics)
+
+Each omics processed independently:
+
+Input → 1024 → 512 → 256 (ReLU)
+
+Outputs: - hG (Genomics) - hE (Epigenomics) - hN (Transcriptomics)
+
+Each final embedding: 256-dimension.
+
+  ------------------------------------------------------------
+  3.2 Neighbor Interaction (NI Layer)
+  ------------------------------------------------------------
+  4. DRUG REPRESENTATION (GAT)
+
+  ------------------------------------------------------------
+
+Drug graph GD = (X_D, A_D)
+
+Node feature dimension: 75
+
+Use 2-layer GAT: - Hidden dim: 128 - Heads: 4 - Activation: ELU
+
+Attention: e_ij = LeakyReLU(a^T [Wh_i || Wh_j]) α_ij = softmax(e_ij)
+h’_i = Σ α_ij W h_j
+
+Graph-level embedding: Global Max Pooling
+
+Final dimension: 128–256.
+
+  -------------------------------------
+  5. HETEROGENEOUS GRAPH CONSTRUCTION
+  -------------------------------------
+
+Graph G_OD = (V, E)
+
+Nodes: - Omics nodes - Drug nodes
+
+Edges: - Sensitive = 1 - Resistant = 0
+
+Adjacency matrix A_OD ∈ {0,1}.
+
+  --------------------------------------
+  6. GRAPH CONTRASTIVE LEARNING MODULE
+  --------------------------------------
+
+Encoder: 1-layer GCN with PReLU activation.
+
+Node update: h_x = PReLU(Σ (1 / sqrt(q_x q_y)) W h_y)
+
+Two losses: - L_pos: agreement with positive graph - L_neg: disagreement
+with negative graph
+
+Discriminator: D(h, T) = sigmoid(h^T W T)
+
+  -----------------------------
+  7. DRUG RESPONSE PREDICTION
+  -----------------------------
+
+Extract: hO = H_OD[Omics nodes] hD = H_OD[Drug nodes]
+
+Prediction: P = Sigmoid(hO × hD^T)
+
+Loss: Binary Cross Entropy (L_pre).
+
+  ---------------
+  8. TOTAL LOSS
+  ---------------
+
+L = (1 - λ - μ)L_pre + λL_pos + μL_neg
+
+Hyperparameters: λ = 0.3 μ = 0.3
+
+  ----------------------
+  9. TRAINING SETTINGS
+  ----------------------
+
+-   Epochs: 200
+-   Optimizer: Adam
+-   Learning Rate: 1e-3
+-   Patience: 50
+-   Cross-validation: 5-fold
+-   Split: 9:1 train/test
+-   Full-graph training
+
+  ------------------------
+  10. EVALUATION METRICS
+  ------------------------
+
+-   AUC
+-   AUPR
+
+Reported results: GDSC: AUC = 0.8534 AUPR = 0.5327
+
+CCLE: AUC = 0.9599 AUPR = 0.8715
+
+  -------------------------------
+  11. COMPLETE PIPELINE SUMMARY
+  -------------------------------
+
+1.  Load multi-omics from CCLE.
+2.  Load drug-response from GDSC.
+3.  Load SMILES from PubChem.
+4.  Encode omics with DNNs.
+5.  Apply NI interaction layer.
+6.  Encode drug graphs with GAT.
+7.  Construct heterogeneous graph.
+8.  Apply GCN encoder.
+9.  Compute contrastive losses.
+10. Compute prediction loss.
+11. Optimize total loss.
+12. Evaluate AUC/AUPR.
+
+  -----------------
+  END OF DOCUMENT
+  -----------------

@@ -1,0 +1,28 @@
+# Deep Learning & Graph Neural Networks (Core Model Architecture)
+torch==2.10.0
+torch-geometric==2.6.1
+torch-scatter==2.1.2
+torch-sparse==0.6.18
+
+# Scientific Computing & Data Processing (Metrics & Preprocessing)
+numpy==1.26.4
+pandas==2.2.2
+scipy==1.16.3
+scikit-learn==1.6.1
+networkx==3.6.1
+
+# Chemoinformatics & Drug Representation (Feature Extraction)
+rdkit==2024.03.5
+deepchem==2.8.0
+
+# Data Serialization & File I/O (Dataset Handling)
+h5py==3.15.1
+hickle==5.0.2
+dill==0.4.1
+openpyxl==3.1.5
+
+# Utilities & Performance Optimization
+tqdm==4.67.3
+requests==2.32.5
+joblib==1.5.3
+sympy==1.14.0

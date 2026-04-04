@@ -1,0 +1,30 @@
+Pearson similarity stats:
+  Mean: 0.0154
+  Std : 0.3529
+  Min : -0.9603
+  Max : 0.9972
+
+Cosine similarity stats:
+  Mean: 0.0243
+  Std : 0.4552
+  Min : -0.9840
+  Max : 0.9986
+
+Spearman similarity stats:
+  Mean: 0.0089
+  Std : 0.3440
+  Min : -0.9052
+  Max : 0.9944
+
+Euclidean similarity stats:
+  Mean: 0.1259
+  Std : 0.0545
+  Min : 0.0195
+  Max : 0.5585
+
+Rank agreement (Pearson vs Cosine):
+  Drug 51358113: rank corr = 0.823
+  Drug 54685215: rank corr = 0.920
+  Drug 42628535: rank corr = 0.907
+  Drug 5494449: rank corr = 0.976
+  Drug 10113978: rank corr = 0.803
