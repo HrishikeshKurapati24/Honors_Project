@@ -14,7 +14,7 @@ DATASET SIZE: 109446 pairs | 425 cells | 298 drugs.
 
 --- Running Fold 1/2 ---
 Using device: cuda
-Running Stage-1 SOULCDR Model Experiment with Real Graph Batching
+Running Stage-1 FUSECDR Model Experiment with Real Graph Batching
 Created physicochemical tensor with shape: torch.Size([298, 63])
 Constructing Global Heterogeneous Graph from Loaded Features...
 [CellLineRepresentationModule] Initialized with variation: original
@@ -1320,7 +1320,7 @@ Fold 1 Results -> AUC: 0.9246, AUPR: 0.8973, F1: 0.8159
 
 --- Running Fold 2/2 ---
 Using device: cuda
-Running Stage-1 SOULCDR Model Experiment with Real Graph Batching
+Running Stage-1 FUSECDR Model Experiment with Real Graph Batching
 Created physicochemical tensor with shape: torch.Size([298, 63])
 Constructing Global Heterogeneous Graph from Loaded Features...
 [CellLineRepresentationModule] Initialized with variation: original
@@ -2600,7 +2600,7 @@ FINAL TEST RESULTS:
 test auc: 0.9219  test aupr: 0.8944
 Fold 2 Results -> AUC: 0.9219, AUPR: 0.8944, F1: 0.8129
 
-Experiment Completed. Saving results to soulcdr_results.txt
+Experiment Completed. Saving results to fusecdr_results.txt
 Average Total Epochs: 200.00
 Average Final_AUC: 0.9232 +/- 0.0013
 Average Final_AUPR: 0.8959 +/- 0.0015

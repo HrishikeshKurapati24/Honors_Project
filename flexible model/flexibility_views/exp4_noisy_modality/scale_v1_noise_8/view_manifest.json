@@ -1,0 +1,22 @@
+{
+  "base_dataset_root": "/content/drive/MyDrive/CDRP models testing/final_dataset",
+  "selected_stems": [
+    "epigenomics_chromatin",
+    "epigenomics_methylation",
+    "genomics_mutation",
+    "metabolomics_profile",
+    "pathway",
+    "proteomics_reverse_phase",
+    "transcriptomics_expression"
+  ],
+  "extra_tables": [
+    "pathway_noise_01",
+    "pathway_noise_02",
+    "pathway_noise_03",
+    "pathway_noise_04",
+    "pathway_noise_05",
+    "pathway_noise_06",
+    "pathway_noise_07",
+    "pathway_noise_08"
+  ]
+}

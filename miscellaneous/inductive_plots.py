@@ -5,7 +5,7 @@ import numpy as np
 datasets = ["dataset-1", "dataset-2"]
 metrics = ["AUC", "AUPR"]
 protocols = ["Cell-line split", "Drug split", "Unseen both split"]
-models = ["GraphCDR", "RedCDR", "SOULCDR"]
+models = ["GraphCDR", "RedCDR", "FUSECDR"]
 
 # Data Structure: [Dataset][Metric][Protocol][Model]
 data = {

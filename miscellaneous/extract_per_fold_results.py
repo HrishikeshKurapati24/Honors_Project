@@ -4,7 +4,7 @@ import pandas as pd
 base_path = "/Volumes/Work/Semester - 6/Honors/CDRP models testing/3OmicsBenchmarking/results"
 protocols = ["random", "unseen_cells", "unseen_drugs", "unseen_both"]
 datasets = ["dataset-1", "dataset-2"]
-models = ["GraphCDR", "RedCDR", "SOULCDR"]
+models = ["GraphCDR", "RedCDR", "FUSECDR"]
 
 results = []
 

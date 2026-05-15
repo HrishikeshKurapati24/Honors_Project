@@ -1,0 +1,101 @@
+{
+  "mean": {
+    "test_auc": 0.9198847535459365,
+    "test_aupr": 0.8899678582566473,
+    "test_f1": 0.8101201176643371,
+    "test_acc": 0.8376185417175293
+  },
+  "std": {
+    "test_auc": 0.0010136145413898333,
+    "test_aupr": 0.0017201661466540621,
+    "test_f1": 0.0037150742345764733,
+    "test_acc": 0.004176486456211274
+  },
+  "fold_count": 5,
+  "folds": [
+    {
+      "fold": 1,
+      "best_val_auc": 0.9177187879952035,
+      "test_auc": 0.921509105952387,
+      "test_aupr": 0.8929986080381053,
+      "test_f1": 0.812959611415863,
+      "test_acc": 0.8396528363227844,
+      "parameter_count": 47728868,
+      "fold_elapsed_seconds": 324.67459058761597,
+      "edge_mode": "no_cell_similarity",
+      "variant_name": "full",
+      "local_layers": 2,
+      "global_layers": 2
+    },
+    {
+      "fold": 2,
+      "best_val_auc": 0.9221315738793522,
+      "test_auc": 0.9199988269826999,
+      "test_aupr": 0.8884698770167696,
+      "test_f1": 0.810524582862854,
+      "test_acc": 0.8397825360298157,
+      "parameter_count": 47728868,
+      "fold_elapsed_seconds": 324.90776467323303,
+      "edge_mode": "no_cell_similarity",
+      "variant_name": "full",
+      "local_layers": 2,
+      "global_layers": 2
+    },
+    {
+      "fold": 3,
+      "best_val_auc": 0.9173141482762115,
+      "test_auc": 0.9202662452815717,
+      "test_aupr": 0.8898583306313794,
+      "test_f1": 0.8151577115058899,
+      "test_acc": 0.8431175351142883,
+      "parameter_count": 47728868,
+      "fold_elapsed_seconds": 323.9495589733124,
+      "edge_mode": "no_cell_similarity",
+      "variant_name": "full",
+      "local_layers": 2,
+      "global_layers": 2
+    },
+    {
+      "fold": 4,
+      "best_val_auc": 0.9219331389681124,
+      "test_auc": 0.9186091822703781,
+      "test_aupr": 0.8881744193816552,
+      "test_f1": 0.8052332997322083,
+      "test_acc": 0.832016110420227,
+      "parameter_count": 47728868,
+      "fold_elapsed_seconds": 326.6431429386139,
+      "edge_mode": "no_cell_similarity",
+      "variant_name": "full",
+      "local_layers": 2,
+      "global_layers": 2
+    },
+    {
+      "fold": 5,
+      "best_val_auc": 0.9233591260747145,
+      "test_auc": 0.9190404072426459,
+      "test_aupr": 0.890338056215327,
+      "test_f1": 0.8067253828048706,
+      "test_acc": 0.833523690700531,
+      "parameter_count": 47728868,
+      "fold_elapsed_seconds": 323.63045501708984,
+      "edge_mode": "no_cell_similarity",
+      "variant_name": "full",
+      "local_layers": 2,
+      "global_layers": 2
+    }
+  ],
+  "metadata": {
+    "variant_name": "full",
+    "use_local_branch": true,
+    "use_global_branch": true,
+    "num_local_layers": 2,
+    "num_global_layers": 2,
+    "edge_mode": "no_cell_similarity",
+    "response_sparsity_fraction": 0.0,
+    "dataset_root": "/content/drive/MyDrive/CDRP models testing/final_dataset",
+    "split_dir": "/content/drive/MyDrive/CDRP models testing/flexible model/hgt_claim_outputs/shared_splits/final_dataset_seed0_k5",
+    "epochs": 120,
+    "seed": 0,
+    "device": "cuda"
+  }
+}

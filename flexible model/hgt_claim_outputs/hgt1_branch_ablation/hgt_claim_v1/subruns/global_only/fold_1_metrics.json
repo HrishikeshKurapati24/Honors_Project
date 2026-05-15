@@ -1,0 +1,14 @@
+{
+  "fold": 1,
+  "best_val_auc": 0.9213306072481711,
+  "test_auc": 0.9224898077715724,
+  "test_aupr": 0.8940544485323774,
+  "test_f1": 0.8159346580505371,
+  "test_acc": 0.8414801359176636,
+  "parameter_count": 46940900,
+  "fold_elapsed_seconds": 299.32182216644287,
+  "edge_mode": "full_graph",
+  "variant_name": "global_only",
+  "local_layers": 2,
+  "global_layers": 2
+}

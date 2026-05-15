@@ -12,6 +12,7 @@ ENV/
 env.bak/
 venv.bak/
 venv_SOUL/
+venv_FUSE/
 v/
 
 # Python
@@ -43,12 +44,13 @@ MANIFEST
 .Rhistory
 .Rapp.history
 .Ruserdata
+.Rapp.history
 
 # Jupyter Notebook
 .ipynb_checkpoints
 
 # PyTorch / Machine Learning
-*.pt
+**/*.pt
 *.pth
 *.h5
 *.hdf5
@@ -60,13 +62,13 @@ MANIFEST
 *.swp
 *.swo
 
-# Datasets
-data/
-final_dataset/
-3OmicsBenchmarking/dataset-1/
-3OmicsBenchmarking/dataset-2/
-3OmicsBenchmarking/prepared/
-3OmicsBenchmarking/splits/
+# Project Specific
+miscellaneous/
+
+# Benchmark Models - Ignore all except implementation
+benchmark models/**
+!benchmark models/**/
+!benchmark models/**/benchmark implementation/**
 
 # Notes
 *notes*.txt

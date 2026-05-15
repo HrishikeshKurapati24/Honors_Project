@@ -1,5 +1,5 @@
 Metric,Comparison,N,Mean Diff,Stat,P-value,Significant
-AUC,SOUL-CDR vs GraphCDR,40,+0.0778,16.0,3.0741e-10,Yes (p<0.05)
-AUC,SOUL-CDR vs RedCDR,40,+0.0608,71.0,5.8416e-07,Yes (p<0.05)
-AUPR,SOUL-CDR vs GraphCDR,40,+0.0743,29.0,3.1632e-09,Yes (p<0.05)
-AUPR,SOUL-CDR vs RedCDR,40,+0.0534,99.0,7.5081e-06,Yes (p<0.05)
+AUC,FUSE-CDR vs GraphCDR,40,+0.0778,16.0,3.0741e-10,Yes (p<0.05)
+AUC,FUSE-CDR vs RedCDR,40,+0.0608,71.0,5.8416e-07,Yes (p<0.05)
+AUPR,FUSE-CDR vs GraphCDR,40,+0.0743,29.0,3.1632e-09,Yes (p<0.05)
+AUPR,FUSE-CDR vs RedCDR,40,+0.0534,99.0,7.5081e-06,Yes (p<0.05)

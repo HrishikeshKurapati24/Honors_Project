@@ -159,6 +159,10 @@ def _forward_predictions(model, scope: Dict):
     return predictions, rd_loss, pd_loss
 
 
+def _sanitize_predictions(predictions: torch.Tensor) -> torch.Tensor:
+    return torch.nan_to_num(predictions, nan=0.5, posinf=1.0, neginf=0.0).clamp(0.0, 1.0)
+
+
 def run(
     root_dir: str,
     prepared_dir: str,
@@ -230,6 +234,7 @@ def run(
                 if protocol == "random":
                     train_model.eval()
                     val_predictions, _, _ = _forward_predictions(train_model, val_scope)
+                    val_predictions = _sanitize_predictions(val_predictions)
                     val_metrics = compute_binary_metrics(val_scope["label_pos"][val_scope["val_mask"]], val_predictions[val_scope["val_mask"]])
                     if val_metrics["auc"] > best_val_auc:
                         best_val_auc = val_metrics["auc"]
@@ -240,6 +245,7 @@ def run(
                     _copy_train_state_to_eval(train_model, val_model, train_scope, val_scope)
                     val_model.eval()
                     val_predictions, _, _ = _forward_predictions(val_model, val_scope)
+                    val_predictions = _sanitize_predictions(val_predictions)
                     val_metrics = compute_binary_metrics(val_scope["label_pos"][val_scope["val_mask"]], val_predictions[val_scope["val_mask"]])
                     if val_metrics["auc"] > best_val_auc:
                         best_val_auc = val_metrics["auc"]
@@ -248,7 +254,7 @@ def run(
                         _copy_train_state_to_eval(train_model, test_model, train_scope, test_scope)
                         test_model.eval()
                         test_predictions, _, _ = _forward_predictions(test_model, test_scope)
-                        best_predictions = test_predictions.detach().cpu()
+                        best_predictions = _sanitize_predictions(test_predictions).detach().cpu()
 
         if best_state is None or best_predictions is None:
             raise RuntimeError("RedCDR failed to capture a best checkpoint")
@@ -257,7 +263,7 @@ def run(
             train_model.load_state_dict(best_state)
             train_model.eval()
             predictions, _, _ = _forward_predictions(train_model, test_scope)
-            best_predictions = predictions.detach().cpu()
+            best_predictions = _sanitize_predictions(predictions).detach().cpu()
 
         test_metrics = compute_binary_metrics(test_scope["label_pos"][test_scope["test_mask"]], best_predictions[test_scope["test_mask"].cpu()])
         fold_metrics.append(

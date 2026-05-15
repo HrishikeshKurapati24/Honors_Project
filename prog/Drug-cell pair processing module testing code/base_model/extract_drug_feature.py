@@ -9,9 +9,16 @@ CanonicalSMILES = 'CC1CCCC2(C(O2)CC(OC(=O)CC(C(C(=O)C(C1O)C)(C)C)O)C(=CC3=CSC(=N
 mol = Chem.MolFromSmiles(CanonicalSMILES)
 Simles=Chem.MolToSmiles(mol)
 '''
-drug_smiles_file='../../data/GDSC/Processed data/pubchem_smiles_1.txt'
-save_dir='../../data/GDSC/Drug/drug_graph_feat'
-pubchemid2smile = {item.split('\t')[0]:item.split('\t')[1].strip() for item in open(drug_smiles_file).readlines()}
+# Paths resolved relative to the project root
+PROJECT_ROOT = "/Volumes/Work/Semester - 6/Honors/CDRP models testing"
+drug_smiles_file = os.path.join(PROJECT_ROOT, "3OmicsStrictBenchmarking/dataset-1/CCLE/CCLE_smiles.csv")
+save_dir = os.path.join(PROJECT_ROOT, "3OmicsStrictBenchmarking/dataset-1/CCLE/drug_graph_feat")
+
+if not os.path.exists(drug_smiles_file):
+    raise FileNotFoundError(f"Required input file not found: {drug_smiles_file}")
+
+lines = open(drug_smiles_file).readlines()[1:] # skip header
+pubchemid2smile = {item.split(',')[0].strip(): item.split(',')[1].strip() for item in lines}
 if not os.path.exists(save_dir):
     os.makedirs(save_dir)
 featurizer = dc.feat.ConvMolFeaturizer()

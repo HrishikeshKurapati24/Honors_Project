@@ -1,0 +1,117 @@
+{
+  "experiment": "dc4_permutation_test",
+  "dataset_root": "/content/drive/MyDrive/CDRP models testing/final_dataset",
+  "split_dir": "/content/drive/MyDrive/CDRP models testing/flexible model/dataset_claim_outputs/shared_splits/final_dataset_seed0_k5",
+  "epochs": 120,
+  "k_fold": 5,
+  "seed": 0,
+  "device": "cuda",
+  "configs": [
+    {
+      "name": "full_7omics_real",
+      "omics": [
+        "genomics_mutation",
+        "epigenomics_chromatin",
+        "epigenomics_methylation",
+        "transcriptomics_expression",
+        "proteomics_reverse_phase",
+        "metabolomics_profile",
+        "pathway"
+      ],
+      "permuted_stem": ""
+    },
+    {
+      "name": "permute_genomics_mutation",
+      "omics": [
+        "genomics_mutation",
+        "epigenomics_chromatin",
+        "epigenomics_methylation",
+        "transcriptomics_expression",
+        "proteomics_reverse_phase",
+        "metabolomics_profile",
+        "pathway"
+      ],
+      "permuted_stem": "genomics_mutation"
+    },
+    {
+      "name": "permute_epigenomics_chromatin",
+      "omics": [
+        "genomics_mutation",
+        "epigenomics_chromatin",
+        "epigenomics_methylation",
+        "transcriptomics_expression",
+        "proteomics_reverse_phase",
+        "metabolomics_profile",
+        "pathway"
+      ],
+      "permuted_stem": "epigenomics_chromatin"
+    },
+    {
+      "name": "permute_epigenomics_methylation",
+      "omics": [
+        "genomics_mutation",
+        "epigenomics_chromatin",
+        "epigenomics_methylation",
+        "transcriptomics_expression",
+        "proteomics_reverse_phase",
+        "metabolomics_profile",
+        "pathway"
+      ],
+      "permuted_stem": "epigenomics_methylation"
+    },
+    {
+      "name": "permute_transcriptomics_expression",
+      "omics": [
+        "genomics_mutation",
+        "epigenomics_chromatin",
+        "epigenomics_methylation",
+        "transcriptomics_expression",
+        "proteomics_reverse_phase",
+        "metabolomics_profile",
+        "pathway"
+      ],
+      "permuted_stem": "transcriptomics_expression"
+    },
+    {
+      "name": "permute_proteomics_reverse_phase",
+      "omics": [
+        "genomics_mutation",
+        "epigenomics_chromatin",
+        "epigenomics_methylation",
+        "transcriptomics_expression",
+        "proteomics_reverse_phase",
+        "metabolomics_profile",
+        "pathway"
+      ],
+      "permuted_stem": "proteomics_reverse_phase"
+    },
+    {
+      "name": "permute_metabolomics_profile",
+      "omics": [
+        "genomics_mutation",
+        "epigenomics_chromatin",
+        "epigenomics_methylation",
+        "transcriptomics_expression",
+        "proteomics_reverse_phase",
+        "metabolomics_profile",
+        "pathway"
+      ],
+      "permuted_stem": "metabolomics_profile"
+    },
+    {
+      "name": "permute_pathway",
+      "omics": [
+        "genomics_mutation",
+        "epigenomics_chromatin",
+        "epigenomics_methylation",
+        "transcriptomics_expression",
+        "proteomics_reverse_phase",
+        "metabolomics_profile",
+        "pathway"
+      ],
+      "permuted_stem": "pathway"
+    }
+  ],
+  "completed_runs": 8,
+  "results_csv": "/content/drive/MyDrive/CDRP models testing/flexible model/dataset_claim_outputs/dc4_permutation_test/dataset_claim_v1/results.csv"
+}

@@ -1,0 +1,18 @@
+{
+  "experiment": "dc5_redundancy_analysis",
+  "dataset_root": "/content/drive/MyDrive/CDRP models testing/final_dataset",
+  "neighbor_k": 10,
+  "modalities": [
+    "epigenomics_chromatin",
+    "epigenomics_methylation",
+    "genomics_mutation",
+    "metabolomics_profile",
+    "pathway",
+    "proteomics_reverse_phase",
+    "transcriptomics_expression"
+  ],
+  "n_cells": 425,
+  "pairwise_redundancy_csv": "/content/drive/MyDrive/CDRP models testing/flexible model/dataset_claim_outputs/dc5_redundancy_analysis/dataset_claim_v1/pairwise_redundancy.csv",
+  "similarity_matrix_correlation_csv": "/content/drive/MyDrive/CDRP models testing/flexible model/dataset_claim_outputs/dc5_redundancy_analysis/dataset_claim_v1/similarity_matrix_correlation.csv",
+  "neighbor_overlap_csv": "/content/drive/MyDrive/CDRP models testing/flexible model/dataset_claim_outputs/dc5_redundancy_analysis/dataset_claim_v1/neighbor_overlap.csv"
+}

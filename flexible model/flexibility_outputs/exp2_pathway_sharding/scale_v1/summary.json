@@ -1,0 +1,17 @@
+{
+  "experiment": "exp2_pathway_sharding",
+  "dataset_root": "/content/drive/MyDrive/CDRP models testing/final_dataset",
+  "pathway_source": "/content/drive/MyDrive/CDRP models testing/final_dataset/pathway.csv",
+  "shard_counts": [
+    1,
+    2,
+    4,
+    8,
+    16
+  ],
+  "epochs": 120,
+  "k_fold": 5,
+  "seed": 0,
+  "device": "cuda",
+  "results_csv": "/content/drive/MyDrive/CDRP models testing/flexible model/flexibility_outputs/exp2_pathway_sharding/scale_v1/results.csv"
+}

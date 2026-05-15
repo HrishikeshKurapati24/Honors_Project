@@ -1,0 +1,26 @@
+{
+  "experiment": "exp4_noisy_modality",
+  "dataset_root": "/content/drive/MyDrive/CDRP models testing/final_dataset",
+  "base_stems": [
+    "genomics_mutation",
+    "epigenomics_chromatin",
+    "epigenomics_methylation",
+    "transcriptomics_expression",
+    "proteomics_reverse_phase",
+    "metabolomics_profile",
+    "pathway"
+  ],
+  "noise_counts": [
+    0,
+    1,
+    2,
+    4,
+    8
+  ],
+  "noise_mode": "permute",
+  "epochs": 120,
+  "k_fold": 5,
+  "seed": 0,
+  "device": "cuda",
+  "results_csv": "/content/drive/MyDrive/CDRP models testing/flexible model/flexibility_outputs/exp4_noisy_modality/scale_v1/results.csv"
+}

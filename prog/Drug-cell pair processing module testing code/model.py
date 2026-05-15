@@ -1057,7 +1057,7 @@ class BranchFusion(nn.Module):
         
         return h_fused, attn_weights
 
-class SOULCDR(nn.Module):
+class FUSECDR(nn.Module):
     """
     Stage-1 Main Model: Heterogeneous Drug-Cell Response Prediction.
     
@@ -1078,7 +1078,7 @@ class SOULCDR(nn.Module):
                  graph_gnn_type='homogenous', drug_gnn_type='GCN', global_gnn_type='GCN',
                  active=False, use_transformer_drug=False, variation='original', permute_omics=False):
         
-        super(SOULCDR, self).__init__()
+        super(FUSECDR, self).__init__()
         torch.manual_seed(0)
         self.hidden_dim = hidden_dim
         self.use_graph_transformer = use_graph_transformer

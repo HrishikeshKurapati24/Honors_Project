@@ -1,0 +1,14 @@
+{
+  "fold": 2,
+  "best_val_auc": 0.9195040543092052,
+  "test_auc": 0.9169810548014542,
+  "test_aupr": 0.8841503369606121,
+  "test_f1": 0.8074367642402649,
+  "test_acc": 0.8358079195022583,
+  "parameter_count": 47728868,
+  "fold_elapsed_seconds": 309.6045935153961,
+  "edge_mode": "no_drug_similarity",
+  "variant_name": "full",
+  "local_layers": 2,
+  "global_layers": 2
+}

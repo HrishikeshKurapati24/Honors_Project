@@ -86,7 +86,7 @@ def plot_roc_curves():
     
     # Save figure
     output_file = 'roc_curves_comparison.png'
-    plt.savefig(output_file, dpi=300, bbox_inches='tight')
+    plt.savefig(output_file, dpi=800, bbox_inches='tight')
     print(f"ROC curve plot saved to: {output_file}")
     
     # Also save as PDF for publication quality

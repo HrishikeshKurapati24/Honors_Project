@@ -1,0 +1,10 @@
+{
+  "experiment": "exp5_compute_scaling",
+  "sources": {
+    "exp1_dir": "/content/drive/MyDrive/CDRP models testing/flexible model/flexibility_outputs/exp1_subset_cardinality/scale_v1",
+    "exp2_dir": "/content/drive/MyDrive/CDRP models testing/flexible model/flexibility_outputs/exp2_pathway_sharding/scale_v1",
+    "exp3_dir": "/content/drive/MyDrive/CDRP models testing/flexible model/flexibility_outputs/exp3_missing_modality/scale_v1",
+    "exp4_dir": "/content/drive/MyDrive/CDRP models testing/flexible model/flexibility_outputs/exp4_noisy_modality/scale_v1"
+  },
+  "combined_csv": "/content/drive/MyDrive/CDRP models testing/flexible model/flexibility_outputs/exp5_compute_scaling/scale_v1/combined_compute_scaling.csv"
+}

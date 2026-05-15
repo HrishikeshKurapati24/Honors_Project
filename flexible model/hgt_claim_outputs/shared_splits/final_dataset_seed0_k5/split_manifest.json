@@ -1,0 +1,7 @@
+{
+  "protocol": "random",
+  "seed": 0,
+  "n_splits": 5,
+  "val_ratio_of_full": 0.1,
+  "source": "flexible_process_flexible_compatible"
+}

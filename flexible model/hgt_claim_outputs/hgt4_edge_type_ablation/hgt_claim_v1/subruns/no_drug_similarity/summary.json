@@ -1,0 +1,101 @@
+{
+  "mean": {
+    "test_auc": 0.9188694345189212,
+    "test_aupr": 0.8884859652164323,
+    "test_f1": 0.8093309879302979,
+    "test_acc": 0.835398256778717
+  },
+  "std": {
+    "test_auc": 0.001540732287424524,
+    "test_aupr": 0.0027078613213435687,
+    "test_f1": 0.0035046742173319573,
+    "test_acc": 0.0020765432219960658
+  },
+  "fold_count": 5,
+  "folds": [
+    {
+      "fold": 1,
+      "best_val_auc": 0.9178730306870752,
+      "test_auc": 0.920768688697077,
+      "test_aupr": 0.8918173941398659,
+      "test_f1": 0.8131925463676453,
+      "test_acc": 0.8359524607658386,
+      "parameter_count": 47728868,
+      "fold_elapsed_seconds": 309.60321021080017,
+      "edge_mode": "no_drug_similarity",
+      "variant_name": "full",
+      "local_layers": 2,
+      "global_layers": 2
+    },
+    {
+      "fold": 2,
+      "best_val_auc": 0.9195040543092052,
+      "test_auc": 0.9169810548014542,
+      "test_aupr": 0.8841503369606121,
+      "test_f1": 0.8074367642402649,
+      "test_acc": 0.8358079195022583,
+      "parameter_count": 47728868,
+      "fold_elapsed_seconds": 309.6045935153961,
+      "edge_mode": "no_drug_similarity",
+      "variant_name": "full",
+      "local_layers": 2,
+      "global_layers": 2
+    },
+    {
+      "fold": 3,
+      "best_val_auc": 0.9162980077188577,
+      "test_auc": 0.9206158606903709,
+      "test_aupr": 0.8903014728484723,
+      "test_f1": 0.8133495450019836,
+      "test_acc": 0.838777482509613,
+      "parameter_count": 47728868,
+      "fold_elapsed_seconds": 309.6512415409088,
+      "edge_mode": "no_drug_similarity",
+      "variant_name": "full",
+      "local_layers": 2,
+      "global_layers": 2
+    },
+    {
+      "fold": 4,
+      "best_val_auc": 0.9209491444415336,
+      "test_auc": 0.9177648656458484,
+      "test_aupr": 0.8868270562854363,
+      "test_f1": 0.804234504699707,
+      "test_acc": 0.833569347858429,
+      "parameter_count": 47728868,
+      "fold_elapsed_seconds": 311.15605330467224,
+      "edge_mode": "no_drug_similarity",
+      "variant_name": "full",
+      "local_layers": 2,
+      "global_layers": 2
+    },
+    {
+      "fold": 5,
+      "best_val_auc": 0.9225710065160335,
+      "test_auc": 0.9182167027598553,
+      "test_aupr": 0.8893335658477748,
+      "test_f1": 0.8084415793418884,
+      "test_acc": 0.8328840732574463,
+      "parameter_count": 47728868,
+      "fold_elapsed_seconds": 310.640193939209,
+      "edge_mode": "no_drug_similarity",
+      "variant_name": "full",
+      "local_layers": 2,
+      "global_layers": 2
+    }
+  ],
+  "metadata": {
+    "variant_name": "full",
+    "use_local_branch": true,
+    "use_global_branch": true,
+    "num_local_layers": 2,
+    "num_global_layers": 2,
+    "edge_mode": "no_drug_similarity",
+    "response_sparsity_fraction": 0.0,
+    "dataset_root": "/content/drive/MyDrive/CDRP models testing/final_dataset",
+    "split_dir": "/content/drive/MyDrive/CDRP models testing/flexible model/hgt_claim_outputs/shared_splits/final_dataset_seed0_k5",
+    "epochs": 120,
+    "seed": 0,
+    "device": "cuda"
+  }
+}

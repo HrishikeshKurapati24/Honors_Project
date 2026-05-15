@@ -1,0 +1,89 @@
+{
+  "experiment": "dc1_curated_configs",
+  "dataset_root": "/content/drive/MyDrive/CDRP models testing/final_dataset",
+  "split_dir": "/content/drive/MyDrive/CDRP models testing/flexible model/dataset_claim_outputs/shared_splits/final_dataset_seed0_k5",
+  "epochs": 120,
+  "k_fold": 5,
+  "seed": 0,
+  "device": "cuda",
+  "configs": [
+    {
+      "name": "pathway",
+      "omics": [
+        "pathway"
+      ]
+    },
+    {
+      "name": "mut_meth_exp",
+      "omics": [
+        "genomics_mutation",
+        "epigenomics_methylation",
+        "transcriptomics_expression"
+      ]
+    },
+    {
+      "name": "exp_prot",
+      "omics": [
+        "transcriptomics_expression",
+        "proteomics_reverse_phase"
+      ]
+    },
+    {
+      "name": "full_7omics",
+      "omics": [
+        "genomics_mutation",
+        "epigenomics_chromatin",
+        "epigenomics_methylation",
+        "transcriptomics_expression",
+        "proteomics_reverse_phase",
+        "metabolomics_profile",
+        "pathway"
+      ]
+    },
+    {
+      "name": "expression_only",
+      "omics": [
+        "transcriptomics_expression"
+      ]
+    },
+    {
+      "name": "meth_exp",
+      "omics": [
+        "epigenomics_methylation",
+        "transcriptomics_expression"
+      ]
+    },
+    {
+      "name": "mut_exp",
+      "omics": [
+        "genomics_mutation",
+        "transcriptomics_expression"
+      ]
+    },
+    {
+      "name": "prot_metab",
+      "omics": [
+        "proteomics_reverse_phase",
+        "metabolomics_profile"
+      ]
+    },
+    {
+      "name": "mut_chrom_exp",
+      "omics": [
+        "genomics_mutation",
+        "epigenomics_chromatin",
+        "transcriptomics_expression"
+      ]
+    },
+    {
+      "name": "pathway_exp_prot",
+      "omics": [
+        "pathway",
+        "transcriptomics_expression",
+        "proteomics_reverse_phase"
+      ]
+    }
+  ],
+  "completed_runs": 10,
+  "results_csv": "/content/drive/MyDrive/CDRP models testing/flexible model/dataset_claim_outputs/dc1_curated_configs/dataset_claim_v1/results.csv"
+}

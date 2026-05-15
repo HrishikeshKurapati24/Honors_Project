@@ -8,7 +8,7 @@ from sklearn.model_selection import KFold
 
 from benchmarking_common import ensure_dir
 
-CELL_ALIASES = ("cell_id", "cell_line_id", "cell_line", "DepMapID")
+CELL_ALIASES = ("cell_id", "cell_line_id", "cell_line", "DepMapID", "depMapID")
 DRUG_ALIASES = ("drug_id", "pubchem_id", "drug_name", "PUBCHEM_CID")
 
 PROTOCOL_RANDOM = "random"
@@ -96,7 +96,7 @@ def _entity_split(values: Sequence[str], seed: int, n_splits: int, val_ratio_of_
 
         val_size = int(len(values) * val_ratio_of_full)
         val_size = max(1, min(val_size, len(train_val_values) - 1))
-        rng = np.random.RandomState(seed)
+        rng = np.random.RandomState(seed + fold_id * 1000)  # fold-dependent seed for independent val draws
         perm = rng.permutation(len(train_val_values))
         val_values = train_val_values[perm[:val_size]]
         train_values = train_val_values[perm[val_size:]]
@@ -179,7 +179,7 @@ def _validate_entities(protocol: str, entities: Dict[str, List[str]]) -> None:
         _assert_disjoint("val_drugs", "test_drugs")
 
 
-def create_soulcdr_folds(
+def create_fusecdr_folds(
     response_pairs: pd.DataFrame,
     seed: int = 0,
     n_splits: int = 5,
@@ -198,7 +198,7 @@ def create_soulcdr_folds(
 
         val_size = int(len(allpairs) * val_ratio_of_full)
         val_size = max(1, min(val_size, len(train_val_idx) - 1))
-        rng = np.random.RandomState(seed)
+        rng = np.random.RandomState(seed + fold_id * 1000)  # fold-dependent seed for independent val draws
         perm = rng.permutation(len(train_val_idx))
         val_idx = train_val_idx[perm[:val_size]]
         train_idx = train_val_idx[perm[val_size:]]
@@ -330,7 +330,7 @@ def create_protocol_folds(
         raise ValueError(f"Unsupported protocol '{protocol}'. Expected one of {SUPPORTED_PROTOCOLS}")
 
     if protocol == PROTOCOL_RANDOM:
-        return create_soulcdr_folds(canonical, seed=seed, n_splits=n_splits, val_ratio_of_full=val_ratio_of_full)
+        return create_fusecdr_folds(canonical, seed=seed, n_splits=n_splits, val_ratio_of_full=val_ratio_of_full)
     if protocol == PROTOCOL_UNSEEN_CELLS:
         return _create_unseen_cell_folds(canonical, seed, n_splits, val_ratio_of_full)
     if protocol == PROTOCOL_UNSEEN_DRUGS:

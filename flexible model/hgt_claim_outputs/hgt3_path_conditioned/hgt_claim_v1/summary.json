@@ -1,0 +1,13 @@
+{
+  "experiment": "hgt3_path_conditioned",
+  "dataset_root": "/content/drive/MyDrive/CDRP models testing/final_dataset",
+  "split_dir": "/content/drive/MyDrive/CDRP models testing/flexible model/hgt_claim_outputs/shared_splits/final_dataset_seed0_k5",
+  "branch_ablation_dir": "/content/drive/MyDrive/CDRP models testing/flexible model/hgt_claim_outputs/hgt1_branch_ablation/hgt_claim_v1",
+  "top_k": 10,
+  "variants": [
+    "full",
+    "local_only"
+  ],
+  "completed_runs": 48,
+  "results_csv": "/content/drive/MyDrive/CDRP models testing/flexible model/hgt_claim_outputs/hgt3_path_conditioned/hgt_claim_v1/results.csv"
+}

@@ -26,8 +26,8 @@ mkdir -p "${LOG_DIR}"
 # ==========================================================
 
 KFOLD="${KFOLD:-2}"
-SOULCDR_CONFIG="--graph_GNN_type heterogenous --global_gnn_type SAGE --use_graph_transformer"
-BASE_CMD="${PYTHON_BIN} main.py --k_fold ${KFOLD} ${SOULCDR_CONFIG}"
+FUSECDR_CONFIG="--graph_GNN_type heterogenous --global_gnn_type SAGE --use_graph_transformer"
+BASE_CMD="${PYTHON_BIN} main.py --k_fold ${KFOLD} ${FUSECDR_CONFIG}"
 
 # ==========================================================
 # Dataset base filenames (passed to --genomics_file)

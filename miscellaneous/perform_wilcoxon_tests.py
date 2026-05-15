@@ -13,7 +13,7 @@ def perform_analysis():
 
     protocols = df['Protocol'].unique()
     datasets = df['Dataset'].unique()
-    models = ["SOULCDR", "RedCDR", "GraphCDR"]
+    models = ["FUSECDR", "RedCDR", "GraphCDR"]
     metrics = ["AUC", "AUPR"]
     
     results = []
@@ -24,8 +24,8 @@ def perform_analysis():
             
             # Pairwise comparisons
             comparisons = [
-                ("SOULCDR", "GraphCDR"),
-                ("SOULCDR", "RedCDR"),
+                ("FUSECDR", "GraphCDR"),
+                ("FUSECDR", "RedCDR"),
                 ("RedCDR", "GraphCDR")
             ]
             

@@ -1,9 +1,0 @@
-{
-  "model": "SOULCDR",
-  "benchmark": "3OmicsBenchmarking",
-  "dataset": "dataset-2",
-  "protocol": "unseen_drugs",
-  "tuned": false,
-  "reused_from_protocol": "random",
-  "config": {}
-}

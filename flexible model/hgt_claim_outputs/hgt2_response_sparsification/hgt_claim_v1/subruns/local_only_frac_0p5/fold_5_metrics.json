@@ -1,0 +1,20 @@
+{
+  "fold": 5,
+  "best_val_auc": 0.9167095198920752,
+  "test_auc": 0.9111086859623897,
+  "test_aupr": 0.8791038562948464,
+  "test_f1": 0.7973055839538574,
+  "test_acc": 0.8185389637947083,
+  "parameter_count": 46478536,
+  "fold_elapsed_seconds": 203.79883909225464,
+  "edge_mode": "full_graph",
+  "variant_name": "local_only",
+  "local_layers": 2,
+  "global_layers": 2,
+  "recovery_auc": 0.9170429772016148,
+  "recovery_aupr": 0.9167612197457458,
+  "recovery_f1": 0.8409976378194313,
+  "recovery_acc": 0.8338142875464922,
+  "withheld_positive_count": 15594,
+  "sampled_negative_count": 15594
+}

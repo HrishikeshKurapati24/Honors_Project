@@ -42,10 +42,13 @@ def load_prepared_dataset(prepared_dir: str) -> Dict:
     tables = {}
     for name in [
         "genomics_mutation",
+        "genomics_cnv",
         "transcriptomics_expression",
+        "transcriptomics_miRNA",
         "epigenomics_methylation",
         "similarity",
         "physicochemical",
+        "drug_fingerprint",
         "pathway",
     ]:
         path = os.path.join(prepared_dir, f"{name}.csv")
@@ -213,6 +216,33 @@ def build_flat_mask(cell_ids: List[str], drug_ids: List[str], pairs: pd.DataFram
 
 
 def build_graphcdr_train_edge(cell_ids: List[str], drug_ids: List[str], train_pairs: pd.DataFrame) -> np.ndarray:
+    return build_strict_train_edge_array(
+        cell_ids=cell_ids,
+        drug_ids=drug_ids,
+        train_pairs=train_pairs,
+        mirror=False,
+        sort_by_label=False,
+    )
+
+
+def build_redcdr_allpairs(cell_ids: List[str], drug_ids: List[str], response_pairs: pd.DataFrame) -> np.ndarray:
+    return build_strict_train_edge_array(
+        cell_ids=cell_ids,
+        drug_ids=drug_ids,
+        train_pairs=response_pairs,
+        mirror=False,
+        sort_by_label=True,
+    )
+
+
+def build_strict_train_edge_array(
+    cell_ids: List[str],
+    drug_ids: List[str],
+    train_pairs: pd.DataFrame,
+    *,
+    mirror: bool = False,
+    sort_by_label: bool = False,
+) -> np.ndarray:
     cell_map = {cell_id: idx for idx, cell_id in enumerate(cell_ids)}
     drug_map = {drug_id: idx + len(cell_ids) for idx, drug_id in enumerate(drug_ids)}
     if train_pairs.empty:
@@ -221,18 +251,36 @@ def build_graphcdr_train_edge(cell_ids: List[str], drug_ids: List[str], train_pa
     for row in train_pairs.itertuples(index=False):
         label = 1 if int(row.label) == 1 else -1
         rows.append([cell_map[row.cell_id], drug_map[row.drug_id], label])
-    return np.asarray(rows, dtype=np.int64)
+    edge_array = np.asarray(rows, dtype=np.int64)
+    if sort_by_label:
+        edge_array = edge_array[edge_array[:, 2].argsort()]
+    if mirror and edge_array.size:
+        edge_array = np.vstack((edge_array, edge_array[:, [1, 0, 2]]))
+    return edge_array
 
 
-def build_redcdr_allpairs(cell_ids: List[str], drug_ids: List[str], response_pairs: pd.DataFrame) -> np.ndarray:
+def build_strict_response_edge_index(
+    cell_ids: List[str],
+    drug_ids: List[str],
+    train_pairs: pd.DataFrame,
+    device: torch.device,
+) -> torch.Tensor:
+    if train_pairs.empty:
+        return torch.empty((2, 0), dtype=torch.long, device=device)
     cell_map = {cell_id: idx for idx, cell_id in enumerate(cell_ids)}
-    drug_map = {drug_id: idx + len(cell_ids) for idx, drug_id in enumerate(drug_ids)}
-    rows = []
-    for row in response_pairs.itertuples(index=False):
-        label = 1 if int(row.label) == 1 else -1
-        rows.append([cell_map[row.cell_id], drug_map[row.drug_id], label])
-    allpairs = np.asarray(rows, dtype=np.int64)
-    return allpairs[allpairs[:, 2].argsort()]
+    drug_map = {drug_id: idx for idx, drug_id in enumerate(drug_ids)}
+    src: List[int] = []
+    dst: List[int] = []
+    for row in train_pairs.itertuples(index=False):
+        cell_idx = cell_map.get(row.cell_id)
+        drug_idx = drug_map.get(row.drug_id)
+        if cell_idx is None or drug_idx is None:
+            continue
+        src.append(cell_idx)
+        dst.append(drug_idx)
+    if not src:
+        return torch.empty((2, 0), dtype=torch.long, device=device)
+    return torch.tensor([src, dst], dtype=torch.long, device=device)
 
 
 def build_redcdr_split_objects(
@@ -285,6 +333,71 @@ def build_pyg_graphs(drug_ids: List[str], graph_features: Dict[str, Tuple[np.nda
         data.drug_idx = torch.tensor([drug_idx], dtype=torch.long)
         graphs.append(data)
     return graphs
+
+
+def build_topk_directed_edge_index(features, top_k: int, device: torch.device) -> torch.Tensor:
+    feat_np = build_cosine_similarity_matrix(features)
+    if feat_np.size == 0 or feat_np.shape[0] <= 1:
+        return torch.empty((2, 0), dtype=torch.long, device=device)
+
+    node_count = feat_np.shape[0]
+    k = max(1, min(top_k, node_count - 1))
+    topk_indices = np.argsort(feat_np, axis=1)[:, -k:]
+
+    src: List[int] = []
+    dst: List[int] = []
+    for node_idx in range(node_count):
+        for neighbor_idx in topk_indices[node_idx]:
+            src.append(node_idx)
+            dst.append(int(neighbor_idx))
+
+    return torch.tensor([src, dst], dtype=torch.long, device=device)
+
+
+def build_cosine_similarity_matrix(features) -> np.ndarray:
+    feat_np = tensor_to_numpy(features).astype(np.float32)
+    if feat_np.ndim == 1:
+        feat_np = feat_np.reshape(-1, 1)
+    if feat_np.size == 0:
+        return np.empty((0, 0), dtype=np.float32)
+
+    norms = np.linalg.norm(feat_np, axis=1, keepdims=True)
+    feat_np = feat_np / np.clip(norms, 1e-10, None)
+    sim = feat_np @ feat_np.T
+    np.fill_diagonal(sim, 0.0)
+    return sim.astype(np.float32)
+
+
+def edge_index_to_neighbor_lists(edge_index, num_nodes: int) -> List[List[int]]:
+    neighbors = [[] for _ in range(num_nodes)]
+    if edge_index is None:
+        return neighbors
+    edge_np = tensor_to_numpy(edge_index)
+    if edge_np.size == 0:
+        return neighbors
+    for src, dst in edge_np.T:
+        neighbors[int(src)].append(int(dst))
+    return neighbors
+
+
+def build_shared_similarity_graphs(
+    cell_similarity_features,
+    drug_similarity_features,
+    top_k: int,
+    device: torch.device,
+) -> Dict[Tuple[str, str, str], torch.Tensor]:
+    return {
+        ("cell", "similar_to", "cell"): build_topk_directed_edge_index(
+            cell_similarity_features,
+            top_k=top_k,
+            device=device,
+        ),
+        ("drug", "similar_to", "drug"): build_topk_directed_edge_index(
+            drug_similarity_features,
+            top_k=top_k,
+            device=device,
+        ),
+    }
 
 
 def build_prediction_rows(pairs: pd.DataFrame, predictions: np.ndarray) -> List[Dict]:

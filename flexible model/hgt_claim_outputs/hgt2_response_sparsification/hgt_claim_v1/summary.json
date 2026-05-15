@@ -1,0 +1,29 @@
+{
+  "experiment": "hgt2_response_sparsification",
+  "dataset_root": "/content/drive/MyDrive/CDRP models testing/final_dataset",
+  "split_dir": "/content/drive/MyDrive/CDRP models testing/flexible model/hgt_claim_outputs/shared_splits/final_dataset_seed0_k5",
+  "epochs": 120,
+  "k_fold": 5,
+  "seed": 0,
+  "device": "cuda",
+  "fractions": [
+    0.1,
+    0.3,
+    0.5,
+    0.7
+  ],
+  "variants": [
+    {
+      "variant_name": "full",
+      "use_local_branch": true,
+      "use_global_branch": true
+    },
+    {
+      "variant_name": "local_only",
+      "use_local_branch": true,
+      "use_global_branch": false
+    }
+  ],
+  "completed_runs": 8,
+  "results_csv": "/content/drive/MyDrive/CDRP models testing/flexible model/hgt_claim_outputs/hgt2_response_sparsification/hgt_claim_v1/results.csv"
+}

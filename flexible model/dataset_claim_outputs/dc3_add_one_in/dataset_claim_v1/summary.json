@@ -1,0 +1,188 @@
+{
+  "experiment": "dc3_add_one_in",
+  "dataset_root": "/content/drive/MyDrive/CDRP models testing/final_dataset",
+  "split_dir": "/content/drive/MyDrive/CDRP models testing/flexible model/dataset_claim_outputs/shared_splits/final_dataset_seed0_k5",
+  "epochs": 120,
+  "k_fold": 5,
+  "seed": 0,
+  "device": "cuda",
+  "configs": [
+    {
+      "name": "pathway",
+      "omics": [
+        "pathway"
+      ],
+      "base_name": "pathway",
+      "added_stem": ""
+    },
+    {
+      "name": "pathway_plus_genomics_mutation",
+      "omics": [
+        "pathway",
+        "genomics_mutation"
+      ],
+      "base_name": "pathway",
+      "added_stem": "genomics_mutation"
+    },
+    {
+      "name": "pathway_plus_epigenomics_chromatin",
+      "omics": [
+        "pathway",
+        "epigenomics_chromatin"
+      ],
+      "base_name": "pathway",
+      "added_stem": "epigenomics_chromatin"
+    },
+    {
+      "name": "pathway_plus_epigenomics_methylation",
+      "omics": [
+        "pathway",
+        "epigenomics_methylation"
+      ],
+      "base_name": "pathway",
+      "added_stem": "epigenomics_methylation"
+    },
+    {
+      "name": "pathway_plus_transcriptomics_expression",
+      "omics": [
+        "pathway",
+        "transcriptomics_expression"
+      ],
+      "base_name": "pathway",
+      "added_stem": "transcriptomics_expression"
+    },
+    {
+      "name": "pathway_plus_proteomics_reverse_phase",
+      "omics": [
+        "pathway",
+        "proteomics_reverse_phase"
+      ],
+      "base_name": "pathway",
+      "added_stem": "proteomics_reverse_phase"
+    },
+    {
+      "name": "pathway_plus_metabolomics_profile",
+      "omics": [
+        "pathway",
+        "metabolomics_profile"
+      ],
+      "base_name": "pathway",
+      "added_stem": "metabolomics_profile"
+    },
+    {
+      "name": "exp_prot",
+      "omics": [
+        "transcriptomics_expression",
+        "proteomics_reverse_phase"
+      ],
+      "base_name": "exp_prot",
+      "added_stem": ""
+    },
+    {
+      "name": "exp_prot_plus_genomics_mutation",
+      "omics": [
+        "transcriptomics_expression",
+        "proteomics_reverse_phase",
+        "genomics_mutation"
+      ],
+      "base_name": "exp_prot",
+      "added_stem": "genomics_mutation"
+    },
+    {
+      "name": "exp_prot_plus_epigenomics_chromatin",
+      "omics": [
+        "transcriptomics_expression",
+        "proteomics_reverse_phase",
+        "epigenomics_chromatin"
+      ],
+      "base_name": "exp_prot",
+      "added_stem": "epigenomics_chromatin"
+    },
+    {
+      "name": "exp_prot_plus_epigenomics_methylation",
+      "omics": [
+        "transcriptomics_expression",
+        "proteomics_reverse_phase",
+        "epigenomics_methylation"
+      ],
+      "base_name": "exp_prot",
+      "added_stem": "epigenomics_methylation"
+    },
+    {
+      "name": "exp_prot_plus_metabolomics_profile",
+      "omics": [
+        "transcriptomics_expression",
+        "proteomics_reverse_phase",
+        "metabolomics_profile"
+      ],
+      "base_name": "exp_prot",
+      "added_stem": "metabolomics_profile"
+    },
+    {
+      "name": "exp_prot_plus_pathway",
+      "omics": [
+        "transcriptomics_expression",
+        "proteomics_reverse_phase",
+        "pathway"
+      ],
+      "base_name": "exp_prot",
+      "added_stem": "pathway"
+    },
+    {
+      "name": "mut_meth_exp",
+      "omics": [
+        "genomics_mutation",
+        "epigenomics_methylation",
+        "transcriptomics_expression"
+      ],
+      "base_name": "mut_meth_exp",
+      "added_stem": ""
+    },
+    {
+      "name": "mut_meth_exp_plus_epigenomics_chromatin",
+      "omics": [
+        "genomics_mutation",
+        "epigenomics_methylation",
+        "transcriptomics_expression",
+        "epigenomics_chromatin"
+      ],
+      "base_name": "mut_meth_exp",
+      "added_stem": "epigenomics_chromatin"
+    },
+    {
+      "name": "mut_meth_exp_plus_proteomics_reverse_phase",
+      "omics": [
+        "genomics_mutation",
+        "epigenomics_methylation",
+        "transcriptomics_expression",
+        "proteomics_reverse_phase"
+      ],
+      "base_name": "mut_meth_exp",
+      "added_stem": "proteomics_reverse_phase"
+    },
+    {
+      "name": "mut_meth_exp_plus_metabolomics_profile",
+      "omics": [
+        "genomics_mutation",
+        "epigenomics_methylation",
+        "transcriptomics_expression",
+        "metabolomics_profile"
+      ],
+      "base_name": "mut_meth_exp",
+      "added_stem": "metabolomics_profile"
+    },
+    {
+      "name": "mut_meth_exp_plus_pathway",
+      "omics": [
+        "genomics_mutation",
+        "epigenomics_methylation",
+        "transcriptomics_expression",
+        "pathway"
+      ],
+      "base_name": "mut_meth_exp",
+      "added_stem": "pathway"
+    }
+  ],
+  "completed_runs": 18,
+  "results_csv": "/content/drive/MyDrive/CDRP models testing/flexible model/dataset_claim_outputs/dc3_add_one_in/dataset_claim_v1/results.csv"
+}

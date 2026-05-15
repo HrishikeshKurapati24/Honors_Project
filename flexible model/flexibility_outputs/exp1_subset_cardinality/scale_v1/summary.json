@@ -1,0 +1,20 @@
+{
+  "experiment": "exp1_subset_cardinality",
+  "dataset_root": "/content/drive/MyDrive/CDRP models testing/final_dataset",
+  "omics_pool": [
+    "genomics_mutation",
+    "epigenomics_chromatin",
+    "epigenomics_methylation",
+    "transcriptomics_expression",
+    "proteomics_reverse_phase",
+    "metabolomics_profile",
+    "pathway"
+  ],
+  "subsets_per_k": 3,
+  "epochs": 120,
+  "k_fold": 5,
+  "seed": 0,
+  "device": "cuda",
+  "results_csv": "/content/drive/MyDrive/CDRP models testing/flexible model/flexibility_outputs/exp1_subset_cardinality/scale_v1/results.csv",
+  "aggregate_csv": "/content/drive/MyDrive/CDRP models testing/flexible model/flexibility_outputs/exp1_subset_cardinality/scale_v1/aggregate_by_k.csv"
+}

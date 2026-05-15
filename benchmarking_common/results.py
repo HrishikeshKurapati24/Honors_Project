@@ -5,7 +5,6 @@ from typing import Dict, Iterable, List
 
 import numpy as np
 import pandas as pd
-import torch
 
 from benchmarking_common import ensure_dir
 from benchmarking_common.metrics import summarize_metric_rows
@@ -36,6 +35,14 @@ def save_fold_result(model_results_dir: str, fold: int, metrics: Dict, predictio
     metrics_path = os.path.join(model_results_dir, f"fold_{fold}_metrics.json")
     with open(metrics_path, "w") as handle:
         json.dump(metrics, handle, indent=2)
+
+
+def load_saved_predictions(model_results_dir: str, fold: int) -> List[Dict]:
+    predictions_path = os.path.join(model_results_dir, f"fold_{fold}_predictions.csv")
+    if not os.path.isfile(predictions_path):
+        raise FileNotFoundError(f"Missing saved predictions file: {predictions_path}")
+    frame = pd.read_csv(predictions_path)
+    return frame.to_dict(orient="records")
 
 
 def load_completed_folds(model_results_dir: str) -> List[Dict]:
@@ -120,40 +127,26 @@ def save_tuning_outputs(
     return tuning_summary
 
 
-def save_checkpoint(results_dir: str, fold: int, epoch: int, model: torch.nn.Module, optimizer: torch.optim.Optimizer, best_val_auc: float, best_test_rows: List[Dict] | None = None) -> None:
-    ensure_dir(results_dir)
-    checkpoint_path = os.path.join(results_dir, f"checkpoint_fold_{fold}.pt")
-    torch.save(
-        {
-            "epoch": epoch,
-            "model_state_dict": model.state_dict(),
-            "optimizer_state_dict": optimizer.state_dict(),
-            "best_val_auc": best_val_auc,
-            "best_test_rows": best_test_rows,
-        },
-        checkpoint_path,
-    )
-
-
-def load_checkpoint(results_dir: str, fold: int, model: torch.nn.Module, optimizer: torch.optim.Optimizer) -> Dict | None:
-    checkpoint_path = os.path.join(results_dir, f"checkpoint_fold_{fold}.pt")
-    if not os.path.isfile(checkpoint_path):
-        return None
-    checkpoint = torch.load(checkpoint_path, map_location=torch.device("cpu"))
-    model.load_state_dict(checkpoint["model_state_dict"])
-    optimizer.load_state_dict(checkpoint["optimizer_state_dict"])
-    return checkpoint
-
-
-def delete_checkpoint(results_dir: str, fold: int) -> None:
-    checkpoint_path = os.path.join(results_dir, f"checkpoint_fold_{fold}.pt")
-    if os.path.isfile(checkpoint_path):
-        os.remove(checkpoint_path)
-
-
 def load_model_summary(model_results_dir: str) -> Dict:
     with open(os.path.join(model_results_dir, "summary.json")) as handle:
         return json.load(handle)
+
+
+def load_fold_metrics(model_results_dir: str) -> pd.DataFrame:
+    fold_metrics_path = os.path.join(model_results_dir, "fold_metrics.csv")
+    if not os.path.isfile(fold_metrics_path):
+        raise FileNotFoundError(f"Missing fold metrics file: {fold_metrics_path}")
+    return pd.read_csv(fold_metrics_path)
+
+
+def load_mean_best_val_auc(model_results_dir: str) -> float:
+    fold_metrics = load_fold_metrics(model_results_dir)
+    if "best_val_auc" not in fold_metrics.columns:
+        raise KeyError(f"fold_metrics.csv in {model_results_dir} does not contain 'best_val_auc'")
+    best_val_auc = pd.to_numeric(fold_metrics["best_val_auc"], errors="coerce")
+    if best_val_auc.isna().all():
+        raise ValueError(f"All best_val_auc entries are missing in {model_results_dir}")
+    return float(best_val_auc.mean())
 
 
 def build_comparison_rows(results_root: str) -> List[Dict]:

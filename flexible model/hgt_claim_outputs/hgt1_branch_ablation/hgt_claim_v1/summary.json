@@ -1,0 +1,28 @@
+{
+  "experiment": "hgt1_branch_ablation",
+  "dataset_root": "/content/drive/MyDrive/CDRP models testing/final_dataset",
+  "split_dir": "/content/drive/MyDrive/CDRP models testing/flexible model/hgt_claim_outputs/shared_splits/final_dataset_seed0_k5",
+  "epochs": 120,
+  "k_fold": 5,
+  "seed": 0,
+  "device": "cuda",
+  "variants": [
+    {
+      "variant_name": "full",
+      "use_local_branch": true,
+      "use_global_branch": true
+    },
+    {
+      "variant_name": "local_only",
+      "use_local_branch": true,
+      "use_global_branch": false
+    },
+    {
+      "variant_name": "global_only",
+      "use_local_branch": false,
+      "use_global_branch": true
+    }
+  ],
+  "completed_runs": 3,
+  "results_csv": "/content/drive/MyDrive/CDRP models testing/flexible model/hgt_claim_outputs/hgt1_branch_ablation/hgt_claim_v1/results.csv"
+}

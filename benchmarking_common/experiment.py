@@ -1,18 +1,26 @@
 import os
 from typing import Callable, Dict, Iterable, List
 
+from benchmarking_common import read_json
 from benchmarking_common.data_prep import prepare_benchmark_dataset
 from benchmarking_common.results import load_best_config, save_best_config
+from benchmarking_common.strict_contract import validate_required_strict_files, validate_strict_prepared_metadata
 from benchmarking_common.splits import (
     PROTOCOL_RANDOM,
+    PROTOCOL_UNSEEN_CELLS,
     PROTOCOL_UNSEEN_BOTH,
+    PROTOCOL_UNSEEN_DRUGS,
     ensure_protocol_folds,
 )
 from benchmarking_common.tuning import load_random_best_config, resolve_random_config
 
 
 RUNNABLE_PROTOCOL_MODELS = {
-    ("3OmicsBenchmarking", PROTOCOL_UNSEEN_BOTH): {"SOULCDR", "GraphCDR", "RedCDR"},
+    ("3OmicsBenchmarking", PROTOCOL_UNSEEN_BOTH): {"FUSECDR", "GraphCDR", "RedCDR", "GADRP"},
+    ("3OmicsStrictBenchmarking", PROTOCOL_RANDOM): {"FUSECDR", "FUSECDR_minibatch", "GraphCDR", "RedCDR", "GADRP", "DeepTTC", "GraphDRP"},
+    ("3OmicsStrictBenchmarking", PROTOCOL_UNSEEN_CELLS): {"FUSECDR", "FUSECDR_minibatch", "GraphCDR", "RedCDR", "GADRP", "DeepTTC", "GraphDRP"},
+    ("3OmicsStrictBenchmarking", PROTOCOL_UNSEEN_DRUGS): {"FUSECDR", "GraphCDR", "RedCDR", "GADRP", "DeepTTC", "GraphDRP"},
+    ("3OmicsStrictBenchmarking", PROTOCOL_UNSEEN_BOTH): {"FUSECDR", "GraphCDR", "RedCDR", "GADRP", "DeepTTC", "GraphDRP"},
 }
 
 
@@ -36,6 +44,10 @@ def results_root_for_protocol(benchmark_dir: str, protocol: str, dataset_name: s
     return os.path.join(benchmark_dir, "results", protocol, dataset_name, model_name)
 
 
+def _config_preview(config: Dict) -> str:
+    return str(dict(sorted(config.items())))
+
+
 def run_protocol_benchmarks(
     *,
     root_dir: str,
@@ -51,6 +63,11 @@ def run_protocol_benchmarks(
     enable_tuning: bool = True,
 ) -> None:
     selected_models = allowed_models_for_protocol(benchmark_name, protocol, models)
+    print(
+        f"> Benchmark start - benchmark={benchmark_name} protocol={protocol} "
+        f"datasets={list(datasets)} models={selected_models}",
+        flush=True,
+    )
 
     for dataset_name in datasets:
         prepared_dir = os.path.join(benchmark_dir, "prepared", dataset_name)
@@ -64,10 +81,24 @@ def run_protocol_benchmarks(
             seed=seed,
             n_splits=5,
         )
+        print(
+            f"> Dataset ready - benchmark={benchmark_name} protocol={protocol} dataset={dataset_name} "
+            f"prepared_dir={prepared_dir} split_dir={split_dir}",
+            flush=True,
+        )
+        if benchmark_name == "3OmicsStrictBenchmarking":
+            prepared_metadata = read_json(os.path.join(prepared_dir, "metadata.json"))
+            validate_required_strict_files(prepared_dir)
+            validate_strict_prepared_metadata(prepared_dir, prepared_metadata)
 
         for model_name in selected_models:
             results_dir = results_root_for_protocol(benchmark_dir, protocol, dataset_name, model_name)
             runner = runners[model_name]
+            print(
+                f"> Model start - benchmark={benchmark_name} protocol={protocol} "
+                f"dataset={dataset_name} model={model_name}",
+                flush=True,
+            )
 
             if protocol == PROTOCOL_RANDOM:
                 config = resolve_random_config(
@@ -99,7 +130,17 @@ def run_protocol_benchmarks(
                         "config": config,
                     },
                 )
+                print(
+                    f"> Reusing random config - benchmark={benchmark_name} protocol={protocol} "
+                    f"dataset={dataset_name} model={model_name} config={_config_preview(config)}",
+                    flush=True,
+                )
 
+            print(
+                f"> Runner start - benchmark={benchmark_name} protocol={protocol} "
+                f"dataset={dataset_name} model={model_name} config={_config_preview(config)}",
+                flush=True,
+            )
             runner(
                 root_dir=root_dir,
                 prepared_dir=prepared_dir,
@@ -108,4 +149,9 @@ def run_protocol_benchmarks(
                 device=device,
                 seed=seed,
                 **config,
+            )
+            print(
+                f"> Model complete - benchmark={benchmark_name} protocol={protocol} "
+                f"dataset={dataset_name} model={model_name} results_dir={results_dir}",
+                flush=True,
             )

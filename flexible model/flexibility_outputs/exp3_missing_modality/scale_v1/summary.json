@@ -1,0 +1,22 @@
+{
+  "experiment": "exp3_missing_modality",
+  "dataset_root": "/content/drive/MyDrive/CDRP models testing/final_dataset",
+  "base_run_dir": "/content/drive/MyDrive/CDRP models testing/flexible model/outputs/exp3_scale_v1_base_full",
+  "base_stems": [
+    "epigenomics_chromatin",
+    "epigenomics_methylation",
+    "genomics_mutation",
+    "metabolomics_profile",
+    "pathway",
+    "proteomics_reverse_phase",
+    "transcriptomics_expression"
+  ],
+  "drop_fractions": [
+    0.1,
+    0.25,
+    0.5
+  ],
+  "samples_per_fraction": 5,
+  "scenario_metrics_csv": "/content/drive/MyDrive/CDRP models testing/flexible model/flexibility_outputs/exp3_missing_modality/scale_v1/scenario_metrics.csv",
+  "aggregate_metrics_csv": "/content/drive/MyDrive/CDRP models testing/flexible model/flexibility_outputs/exp3_missing_modality/scale_v1/aggregate_metrics.csv"
+}

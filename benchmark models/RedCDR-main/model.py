@@ -32,8 +32,10 @@ def torch_corr_x_y(tensor1, tensor2):
     lxy = torch.mm(torch.sub(tensor1, mean1), torch.sub(tensor2, mean2))
     lxx = torch.diag(torch.mm(torch.sub(tensor1, mean1), torch.t(torch.sub(tensor1, mean1))))
     lyy = torch.diag(torch.mm(torch.t(torch.sub(tensor2, mean2)), torch.sub(tensor2, mean2)))
-    std_x_y = torch.mm(torch.sqrt(lxx).view([-1, 1]), torch.sqrt(lyy).view([1, -1]))
+    std_x_y = torch.mm(torch.sqrt(torch.clamp(lxx, min=0.0)).view([-1, 1]), torch.sqrt(torch.clamp(lyy, min=0.0)).view([1, -1]))
+    std_x_y = torch.clamp(std_x_y, min=1e-10)
     corr_x_y = torch.div(lxy, std_x_y)
+    corr_x_y = torch.nan_to_num(corr_x_y, nan=0.0, posinf=0.0, neginf=0.0)
     return corr_x_y
 
 

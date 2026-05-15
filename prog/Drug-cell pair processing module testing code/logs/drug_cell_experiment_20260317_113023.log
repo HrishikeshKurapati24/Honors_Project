@@ -17,7 +17,7 @@ DATASET SIZE: 109446 pairs | 425 cells | 298 drugs.
 
 --- Running Fold 1/5 ---
 Using device: cuda
-Running Stage-1 SOULCDR Model Experiment with Real Graph Batching
+Running Stage-1 FUSECDR Model Experiment with Real Graph Batching
 Created physicochemical tensor with shape: torch.Size([298, 63])
 Constructing Global Heterogeneous Graph from Loaded Features...
 [CellLineRepresentationModule] Initialized with variation: original
@@ -1346,7 +1346,7 @@ Fold 1 Results -> AUC: 0.9259, AUPR: 0.8999, F1: 0.8200
 
 --- Running Fold 2/5 ---
 Using device: cuda
-Running Stage-1 SOULCDR Model Experiment with Real Graph Batching
+Running Stage-1 FUSECDR Model Experiment with Real Graph Batching
 Created physicochemical tensor with shape: torch.Size([298, 63])
 Constructing Global Heterogeneous Graph from Loaded Features...
 [CellLineRepresentationModule] Initialized with variation: original
@@ -2673,7 +2673,7 @@ Fold 2 Results -> AUC: 0.9283, AUPR: 0.9038, F1: 0.8179
 
 --- Running Fold 3/5 ---
 Using device: cuda
-Running Stage-1 SOULCDR Model Experiment with Real Graph Batching
+Running Stage-1 FUSECDR Model Experiment with Real Graph Batching
 Created physicochemical tensor with shape: torch.Size([298, 63])
 Constructing Global Heterogeneous Graph from Loaded Features...
 [CellLineRepresentationModule] Initialized with variation: original
@@ -3991,7 +3991,7 @@ Fold 3 Results -> AUC: 0.9297, AUPR: 0.9038, F1: 0.8229
 
 --- Running Fold 4/5 ---
 Using device: cuda
-Running Stage-1 SOULCDR Model Experiment with Real Graph Batching
+Running Stage-1 FUSECDR Model Experiment with Real Graph Batching
 Created physicochemical tensor with shape: torch.Size([298, 63])
 Constructing Global Heterogeneous Graph from Loaded Features...
 [CellLineRepresentationModule] Initialized with variation: original
@@ -5319,7 +5319,7 @@ Fold 4 Results -> AUC: 0.9260, AUPR: 0.9011, F1: 0.8154
 
 --- Running Fold 5/5 ---
 Using device: cuda
-Running Stage-1 SOULCDR Model Experiment with Real Graph Batching
+Running Stage-1 FUSECDR Model Experiment with Real Graph Batching
 Created physicochemical tensor with shape: torch.Size([298, 63])
 Constructing Global Heterogeneous Graph from Loaded Features...
 [CellLineRepresentationModule] Initialized with variation: original
@@ -6642,7 +6642,7 @@ FINAL TEST RESULTS:
 test auc: 0.9268  test aupr: 0.9019
 Fold 5 Results -> AUC: 0.9268, AUPR: 0.9019, F1: 0.8197
 
-Experiment Completed. Saving results to soulcdr_results.txt
+Experiment Completed. Saving results to fusecdr_results.txt
 Average Total Epochs: 200.00
 Average Final_AUC: 0.9273 +/- 0.0015
 Average Final_AUPR: 0.9021 +/- 0.0016

@@ -1,19 +1,22 @@
 # Deep Learning & Graph Neural Networks (Core Model Architecture)
-torch==2.10.0
+torch==2.4.1
+torchvision==0.19.1+cu121
+torchaudio==2.4.1+cu121
 torch-geometric==2.6.1
-torch-scatter==2.1.2
-torch-sparse==0.6.18
+torch-scatter==2.1.2+pt24cu121
+torch-sparse==0.6.18+pt24cu121
 
 # Scientific Computing & Data Processing (Metrics & Preprocessing)
 numpy==1.26.4
 pandas==2.2.2
-scipy==1.16.3
+scipy==1.13.1
 scikit-learn==1.6.1
 networkx==3.6.1
 
 # Chemoinformatics & Drug Representation (Feature Extraction)
 rdkit==2024.03.5
 deepchem==2.8.0
+pubchempy==1.0.4
 
 # Data Serialization & File I/O (Dataset Handling)
 h5py==3.15.1
@@ -21,8 +24,17 @@ hickle==5.0.2
 dill==0.4.1
 openpyxl==3.1.5
 
+# Visualization
+seaborn==0.13.2
+
 # Utilities & Performance Optimization
 tqdm==4.67.3
 requests==2.32.5
 joblib==1.5.3
 sympy==1.14.0
+
+# PyG CUDA Wheels
+-f https://data.pyg.org/whl/torch-2.4.1+cu121.html
+
+# PyTorch CUDA 12.1 Index
+--extra-index-url https://download.pytorch.org/whl/cu121

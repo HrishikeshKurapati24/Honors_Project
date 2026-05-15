@@ -8,7 +8,7 @@
 
 **Source:** Cancer Cell Line Encyclopedia (CCLE) for omics data; GDSC for drug response labels and molecular drug features.
 
-**Description:** A custom multi-omics drug–cell interaction dataset constructed in this work for ablation and scalability analysis. Drug response labels (binary: sensitive = 1, resistant = −1) are derived from GDSC IC50 measurements and transformed using a drug-specific Z-score threshold. Drug molecular graph features were extracted from SMILES strings using DeepChem's `ConvMolFeaturizer`.
+**Description:** A custom multi-omics drug–cell interaction dataset constructed in this work for ablation and flexibility analysis. Drug response labels (binary: sensitive = 1, resistant = −1) are derived from GDSC IC50 measurements and transformed using a drug-specific Z-score threshold. Drug molecular graph features were extracted from SMILES strings using DeepChem's `ConvMolFeaturizer`.
 
 **Modalities (cell-line features — all 7):**
 
@@ -42,7 +42,7 @@ After preprocessing, a strict intersection across all seven omics modalities, th
   - Sensitive (label = 1): 44,582
   - Resistant (label = −1): 64,864
 
-**Usage:** Ablation studies, scalability and modality experiments, partial benchmarking.
+**Usage:** Ablation studies, flexibility and modality experiments, partial benchmarking.
 
 ---
 
@@ -139,7 +139,7 @@ Splits are performed at the **cell-line entity level** using `sklearn.KFold` ove
 
 All drugs are available in all three splits. Response pairs are then derived by filtering to the respective cell-line scopes.
 
-**Strict inductive testing:** For the inductive protocols, three separate model scopes are constructed at runtime (in `soulcdr_runner.py`):
+**Strict inductive testing:** For the inductive protocols, three separate model scopes are constructed at runtime (in `fusecdr_runner.py`):
 - **Training scope:** omics features, graph features, and physicochemical features loaded exclusively for `{train_cells} × {train_drugs}`. The graph edges (cell–cell similarity, drug–drug similarity, drug→cell response) are built only over training entities.
 - **Validation scope:** loaded for `{train_cells ∪ val_cells} × {train_drugs ∪ val_drugs}` with the combined pair table `train_pairs ∪ val_pairs`. Validation cell lines have their omics features included but their response pairs are only evaluated — not used as graph edges.
 - **Test scope:** loaded for `{train_cells ∪ test_cells} × {train_drugs ∪ test_drugs}` with the combined pair table `train_pairs ∪ test_pairs`. Test cell lines are included in the graph solely as isolated nodes with their omics-derived initialisation — they have **zero training response edges** connecting them.
@@ -185,9 +185,9 @@ All models were implemented in PyTorch with PyTorch Geometric and trained on a G
 
 ### Hyperparameter selection details
 
-#### Internal(Model Development and ablation analysis) Evaluation (SOUL-CDR on Custom 3-Omics Dataset — `dataset-2`)
+#### Internal(Model Development and ablation analysis) Evaluation (FUSE-CDR on Custom 3-Omics Dataset — `dataset-2`)
 
-Internal hyperparameter tuning for SOUL-CDR was conducted in two sequential phases using **2-fold cross-validation** (except the final Phase 4 robustness runs, which used 5-fold CV). Selection was based on **validation AUC** throughout.
+Internal hyperparameter tuning for FUSE-CDR was conducted in two sequential phases using **2-fold cross-validation** (except the final Phase 4 robustness runs, which used 5-fold CV). Selection was based on **validation AUC** throughout.
 
 **Phase 3.1 — Contrastive Learning Grid Search:**
 
@@ -247,7 +247,7 @@ AUC = 0.9235, AUPR = 0.8961, F1 = 0.8151, ACC = 0.8419.
 
 During evaluation, the classification threshold was not fixed at 0.5. Instead, the threshold was dynamically selected by maximizing the F1 score across candidate threshold values.
 
-#### Benchmarking Evaluation (SOUL-CDR, GraphCDR, RedCDR on dataset-1 and dataset-2)
+#### Benchmarking Evaluation (FUSE-CDR, GraphCDR, RedCDR on dataset-1 and dataset-2)
 
 Hyperparameter selection follows a **two-stage successive halving** strategy on the random split only (seed 0, 5-fold CV). In Stage 1, all candidates are evaluated on fold 1 with a small epoch budget; the top 50% of candidates by validation AUC are promoted. In Stage 2, survivors are evaluated on folds 1–2 with a larger epoch budget; the single best candidate is selected. For inductive protocols, the configuration tuned on the random split is **reused directly** without further tuning.
 
@@ -255,7 +255,7 @@ Hyperparameter selection follows a **two-stage successive halving** strategy on 
 
 ---
 
-### SOUL-CDR
+### FUSE-CDR
 
 **Fixed architecture parameters (all runs):**
 

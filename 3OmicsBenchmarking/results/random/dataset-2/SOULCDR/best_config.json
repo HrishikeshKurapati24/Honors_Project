@@ -1,8 +1,0 @@
-{
-  "model": "SOULCDR",
-  "benchmark": "3OmicsBenchmarking",
-  "dataset": "dataset-2",
-  "protocol": "random",
-  "tuned": false,
-  "config": {}
-}

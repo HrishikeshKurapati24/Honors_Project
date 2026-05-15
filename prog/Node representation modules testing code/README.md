@@ -1,6 +1,6 @@
 # Node Representation Modules Testing Code
 
-This folder contains the intermediate experimental code used to test **node-representation design choices** before moving to the later SOULCDR drug-cell pair processing experiments. The focus here is on modifying the GraphCDR-style architecture and comparing modality combinations, GNN backbones, cell-line encoders, and drug encoders.
+This folder contains the intermediate experimental code used to test **node-representation design choices** before moving to the later FUSECDR drug-cell pair processing experiments. The focus here is on modifying the GraphCDR-style architecture and comparing modality combinations, GNN backbones, cell-line encoders, and drug encoders.
 
 ## Main files
 

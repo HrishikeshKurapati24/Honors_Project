@@ -20,7 +20,7 @@ from data_load import dataload
 from data_process import process
 
 
-from model import SOULCDR
+from model import FUSECDR
 from contrastive_loss import SupConLoss
 
 FIXED_SEED = 0
@@ -212,7 +212,7 @@ def run_proposed_experiment(args, similarity_feature, drug_feature, genomics_fea
                             nb_drugs, physicochemical_feature=None, verbose=True, k_folds=None, current_fold=0, 
                             permute_omics=False):
     """
-    Run a single experiment for the Proposed Hybrid SOULCDR architecture
+    Run a single experiment for the Proposed Hybrid FUSECDR architecture
     
     Args:
         drug_feature: Dictionary {drug_id: [feat_mat, adj_list, degree_list]}
@@ -221,7 +221,7 @@ def run_proposed_experiment(args, similarity_feature, drug_feature, genomics_fea
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     if verbose:
         print(f"Using device: {device}")
-        print("Running Stage-1 SOULCDR Model Experiment with Real Graph Batching")
+        print("Running Stage-1 FUSECDR Model Experiment with Real Graph Batching")
 
     # Disable modalities based on flags
     if not args.use_genomics: genomics_feature = None
@@ -320,7 +320,7 @@ def run_proposed_experiment(args, similarity_feature, drug_feature, genomics_fea
         ]
     )
 
-    model = SOULCDR(
+    model = FUSECDR(
         atom_shape=atom_shape,
         genomics_dim=genomics_dim,
         epigenomics_in_channels=epigenomics_in_channels,
@@ -762,7 +762,7 @@ def main():
     )
     
     final_AUC, final_AUPR, final_F1, final_ACC = 0, 0, 0, 0
-    output_filename = "soulcdr_results.txt"
+    output_filename = "fusecdr_results.txt"
 
     # Run Experiment
     all_fold_metrics = []
@@ -814,7 +814,7 @@ def main():
 
     with open(output_filename, 'a') as f:
         f.write('---------------------------------------\n')
-        f.write('Model: SOULCDR\n')
+        f.write('Model: FUSECDR\n')
         f.write(f'Elapsed time: {round(elapsed, 4)}s\n')
         if args.k_fold > 1:
             f.write(f'K-Fold CV: {args.k_fold} folds\n')
