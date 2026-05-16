@@ -16,8 +16,7 @@
 *   **Dual-Branch Encoder:** Merges local structural pattern recognition (GraphSAGE) with global long-range dependency modeling (Heterogeneous Graph Transformer).
 *   **Supervised Contrastive Learning (SCL):** Increases representation robustness, pulling matching response pairs together and pushing mismatched pairs apart.
 
-**🔥 Highlight Result:**
-FUSE-CDR achieves a state-of-the-art **AUC of 0.9359** on the benchmark dataset random split and demonstrates robust inductive generalization with an **AUC of 0.5847** in the strictly disjoint "Unseen Both" setting, representing a 12.31% relative improvement over GraphCDR and 1.35% over RedCDR.
+FUSE-CDR achieves a state-of-the-art **AUC of 0.9359** on the benchmark dataset random split and demonstrates robust inductive generalization with an **AUC of 0.5847** in the strictly disjoint "Unseen Both" setting. In comprehensive evaluations across 5 foundational baselines, this represents a **12.31% relative improvement** over GraphCDR and **1.35%** over RedCDR in inductive settings.
 
 ---
 
@@ -129,9 +128,12 @@ We evaluate FUSE-CDR across multiple setups, designed around rigorous clinical e
 
 | Model | Setting | AUC | AUPR |
 | :--- | :--- | :--- | :--- |
-| **GraphCDR** | Random (Dataset-2) | 0.9315 $\pm$ 0.0006 | 0.9079 $\pm$ 0.0017 |
-| **RedCDR** | Random (Dataset-2) | 0.9319 $\pm$ 0.0006 | 0.9087 $\pm$ 0.0011 |
-| **FUSE-CDR** | Random (Dataset-2) | **0.9359 $\pm$ 0.0009** | **0.9156 $\pm$ 0.0019** |
+| **GADRP** | Random (Dataset-2) | 0.8407 $\pm$ 0.0138 | 0.7852 $\pm$ 0.0195 |
+| **DeepTTC** | Random (Dataset-2) | 0.8808 $\pm$ 0.0165 | 0.8269 $\pm$ 0.0261 |
+| **GraphDRP** | Random (Dataset-2) | 0.9218 $\pm$ 0.0039 | 0.8941 $\pm$ 0.0057 |
+| **GraphCDR** | Random (Dataset-2) | 0.9315 $\pm$ 0.0007 | 0.9079 $\pm$ 0.0019 |
+| **RedCDR** | Random (Dataset-2) | 0.9319 $\pm$ 0.0006 | 0.9087 $\pm$ 0.0012 |
+| **FUSE-CDR** | Random (Dataset-2) | **0.9359 $\pm$ 0.0010** | **0.9156 $\pm$ 0.0021** |
 
 *\*Benchmark Random setup indicates competitive predictive matching across identical data splits*
 
@@ -143,9 +145,12 @@ We evaluate FUSE-CDR across multiple setups, designed around rigorous clinical e
 
 ## 📚 Baselines / References
 
-FUSE-CDR was systematically modeled and benchmarked against the following foundational GNN structures for CDRP:
-*   [GraphCDR](https://github.com/liuxuan666/GraphCDR)
-*   [RedCDR](https://github.com/mhxu1998/RedCDR)
+FUSE-CDR was systematically modeled and benchmarked against the following foundational architectures for CDRP:
+*   [GraphCDR](https://github.com/liuxuan666/GraphCDR) (Multi-omics Graph Neural Network)
+*   [RedCDR](https://github.com/mhxu1998/RedCDR) (Relational Decomposition Graph Neural Network)
+*   [GraphDRP](https://github.com/hosseinshn/GraphDRP) (Graph Convolutional Networks for Drug Response)
+*   [DeepTTC](https://github.com/qiaoyun-li/DeepTTC) (Transformer-based Therapeutic Candidate Prediction)
+*   [GADRP](https://github.com/flora619/GADRP) (Graph Convolutional Networks and Autoencoders)
 
 ---
 
