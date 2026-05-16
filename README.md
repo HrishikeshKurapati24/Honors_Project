@@ -43,10 +43,20 @@ Identifying effective drugs for individual patients accelerates drug discovery a
 
 ![Architecture of FUSE-CDR](architecture_diagram.jpg)
 
-1.  **Drug Representation Learning:** Uses Graph Isomorphism Networks (GIN) to process SMILES-derived molecular graphs into compact 256-dimensional embeddings.
-2.  **Cell Representation Learning:** Utilizes intra-category attention to compress single omics features, followed by a hierarchical attention mechanism bridging **Genomics** $\rightarrow$ **Epigenomics (Methylation)** $\rightarrow$ **Transcriptomics** $\rightarrow$ **Epigenomics (Chromatin)** $\rightarrow$ **Metabolomics** $\rightarrow$ **Proteomics** $\rightarrow$ **Pathway activity**.
-3.  **Heterogeneous Graph Construction:** Integrates independent embeddings into a unified multi-relational graph via top-10 cosine similarities (cell-cell and drug-drug), establishing communication bridges during prediction.
-4.  **Dual-Branch Graph Encoder:** GraphSAGE effectively samples node neighborhoods to understand local clusters while the Heterogeneous Graph Transformer (HGT) attends to distinct relation types and long-scale distances. 
+FUSE-CDR is a heterogeneous graph-learning framework that jointly models molecular, biological, and relational information. The architecture consists of three main components:
+
+1.  **Biologically-Guided Flexible Multi-Omics Cell Encoder:**
+    *   **Intra-Modality Encoder:** Projects high-dimensional measurements (Genomics, Epigenomics, Transcriptomics, etc.) into compact latent representations using modality-specific blocks.
+    *   **Intra-Category Attention:** Uses multi-head dot-product attention to capture interactions among related molecular signals within the same biological category.
+    *   **Inter-Modality Sequential Fusion:** Integrates modalities following a biological hierarchy: **Genomics** $\rightarrow$ **Epigenomics** $\rightarrow$ **Transcriptomics** $\rightarrow$ **Metabolomics** $\rightarrow$ **Proteomics** $\rightarrow$ **Pathway**.
+2.  **Heterogeneous Graph Constructor:**
+    *   Integrates drug and cell embeddings into a unified graph $\mathcal{G} = (\mathcal{V}, \mathcal{E})$.
+    *   Includes **Sensitive-only drug–cell interaction edges**, drug–drug similarity edges (Physicochemical), and cell–cell similarity edges (Pathway activity).
+    *   Uses **Top-$k$ ($k=10$) cosine similarity** to constrain graph density.
+3.  **Dual-Branch Heterogeneous Graph Encoder:**
+    *   **Local Branch (GraphSAGE):** Captures neighborhood-level structural patterns and local interactions.
+    *   **Global Branch (Heterogeneous Graph Transformer - HGT):** Employs relation-aware attention to model long-range dependencies and multi-relational semantics beyond direct neighbors.
+    *   **Attention-Based Aggregation:** Dynamically balances local and global representations for context-aware final embeddings.
 
 ---
 
@@ -97,7 +107,6 @@ python run_unseen_drugs.py --datasets dataset-2
 *   `benchmark_wrappers/` - Unified runners for baseline models (GraphCDR, RedCDR, GADRP, DeepTTC, GraphDRP).
 *   `benchmarking_common/` - Shared hyperparameter tuning, model logic, and dataset preparation routines.
 *   `data/` & `final_dataset/` - Raw inputs (CCLE, GDSC, SMILES, etc.) and fully processed intermediate graphs and omics tables.
-*   `Research paper/` - Complete LaTeX source code, resulting PDFs, and plotting scripts for figures. 
 
 ---
 
@@ -112,15 +121,22 @@ Data flows from broad external repositories down directly to model inputs:
 
 ## 🔬 Experimental Setup
 
-We evaluate FUSE-CDR across multiple setups, designed around rigorous clinical evaluation norms:
+Experimental details and evaluation protocols are derived from the FUSE-CDR research manuscript.
 
-*   **Custom 7-Modalities Dataset:** Used largely for model development and architecture validation (425 cells, 298 drugs).
-*   **Custom 3-Omics Dataset & GraphCDR Benchmark:** Strict unified benchmark datasets to conduct fair comparisons representing Mutation, Expression, and Methylation data. 
-*   **Evaluation Protocol:** 5-fold cross-validation. We break splits down by:
-    *   **Random Split:** Classic performance measurement.
-    *   **Unseen Cells / Unseen Drugs:** One group is completely novel.
-    *   **Unseen Both:** Strict inductive split where the evaluation pairings have no entities overlapping the training set.
-*   **Metrics:** Main metrics relied upon are AUC (Area Under the Receiver Operating Characteristic Curve) and AUPR (Area Under the Precision-Recall Curve).
+### 1. Benchmark Datasets
+*   **GDSC (Full 7-Omics):** 298 drugs, 425 cell lines, 109,446 response pairs. Includes Genomics, Epigenomics, Transcriptomics, Proteomics, Metabolomics, and Pathway activity.
+*   **GDSC (3-Omics Benchmark):** 298 drugs, 456 cell lines, 117,330 response pairs (Mutation, Methylation, and Gene Expression).
+*   **CCLE Benchmark:** 317 cell lines, 24 drugs, 7,307 response pairs.
+*   **GraphCDR Dataset (Dataset-1):** Standard academic benchmark (222 drugs, 561 cell lines, 99,147 pairs).
+
+### 2. Preprocessing & Featurization
+*   **Omics:** KNN imputation ($k=5$), VarianceThreshold ($0.03$), and MSigDB Hallmark gene set selection.
+*   **Drugs:** SMILES strings converted to molecular graphs via DeepChem `ConvMolFeaturizer`. Physicochemical similarity built from top 64 descriptors ranked by variance.
+
+### 3. Evaluation Protocols
+*   **Split Strategies:** 5-fold cross-validation across **Random**, **Unseen Cells**, **Unseen Drugs**, and **Unseen Both** (strict inductive) settings.
+*   **Hyperparameter Tuning:** Two-stage successive halving strategy on random split; optimized configurations are reused for all inductive evaluations.
+*   **Training Objective:** Combined Binary Cross-Entropy (BCE) and **Supervised Contrastive Learning (SCL)** loss. SCL is activated after a 10-epoch warmup.
 
 ---
 
@@ -156,21 +172,31 @@ FUSE-CDR was systematically modeled and benchmarked against the following founda
 
 ## 💡 Key Insights
 
-*   **Pathway Summarization Wins:** Evaluating multi-omics independently revealed that deriving high-level Pathway activity scores serves as the most potent signal relative to throwing unstructured omics into dense layers.
-*   **Contrastive regularizations stabilize embeddings:** During severe class-imbalance, the Supervised Contrastive Learning objective prevents representational collapse, proving decisive upon unseen nodes. 
-*   **Global interactions limit locality:** Only testing against immediate neighbored graphs limits model potential. Combining GraphSAGE (local) with an HGT (global) solves graph saturation without overfitting.
+Detailed analysis in the FUSE-CDR manuscript reveals the following scientific conclusions:
+
+1.  **Selective Modality Relevance:** A focused subset (Pathway activity, Transcriptomics, Proteomics) provides a stronger predictive signal than indiscriminate modality accumulation. Proteomics contributes the strongest complementary signal in "Add-one-in" experiments.
+2.  **Global-Local Dependency Integration:** Local-only graph modeling (GraphSAGE) is insufficient for sparse pharmacogenomic graphs. Integrating **HGT** enables the model to capture long-range heterogeneous dependencies beyond direct neighborhoods.
+3.  **Inductive Robustness:** FUSE-CDR demonstrates significant generalizability in the **Unseen Both** setting, where performance gaps vs. baselines are most pronounced. This suggests that heterogeneous relational modeling captures transferable biological mechanisms rather than dataset-specific biases.
+4.  **Dataset Redundancy:** Current pharmacogenomic datasets (GDSC/CCLE) contain substantial cross-modality redundancy. Pathway activity scores effectively summarize transcriptomic signals into functionally meaningful units.
+5.  **Expressiveness of GIN:** Among drug encoders, **Graph Isomorphism Networks (GIN)** prove theoretically and empirically superior for capturing molecular graph topology compared to GCN or GAT.
 
 ---
 
 ## 🔮 Future Work
 
-*   **Explainability:** Tracing predictions backwards through the cell-encoder to identify which specific pathways or biological omics triggered therapeutic sensitivities.
-*   **Clinical Validation:** Projecting the algorithm toward heavily in-vivo or clinical trial datasets bypassing strictly cell-line distributions.
-*   **Additional Biological Networks:** Constructing richer heterogeneous edges beyond raw structural and biological pathways. 
+*   **Clinical Generalization:** Evaluating the framework on patient-derived tumor datasets and real-world clinical trial data to move beyond cell-line distributions.
+*   **Mechanistic Explainability:** Incorporating attention-tracing and graph-masking mechanisms to identify the specific biological pathways and drug-target interactions driving each prediction.
+*   **Diverse Data Expansion:** Testing the model on larger and more biologically diverse pharmacogenomic datasets, including higher-quality measurements and more complementary molecular modalities.
 
 ---
 
 ## 📄 License & Citation
-
 Licensed under **MIT License**.
+
+### Author Contributions
+**Hrishikesh Kurapati** conceived the study, designed and implemented the proposed framework, conducted the experiments, analyzed the results, and prepared the manuscript. **Amilpur Santhosh** provided research guidance, technical feedback, and critical review throughout the study.
+
+### Acknowledgements
+The authors acknowledge the support of **Indian Institute of Information Technology, Sri City** for providing the necessary resources to conduct this research.
+
 *(If you found this software useful in your research, consider citing the upcoming FUSE-CDR publication once archived.)*
