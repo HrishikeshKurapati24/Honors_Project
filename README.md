@@ -1,4 +1,4 @@
-# FUSE-CDR (Flexible Omics Unified-representation Learning for Cancer Drug Response)
+# FUSE-CDR (Flexible Unified Sequential Encoding of Omics-Based Cancer Drug Response Prediction)
 
 **Author:** Hrishikesh Kurapati  
 **Institution:** IIIT Sri City  
