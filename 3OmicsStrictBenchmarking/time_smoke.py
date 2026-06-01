@@ -12,7 +12,6 @@ if ROOT_DIR not in sys.path:
 from benchmark_wrappers import (  # noqa: E402
     deepttc_shared_graph_runner,
     graphdrp_shared_graph_runner,
-    gratransdrp_shared_graph_runner,
 )
 from benchmarking_common import ensure_dir, write_json  # noqa: E402
 from benchmarking_common.splits import ensure_protocol_folds  # noqa: E402
@@ -21,7 +20,6 @@ from benchmarking_common.splits import ensure_protocol_folds  # noqa: E402
 RUNNERS = {
     "DeepTTC": deepttc_shared_graph_runner.run,
     "GraphDRP": graphdrp_shared_graph_runner.run,
-    "GraTransDRP": gratransdrp_shared_graph_runner.run,
 }
 
 MODEL_DEFAULTS: Dict[str, Dict] = {
@@ -38,12 +36,6 @@ MODEL_DEFAULTS: Dict[str, Dict] = {
         "model_type": "GAT_GCN",
         "top_k": 10,
     },
-    "GraTransDRP": {
-        "batch_size": 8,
-        "lr": 1e-4,
-        "dropout": 0.5,
-        "top_k": 10,
-    },
 }
 
 
@@ -52,7 +44,7 @@ def _parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--models",
         nargs="+",
-        default=["DeepTTC", "GraphDRP", "GraTransDRP"],
+        default=["DeepTTC", "GraphDRP"],
         choices=sorted(RUNNERS.keys()),
         help="Models to time.",
     )

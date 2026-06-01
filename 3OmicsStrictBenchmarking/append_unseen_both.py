@@ -1,7 +1,7 @@
 import os
 import pandas as pd
 
-models = ['GraphCDR', 'RedCDR', 'DeepTTC', 'GADRP', 'GraTransDRP', 'FUSECDR']
+models = ['GraphCDR', 'RedCDR', 'DeepTTC', 'GADRP', 'FUSECDR']
 base_dir = '/Volumes/Work/Semester - 6/Honors/CDRP models testing/3OmicsStrictBenchmarking/results'
 markdown_file = '/Volumes/Work/Semester - 6/Honors/CDRP models testing/benchmark_results.md'
 

@@ -59,7 +59,7 @@ def parse_args():
     parser.add_argument(
         "--exclude-models",
         nargs="*",
-        default=["GraTransDRP"],
+        default=[],
         help="Models to exclude from the figures.",
     )
     parser.add_argument(
