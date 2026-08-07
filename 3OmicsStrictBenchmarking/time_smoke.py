@@ -14,7 +14,7 @@ from benchmark_wrappers import (  # noqa: E402
     graphdrp_shared_graph_runner,
 )
 from benchmarking_common import ensure_dir, write_json  # noqa: E402
-from benchmarking_common.splits import ensure_protocol_folds  # noqa: E402
+from benchmarking_common.splits import ensure_historical_protocol_folds  # noqa: E402
 
 
 RUNNERS = {
@@ -110,7 +110,7 @@ def _split_dir(protocol: str, dataset_name: str) -> str:
 def _ensure_requested_splits(dataset_name: str, protocol: str, seed: int) -> str:
     prepared_response_path = os.path.join(_prepared_dir(dataset_name), "response_pairs.csv")
     output_dir = _split_dir(protocol, dataset_name)
-    return ensure_protocol_folds(
+    return ensure_historical_protocol_folds(
         response_pairs_path=prepared_response_path,
         output_dir=output_dir,
         protocol=protocol,

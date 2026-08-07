@@ -10,6 +10,7 @@ from benchmarking_common.splits import (
     PROTOCOL_UNSEEN_CELLS,
     PROTOCOL_UNSEEN_BOTH,
     PROTOCOL_UNSEEN_DRUGS,
+    ensure_historical_protocol_folds,
     ensure_protocol_folds,
 )
 from benchmarking_common.tuning import load_random_best_config, resolve_random_config
@@ -74,7 +75,12 @@ def run_protocol_benchmarks(
         if prepare or not os.path.isdir(prepared_dir):
             prepare_benchmark_dataset(root_dir, benchmark_name, dataset_name)
 
-        split_dir = ensure_protocol_folds(
+        split_ensurer = (
+            ensure_historical_protocol_folds
+            if benchmark_name == "3OmicsStrictBenchmarking"
+            else ensure_protocol_folds
+        )
+        split_dir = split_ensurer(
             response_pairs_path=os.path.join(prepared_dir, "response_pairs.csv"),
             output_dir=split_root_for_protocol(benchmark_dir, protocol, dataset_name),
             protocol=protocol,

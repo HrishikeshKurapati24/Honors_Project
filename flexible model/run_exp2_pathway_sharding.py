@@ -4,6 +4,7 @@ from pathlib import Path
 
 import pandas as pd
 
+from data_flexible import list_available_omics
 from flexibility_utils import (
     FINAL_DATASET_DIR,
     FLEXIBILITY_OUTPUTS_DIR,
@@ -14,6 +15,9 @@ from flexibility_utils import (
     summarize_flexible_summary,
     write_json,
 )
+
+
+EXPERIMENT_VERSION = "sharded_v2"
 
 
 def parse_args():
@@ -38,25 +42,55 @@ def main():
     rows = []
     for shard_count in args.shard_counts:
         view_dir = FLEXIBILITY_VIEWS_DIR / "exp2_pathway_sharding" / f"{tag}_shards_{shard_count}"
-        if shard_count == 1:
-            build_dataset_view(
-                view_dir,
-                base_dataset_root=dataset_root,
-                include_stems=["pathway"],
-            )
-        else:
-            build_dataset_view(
-                view_dir,
-                base_dataset_root=dataset_root,
-                include_stems=[],
-                extra_tables=build_pathway_shards(base_dataset_root=dataset_root, shard_count=shard_count),
+        shard_tables = build_pathway_shards(
+            base_dataset_root=dataset_root,
+            shard_count=shard_count,
+        )
+        shard_stems = sorted(shard_tables)
+        if len(shard_stems) != shard_count:
+            raise RuntimeError(
+                f"Expected {shard_count} pathway shards, generated {len(shard_stems)}"
             )
 
-        run_name = f"exp2_{tag}_shards_{shard_count}"
+        build_dataset_view(
+            view_dir,
+            base_dataset_root=dataset_root,
+            include_stems=[],
+            extra_tables=shard_tables,
+        )
+        if (view_dir / "pathway.csv").exists():
+            raise RuntimeError(
+                f"Invalid pathway-sharding view: original pathway.csv is present in {view_dir}"
+            )
+        missing_shards = [
+            stem for stem in shard_stems if not (view_dir / f"{stem}.csv").is_file()
+        ]
+        if missing_shards:
+            raise RuntimeError(
+                f"Invalid pathway-sharding view; missing shard files: {missing_shards}"
+            )
+        discovered_stems = sorted(
+            entry["stem"] for entry in list_available_omics(str(view_dir))
+        )
+        if discovered_stems != shard_stems:
+            raise RuntimeError(
+                "Invalid pathway-sharding view; expected only "
+                f"{shard_stems}, discovered {discovered_stems}"
+            )
+        print(
+            f"Prepared {shard_count} pathway shard(s): "
+            + ", ".join(
+                f"{stem}[{shard_tables[stem].shape[1]}]" for stem in shard_stems
+            )
+        )
+
+        # Exact stem selectors avoid the ambiguity between pathway.csv and the
+        # broader pathway category.
+        run_name = f"exp2_{EXPERIMENT_VERSION}_{tag}_shards_{shard_count}"
         summary = run_main_flexible(
             run_name=run_name,
             dataset_root=view_dir,
-            omics=["pathway"],
+            omics=shard_stems,
             epoch=args.epochs,
             k_fold=args.k_fold,
             seed=args.seed,
@@ -69,6 +103,10 @@ def main():
                 "run_name": run_name,
                 "run_dir": summary["run_dir"],
                 "view_dir": str(view_dir),
+                "shard_stems": "|".join(shard_stems),
+                "shard_widths": "|".join(
+                    str(shard_tables[stem].shape[1]) for stem in shard_stems
+                ),
                 **metrics,
             }
         )
@@ -79,8 +117,10 @@ def main():
         experiment_dir / "summary.json",
         {
             "experiment": "exp2_pathway_sharding",
+            "experiment_version": EXPERIMENT_VERSION,
             "dataset_root": str(dataset_root),
             "pathway_source": str(dataset_root / "pathway.csv"),
+            "selector_mode": "explicit_shard_stems",
             "shard_counts": args.shard_counts,
             "epochs": args.epochs,
             "k_fold": args.k_fold,

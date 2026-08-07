@@ -1,0 +1,49 @@
+{
+  "experiment": "strict_branch_isolation_hgt_depth_and_propagation",
+  "benchmark_dir": "/content/drive/MyDrive/CDRP models testing/3OmicsStrictBenchmarking",
+  "protocol": "random",
+  "split_source": "canonical_3omics_strict_random",
+  "split_generator": "historical_random_v1",
+  "validation_seed_policy": "fixed_base_seed_per_outer_fold",
+  "seed": 0,
+  "folds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "datasets": [
+    "dataset-1",
+    "dataset-2"
+  ],
+  "variants": {
+    "local_only": {
+      "local_layers": 2,
+      "global_layers": 0
+    },
+    "hgt_2_only": {
+      "local_layers": 0,
+      "global_layers": 2
+    },
+    "hgt_2": {
+      "local_layers": 2,
+      "global_layers": 2
+    },
+    "hgt_3": {
+      "local_layers": 2,
+      "global_layers": 3
+    }
+  },
+  "epochs": 400,
+  "reuse_dataset_best_configs": true,
+  "test_pair_distances": [
+    2,
+    3
+  ],
+  "path_definition": "shortest directed path over train-positive response and top-k similarity edges",
+  "probe_path_type": "directed cell-similarity paths of exact length 2 or 3",
+  "probe_dataset": "dataset-2",
+  "max_probe_pairs_per_distance_per_fold": 100,
+  "probe_tolerance": 1e-08
+}

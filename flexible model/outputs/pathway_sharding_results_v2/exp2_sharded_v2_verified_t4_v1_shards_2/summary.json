@@ -1,0 +1,103 @@
+{
+  "run_dir": "/content/drive/MyDrive/CDRP models testing/flexible model/outputs/exp2_sharded_v2_verified_t4_v1_shards_2",
+  "dataset_root": "/content/drive/MyDrive/CDRP models testing/flexible model/flexibility_views/exp2_pathway_sharding/verified_t4_v1_shards_2",
+  "split_dir": null,
+  "elapsed_seconds": 1486.2985854148865,
+  "k_fold": 5,
+  "fold_ids": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "mean": {
+    "test_auc": 0.9189652989403004,
+    "test_aupr": 0.8877795377404955,
+    "test_f1": 0.8096112728118896,
+    "test_acc": 0.8368327260017395
+  },
+  "std": {
+    "test_auc": 0.0015024623566884082,
+    "test_aupr": 0.0036728480953925695,
+    "test_f1": 0.002654550573288542,
+    "test_acc": 0.0031332784731842667
+  },
+  "system": {
+    "mean_fold_elapsed_seconds": 294.58186798095704,
+    "max_peak_gpu_memory_bytes": 1660797952,
+    "parameter_count": 8614052
+  },
+  "folds": [
+    {
+      "fold": 1,
+      "best_val_auc": 0.9224718837933592,
+      "test_auc": 0.9214334982594988,
+      "test_aupr": 0.8935853974555551,
+      "test_f1": 0.8134457468986511,
+      "test_acc": 0.8423024415969849,
+      "parameter_count": 8614052,
+      "fold_elapsed_seconds": 296.77579140663147,
+      "peak_gpu_memory_bytes": 1659133952,
+      "checkpoint": "",
+      "history_csv": "/content/drive/MyDrive/CDRP models testing/flexible model/outputs/exp2_sharded_v2_verified_t4_v1_shards_2/fold_1_history.csv",
+      "predictions_npz": "/content/drive/MyDrive/CDRP models testing/flexible model/outputs/exp2_sharded_v2_verified_t4_v1_shards_2/fold_1_test_predictions.npz"
+    },
+    {
+      "fold": 2,
+      "best_val_auc": 0.9165298141963227,
+      "test_auc": 0.9176669442072203,
+      "test_aupr": 0.8851479110093967,
+      "test_f1": 0.8062344193458557,
+      "test_acc": 0.8330211639404297,
+      "parameter_count": 8614052,
+      "fold_elapsed_seconds": 293.507931470871,
+      "peak_gpu_memory_bytes": 1659579392,
+      "checkpoint": "",
+      "history_csv": "/content/drive/MyDrive/CDRP models testing/flexible model/outputs/exp2_sharded_v2_verified_t4_v1_shards_2/fold_2_history.csv",
+      "predictions_npz": "/content/drive/MyDrive/CDRP models testing/flexible model/outputs/exp2_sharded_v2_verified_t4_v1_shards_2/fold_2_test_predictions.npz"
+    },
+    {
+      "fold": 3,
+      "best_val_auc": 0.9218505356098019,
+      "test_auc": 0.9195832769050051,
+      "test_aupr": 0.8870837367640094,
+      "test_f1": 0.8070024847984314,
+      "test_acc": 0.8358079195022583,
+      "parameter_count": 8614052,
+      "fold_elapsed_seconds": 293.1632409095764,
+      "peak_gpu_memory_bytes": 1659771392,
+      "checkpoint": "",
+      "history_csv": "/content/drive/MyDrive/CDRP models testing/flexible model/outputs/exp2_sharded_v2_verified_t4_v1_shards_2/fold_3_history.csv",
+      "predictions_npz": "/content/drive/MyDrive/CDRP models testing/flexible model/outputs/exp2_sharded_v2_verified_t4_v1_shards_2/fold_3_test_predictions.npz"
+    },
+    {
+      "fold": 4,
+      "best_val_auc": 0.9174313412570436,
+      "test_auc": 0.9171969789296143,
+      "test_aupr": 0.8831300323231128,
+      "test_f1": 0.8106263279914856,
+      "test_acc": 0.8352140188217163,
+      "parameter_count": 8614052,
+      "fold_elapsed_seconds": 294.18578481674194,
+      "peak_gpu_memory_bytes": 1659737600,
+      "checkpoint": "",
+      "history_csv": "/content/drive/MyDrive/CDRP models testing/flexible model/outputs/exp2_sharded_v2_verified_t4_v1_shards_2/fold_4_history.csv",
+      "predictions_npz": "/content/drive/MyDrive/CDRP models testing/flexible model/outputs/exp2_sharded_v2_verified_t4_v1_shards_2/fold_4_test_predictions.npz"
+    },
+    {
+      "fold": 5,
+      "best_val_auc": 0.9200071785346232,
+      "test_auc": 0.9189457964001642,
+      "test_aupr": 0.8899506111504033,
+      "test_f1": 0.8107473850250244,
+      "test_acc": 0.8378180861473083,
+      "parameter_count": 8614052,
+      "fold_elapsed_seconds": 295.27659130096436,
+      "peak_gpu_memory_bytes": 1660797952,
+      "checkpoint": "",
+      "history_csv": "/content/drive/MyDrive/CDRP models testing/flexible model/outputs/exp2_sharded_v2_verified_t4_v1_shards_2/fold_5_history.csv",
+      "predictions_npz": "/content/drive/MyDrive/CDRP models testing/flexible model/outputs/exp2_sharded_v2_verified_t4_v1_shards_2/fold_5_test_predictions.npz"
+    }
+  ]
+}

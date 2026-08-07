@@ -43,6 +43,7 @@ def should_tune_random(benchmark_name: str, dataset_name: str, model_name: str) 
             "GADRP",
             "DeepTTC",
             "GraphDRP",
+        }
     if benchmark_name == "DeepTTCBenchmarking":
         return dataset_name == "dataset-1" and model_name in {"FUSECDR", "DeepTTC"}
     if benchmark_name == "GADRPBenchmarking":
@@ -96,13 +97,13 @@ def tuning_candidates(model_name: str, benchmark_name: str | None = None) -> Lis
             expanded = []
             for candidate in candidates:
                 for pair in contrastive_pairs:
-                        expanded.append(
-                            {
-                                **candidate,
-                                "top_k": 10,
-                                **pair,
-                            }
-                        )
+                    expanded.append(
+                        {
+                            **candidate,
+                            "top_k": 10,
+                            **pair,
+                        }
+                    )
             if model_name == "FUSECDR_minibatch":
                 return [
                     {
@@ -211,8 +212,6 @@ def tuning_candidates(model_name: str, benchmark_name: str | None = None) -> Lis
             {"lr": 5e-4, "dropout": 0.2, "model_type": "GAT_GCN", "batch_size": 128},
             {"lr": 1e-3, "dropout": 0.2, "model_type": "GCN", "batch_size": 128},
             {"lr": 1e-3, "dropout": 0.2, "model_type": "GAT_GCN", "batch_size": 64},
-        ]
-            {"lr": 5e-4, "dropout": 0.2, "model_type": "GAT_GCN", "batch_size": 128},
         ]
     raise KeyError(f"Unsupported tuning model '{model_name}'")
 

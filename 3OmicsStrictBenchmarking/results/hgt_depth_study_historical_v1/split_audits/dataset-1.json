@@ -1,0 +1,107 @@
+{
+  "dataset": "dataset-1",
+  "protocol": "random",
+  "seed": 0,
+  "n_splits": 5,
+  "split_generator": "historical_random_v1",
+  "validation_seed_policy": "fixed_base_seed_per_outer_fold",
+  "prepared_response_pairs": 7307,
+  "canonical_split_dir": "/content/drive/MyDrive/CDRP models testing/3OmicsStrictBenchmarking/splits/random/dataset-1",
+  "folds": [
+    {
+      "fold": 1,
+      "train_pairs": 5115,
+      "val_pairs": 730,
+      "test_pairs": 1462,
+      "saved_prediction_matches": {
+        "DeepTTC": true,
+        "FUSECDR": true,
+        "GADRP": true,
+        "GraphCDR": true,
+        "GraphDRP": true,
+        "RedCDR": true
+      },
+      "sha256": {
+        "train": "a85e705ec538fe5cad9c75d20d05aa3f7db9d522474de4f6f6e0152c94b446db",
+        "val": "fd6150889e24d8784d32d4c4a344b06247410c5611bccd4f1854d5024171a11f",
+        "test": "cbb1781bb50fb5d5a0adc331cb4b38b3c750edeac2450649719871f46e5e942c"
+      }
+    },
+    {
+      "fold": 2,
+      "train_pairs": 5115,
+      "val_pairs": 730,
+      "test_pairs": 1462,
+      "saved_prediction_matches": {
+        "DeepTTC": true,
+        "FUSECDR": true,
+        "GADRP": true,
+        "GraphCDR": true,
+        "GraphDRP": true,
+        "RedCDR": true
+      },
+      "sha256": {
+        "train": "eda034cb1663d6b1bce5d908a0b5680a5bd0211b37b360c2396411f9d427b014",
+        "val": "5cc0c8c6c96b5e986550d3ea6817b31c124dcc0e68f38057292ef8e52adea306",
+        "test": "185aa1a22a39697a67a78427fcba8e0a24a383321d1f10594bce758fd3b12a13"
+      }
+    },
+    {
+      "fold": 3,
+      "train_pairs": 5116,
+      "val_pairs": 730,
+      "test_pairs": 1461,
+      "saved_prediction_matches": {
+        "DeepTTC": true,
+        "FUSECDR": true,
+        "GADRP": true,
+        "GraphCDR": true,
+        "GraphDRP": true,
+        "RedCDR": true
+      },
+      "sha256": {
+        "train": "2eb69aa2eb9ea654049414f551231d32913c4e600e735b9c978f5b510eeae4ba",
+        "val": "90ef16ad4aeee8cf74671ba9782a7514cc3b3b08a617d33eb84609d7aabfe062",
+        "test": "22aba21700184508d5dbdcb471f5e2267df54ea1f95af5eb8d3aa601bd32d43f"
+      }
+    },
+    {
+      "fold": 4,
+      "train_pairs": 5116,
+      "val_pairs": 730,
+      "test_pairs": 1461,
+      "saved_prediction_matches": {
+        "DeepTTC": true,
+        "FUSECDR": true,
+        "GADRP": true,
+        "GraphCDR": true,
+        "GraphDRP": true,
+        "RedCDR": true
+      },
+      "sha256": {
+        "train": "2e04819f1f83102a06b5d705d425bd6ab7163a35b4a3700da7ffe5b7252a147a",
+        "val": "767f3732bbadfda8facb478e5d3ee43ab736e944acf9b0313684ed564e306d33",
+        "test": "0298c3ed442d8426136c7bb63df9c015d35eef0fb4216009cfa63621fa955237"
+      }
+    },
+    {
+      "fold": 5,
+      "train_pairs": 5116,
+      "val_pairs": 730,
+      "test_pairs": 1461,
+      "saved_prediction_matches": {
+        "DeepTTC": true,
+        "FUSECDR": true,
+        "GADRP": true,
+        "GraphCDR": true,
+        "GraphDRP": true,
+        "RedCDR": true
+      },
+      "sha256": {
+        "train": "0408ac3463323726d355d06f0883539f0d40b6d450fc58f9804007ac029a6b20",
+        "val": "233018383bdab5841aaf248a1d613288c23730be890f23118a802f5f89132b3d",
+        "test": "44409417a88fbe00419f8fa31325ea750cbe1633418e19b03afa468efc4ed743"
+      }
+    }
+  ]
+}

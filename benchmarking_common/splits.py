@@ -84,6 +84,37 @@ def canonicalize_response_pairs(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def _entity_split(values: Sequence[str], seed: int, n_splits: int, val_ratio_of_full: float) -> List[Dict[str, List[str]]]:
+    return _entity_split_with_policy(
+        values=values,
+        seed=seed,
+        n_splits=n_splits,
+        val_ratio_of_full=val_ratio_of_full,
+        fold_dependent_validation_seed=True,
+    )
+
+
+def _historical_entity_split(
+    values: Sequence[str],
+    seed: int,
+    n_splits: int,
+    val_ratio_of_full: float,
+) -> List[Dict[str, List[str]]]:
+    return _entity_split_with_policy(
+        values=values,
+        seed=seed,
+        n_splits=n_splits,
+        val_ratio_of_full=val_ratio_of_full,
+        fold_dependent_validation_seed=False,
+    )
+
+
+def _entity_split_with_policy(
+    values: Sequence[str],
+    seed: int,
+    n_splits: int,
+    val_ratio_of_full: float,
+    fold_dependent_validation_seed: bool,
+) -> List[Dict[str, List[str]]]:
     values = np.asarray(sorted(map(str, values)), dtype=object)
     if values.size < n_splits:
         raise ValueError(f"Cannot create {n_splits} folds from only {values.size} entities")
@@ -96,7 +127,8 @@ def _entity_split(values: Sequence[str], seed: int, n_splits: int, val_ratio_of_
 
         val_size = int(len(values) * val_ratio_of_full)
         val_size = max(1, min(val_size, len(train_val_values) - 1))
-        rng = np.random.RandomState(seed + fold_id * 1000)  # fold-dependent seed for independent val draws
+        validation_seed = seed + fold_id * 1000 if fold_dependent_validation_seed else seed
+        rng = np.random.RandomState(validation_seed)
         perm = rng.permutation(len(train_val_values))
         val_values = train_val_values[perm[:val_size]]
         train_values = train_val_values[perm[val_size:]]
@@ -223,13 +255,61 @@ def create_fusecdr_folds(
     return folds
 
 
+def create_historical_random_folds(
+    response_pairs: pd.DataFrame,
+    seed: int = 0,
+    n_splits: int = 5,
+    val_ratio_of_full: float = 0.1,
+) -> List[Dict[str, pd.DataFrame]]:
+    """Reproduce the random-fold policy used by the saved benchmark runs."""
+    canonical = canonicalize_response_pairs(response_pairs)
+    if canonical.empty:
+        raise ValueError("No response pairs available for fold generation")
+
+    allpairs = canonical[["cell_id", "drug_id", "label"]].to_numpy(dtype=object)
+    splitter = KFold(n_splits=n_splits, shuffle=True, random_state=seed)
+    folds: List[Dict[str, pd.DataFrame]] = []
+
+    for fold_id, (train_val_idx, test_idx) in enumerate(splitter.split(allpairs), start=1):
+        test_df = canonical.iloc[test_idx].reset_index(drop=True)
+        val_size = int(len(allpairs) * val_ratio_of_full)
+        val_size = max(1, min(val_size, len(train_val_idx) - 1))
+
+        # Historical runs restarted the validation RNG from the base seed for
+        # each outer fold. Model training still uses a distinct seed per fold.
+        perm = np.random.RandomState(seed).permutation(len(train_val_idx))
+        val_idx = train_val_idx[perm[:val_size]]
+        train_idx = train_val_idx[perm[val_size:]]
+
+        train_df = canonical.iloc[train_idx].reset_index(drop=True)
+        val_df = canonical.iloc[val_idx].reset_index(drop=True)
+        folds.append(
+            _build_fold_record(
+                fold_id=fold_id,
+                protocol=PROTOCOL_RANDOM,
+                train_df=train_df,
+                val_df=val_df,
+                test_df=test_df,
+                train_cells=sorted(train_df["cell_id"].unique()),
+                val_cells=sorted(val_df["cell_id"].unique()),
+                test_cells=sorted(test_df["cell_id"].unique()),
+                train_drugs=sorted(train_df["drug_id"].unique()),
+                val_drugs=sorted(val_df["drug_id"].unique()),
+                test_drugs=sorted(test_df["drug_id"].unique()),
+            )
+        )
+    return folds
+
+
 def _create_unseen_cell_folds(
     canonical: pd.DataFrame,
     seed: int,
     n_splits: int,
     val_ratio_of_full: float,
+    historical_validation: bool = False,
 ) -> List[Dict]:
-    cell_folds = _entity_split(canonical["cell_id"].unique(), seed, n_splits, val_ratio_of_full)
+    entity_splitter = _historical_entity_split if historical_validation else _entity_split
+    cell_folds = entity_splitter(canonical["cell_id"].unique(), seed, n_splits, val_ratio_of_full)
     all_drugs = sorted(canonical["drug_id"].unique().tolist())
     folds: List[Dict] = []
     for split in cell_folds:
@@ -259,8 +339,10 @@ def _create_unseen_drug_folds(
     seed: int,
     n_splits: int,
     val_ratio_of_full: float,
+    historical_validation: bool = False,
 ) -> List[Dict]:
-    drug_folds = _entity_split(canonical["drug_id"].unique(), seed, n_splits, val_ratio_of_full)
+    entity_splitter = _historical_entity_split if historical_validation else _entity_split
+    drug_folds = entity_splitter(canonical["drug_id"].unique(), seed, n_splits, val_ratio_of_full)
     all_cells = sorted(canonical["cell_id"].unique().tolist())
     folds: List[Dict] = []
     for split in drug_folds:
@@ -290,9 +372,11 @@ def _create_unseen_both_folds(
     seed: int,
     n_splits: int,
     val_ratio_of_full: float,
+    historical_validation: bool = False,
 ) -> List[Dict]:
-    cell_folds = _entity_split(canonical["cell_id"].unique(), seed, n_splits, val_ratio_of_full)
-    drug_folds = _entity_split(canonical["drug_id"].unique(), seed, n_splits, val_ratio_of_full)
+    entity_splitter = _historical_entity_split if historical_validation else _entity_split
+    cell_folds = entity_splitter(canonical["cell_id"].unique(), seed, n_splits, val_ratio_of_full)
+    drug_folds = entity_splitter(canonical["drug_id"].unique(), seed, n_splits, val_ratio_of_full)
     folds: List[Dict] = []
     for cell_split, drug_split in zip(cell_folds, drug_folds):
         train_df = _pairs_for_entities(canonical, allowed_cells=cell_split["train"], allowed_drugs=drug_split["train"])
@@ -338,6 +422,52 @@ def create_protocol_folds(
     return _create_unseen_both_folds(canonical, seed, n_splits, val_ratio_of_full)
 
 
+def create_historical_protocol_folds(
+    response_pairs: pd.DataFrame,
+    protocol: str = PROTOCOL_RANDOM,
+    seed: int = 0,
+    n_splits: int = 5,
+    val_ratio_of_full: float = 0.1,
+) -> List[Dict]:
+    """Reproduce the split policy used by the saved strict benchmark runs."""
+    canonical = canonicalize_response_pairs(response_pairs)
+    if canonical.empty:
+        raise ValueError("No response pairs available for fold generation")
+    if protocol not in SUPPORTED_PROTOCOLS:
+        raise ValueError(f"Unsupported protocol '{protocol}'. Expected one of {SUPPORTED_PROTOCOLS}")
+
+    if protocol == PROTOCOL_RANDOM:
+        return create_historical_random_folds(
+            canonical,
+            seed=seed,
+            n_splits=n_splits,
+            val_ratio_of_full=val_ratio_of_full,
+        )
+    if protocol == PROTOCOL_UNSEEN_CELLS:
+        return _create_unseen_cell_folds(
+            canonical,
+            seed,
+            n_splits,
+            val_ratio_of_full,
+            historical_validation=True,
+        )
+    if protocol == PROTOCOL_UNSEEN_DRUGS:
+        return _create_unseen_drug_folds(
+            canonical,
+            seed,
+            n_splits,
+            val_ratio_of_full,
+            historical_validation=True,
+        )
+    return _create_unseen_both_folds(
+        canonical,
+        seed,
+        n_splits,
+        val_ratio_of_full,
+        historical_validation=True,
+    )
+
+
 def save_protocol_folds(
     response_pairs: pd.DataFrame,
     output_dir: str,
@@ -370,6 +500,151 @@ def save_protocol_folds(
         fold["test"].to_csv(os.path.join(fold_dir, "test.csv"), index=False)
         with open(os.path.join(fold_dir, "entities.json"), "w") as handle:
             json.dump(fold["entities"], handle, indent=2)
+    return output_dir
+
+
+def save_historical_random_folds(
+    response_pairs: pd.DataFrame,
+    output_dir: str,
+    seed: int = 0,
+    n_splits: int = 5,
+    val_ratio_of_full: float = 0.1,
+) -> str:
+    """Write a versioned snapshot of the historical random-fold protocol."""
+    return save_historical_protocol_folds(
+        response_pairs=response_pairs,
+        output_dir=output_dir,
+        protocol=PROTOCOL_RANDOM,
+        seed=seed,
+        n_splits=n_splits,
+        val_ratio_of_full=val_ratio_of_full,
+    )
+
+
+def save_historical_protocol_folds(
+    response_pairs: pd.DataFrame,
+    output_dir: str,
+    protocol: str = PROTOCOL_RANDOM,
+    seed: int = 0,
+    n_splits: int = 5,
+    val_ratio_of_full: float = 0.1,
+) -> str:
+    """Write folds using the historical strict-benchmark split policy."""
+    ensure_dir(output_dir)
+    folds = create_historical_protocol_folds(
+        response_pairs=response_pairs,
+        protocol=protocol,
+        seed=seed,
+        n_splits=n_splits,
+        val_ratio_of_full=val_ratio_of_full,
+    )
+    manifest = {
+        "protocol": protocol,
+        "seed": seed,
+        "n_splits": n_splits,
+        "val_ratio_of_full": val_ratio_of_full,
+        "split_generator": "historical_random_v1" if protocol == PROTOCOL_RANDOM else "historical_inductive_v1",
+        "validation_seed_policy": "fixed_base_seed_per_outer_fold",
+    }
+    with open(os.path.join(output_dir, "split_manifest.json"), "w") as handle:
+        json.dump(manifest, handle, indent=2)
+
+    for fold in folds:
+        fold_dir = ensure_dir(os.path.join(output_dir, f"fold_{fold['fold']}"))
+        fold["train"].to_csv(os.path.join(fold_dir, "train.csv"), index=False)
+        fold["val"].to_csv(os.path.join(fold_dir, "val.csv"), index=False)
+        fold["test"].to_csv(os.path.join(fold_dir, "test.csv"), index=False)
+        with open(os.path.join(fold_dir, "entities.json"), "w") as handle:
+            json.dump(fold["entities"], handle, indent=2)
+    return output_dir
+
+
+def _validate_historical_protocol_folds(
+    output_dir: str,
+    expected_folds: List[Dict],
+    protocol: str,
+    seed: int,
+    n_splits: int,
+    val_ratio_of_full: float,
+) -> None:
+    manifest = load_split_manifest(output_dir)
+    expected_manifest = {
+        "protocol": protocol,
+        "seed": seed,
+        "n_splits": n_splits,
+        "val_ratio_of_full": val_ratio_of_full,
+    }
+    for key, expected_value in expected_manifest.items():
+        if manifest.get(key) != expected_value:
+            raise ValueError(
+                f"Historical split manifest mismatch at {output_dir}: "
+                f"{key}={manifest.get(key)!r}, expected {expected_value!r}"
+            )
+
+    for expected_fold in expected_folds:
+        fold_id = expected_fold["fold"]
+        fold_dir = os.path.join(output_dir, f"fold_{fold_id}")
+        for split_name in ("train", "val", "test"):
+            path = os.path.join(fold_dir, f"{split_name}.csv")
+            observed = canonicalize_response_pairs(pd.read_csv(path))
+            if not observed.equals(expected_fold[split_name]):
+                raise ValueError(
+                    f"Saved {protocol} fold {fold_id} {split_name} split does not match "
+                    "the historical split generated from prepared response_pairs.csv"
+                )
+
+        entities_path = os.path.join(fold_dir, "entities.json")
+        with open(entities_path) as handle:
+            observed_entities = json.load(handle)
+        if observed_entities != expected_fold["entities"]:
+            raise ValueError(
+                f"Saved {protocol} fold {fold_id} entities do not match the historical split"
+            )
+
+
+def ensure_historical_protocol_folds(
+    response_pairs_path: str,
+    output_dir: str,
+    protocol: str = PROTOCOL_RANDOM,
+    seed: int = 0,
+    n_splits: int = 5,
+    val_ratio_of_full: float = 0.1,
+) -> str:
+    """Create missing historical folds or fail if existing folds have drifted."""
+    required_paths = [os.path.join(output_dir, "split_manifest.json")]
+    for fold_id in range(1, n_splits + 1):
+        fold_dir = os.path.join(output_dir, f"fold_{fold_id}")
+        required_paths.extend(
+            os.path.join(fold_dir, filename)
+            for filename in ("train.csv", "val.csv", "test.csv", "entities.json")
+        )
+
+    response_pairs = pd.read_csv(response_pairs_path)
+    if not all(os.path.isfile(path) for path in required_paths):
+        return save_historical_protocol_folds(
+            response_pairs=response_pairs,
+            output_dir=output_dir,
+            protocol=protocol,
+            seed=seed,
+            n_splits=n_splits,
+            val_ratio_of_full=val_ratio_of_full,
+        )
+
+    expected_folds = create_historical_protocol_folds(
+        response_pairs=response_pairs,
+        protocol=protocol,
+        seed=seed,
+        n_splits=n_splits,
+        val_ratio_of_full=val_ratio_of_full,
+    )
+    _validate_historical_protocol_folds(
+        output_dir=output_dir,
+        expected_folds=expected_folds,
+        protocol=protocol,
+        seed=seed,
+        n_splits=n_splits,
+        val_ratio_of_full=val_ratio_of_full,
+    )
     return output_dir
 
 

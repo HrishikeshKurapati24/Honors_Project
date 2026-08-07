@@ -1,0 +1,8 @@
+Locked Flexible FUSE-CDR Results
+========================================
+Elapsed: 1534.06 s
+K-Fold: 5
+Mean AUC:  0.9195 +/- 0.0013
+Mean AUPR: 0.8885 +/- 0.0035
+Mean F1:   0.8108 +/- 0.0032
+Mean ACC:  0.8370 +/- 0.0038

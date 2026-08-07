@@ -16,7 +16,6 @@ from typing import Dict, List, Literal, Optional, Tuple
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from torch.nn import Linear, ReLU, Sequential
 from torch_geometric.nn import (
     GINConv,
     HGTConv,
@@ -624,10 +623,23 @@ class FUSECDR(nn.Module):
         drug_num_gnn_layers: int = 3,
         drug_encoder_type: str = "graph",
         drug_input_dim: Optional[int] = None,
+        num_local_layers: Optional[int] = None,
+        num_global_layers: Optional[int] = None,
     ):
         super().__init__()
         self.hidden_dim = hidden_dim
         self.drug_encoder_type = drug_encoder_type
+
+        local_layer_count = num_layers if num_local_layers is None else num_local_layers
+        global_layer_count = num_layers if num_global_layers is None else num_global_layers
+        if local_layer_count < 0 or global_layer_count < 0:
+            raise ValueError("FUSECDR graph depths cannot be negative")
+        if local_layer_count == 0 and global_layer_count == 0:
+            raise ValueError("FUSECDR requires at least one graph branch")
+        self.num_local_layers = int(local_layer_count)
+        self.num_global_layers = int(global_layer_count)
+        self.use_local_branch = self.num_local_layers > 0
+        self.use_global_branch = self.num_global_layers > 0
 
         if drug_encoder_type == "graph":
             self.drug_module = DrugRepresentationModule(
@@ -659,22 +671,26 @@ class FUSECDR(nn.Module):
             raise ValueError("Metadata node_types must be exactly ['drug', 'cell']")
 
         self.local_convs = nn.ModuleList()
-        for _ in range(num_layers):
+        for _ in range(self.num_local_layers):
             conv_dict = {
                 edge_type: SAGEConv(hidden_dim, hidden_dim) for edge_type in edge_types
             }
             self.local_convs.append(HeteroConv(conv_dict, aggr="sum"))
 
         self.global_convs = nn.ModuleList()
-        for _ in range(num_layers):
+        for _ in range(self.num_global_layers):
             self.global_convs.append(
                 HGTConv(hidden_dim, hidden_dim, metadata=metadata, heads=heads)
             )
         self.global_norms = nn.ModuleList(
-            [nn.LayerNorm(hidden_dim) for _ in range(num_layers)]
+            [nn.LayerNorm(hidden_dim) for _ in range(self.num_global_layers)]
         )
 
-        self.fusion = BranchFusion(hidden_dim)
+        self.fusion = (
+            BranchFusion(hidden_dim)
+            if self.use_local_branch and self.use_global_branch
+            else None
+        )
         self.dropout_layer = nn.Dropout(dropout)
 
         self.predictor = nn.Sequential(
@@ -688,6 +704,53 @@ class FUSECDR(nn.Module):
             nn.ReLU(),
             nn.Linear(hidden_dim, hidden_dim),
         )
+
+    def encode_local(
+        self,
+        x_dict: Dict[str, torch.Tensor],
+        hetero_graph_edge_index_dict: Dict[Tuple[str, str, str], torch.Tensor],
+    ) -> Dict[str, torch.Tensor]:
+        if not self.local_convs:
+            raise RuntimeError("The local GraphSAGE branch is disabled for this model")
+        h_local_dict = x_dict.copy()
+        for conv in self.local_convs:
+            h_local_dict = conv(h_local_dict, hetero_graph_edge_index_dict)
+            h_local_dict = {
+                key: self.dropout_layer(F.relu(val))
+                for key, val in h_local_dict.items()
+            }
+        return h_local_dict
+
+    def encode_global(
+        self,
+        x_dict: Dict[str, torch.Tensor],
+        hetero_graph_edge_index_dict: Dict[Tuple[str, str, str], torch.Tensor],
+    ) -> Dict[str, torch.Tensor]:
+        if not self.global_convs:
+            raise RuntimeError("The global HGT branch is disabled for this model")
+        h_global_dict = x_dict.copy()
+        for index, conv in enumerate(self.global_convs):
+            h_global_dict = conv(h_global_dict, hetero_graph_edge_index_dict)
+            h_global_dict = {
+                key: self.dropout_layer(F.relu(self.global_norms[index](val)))
+                for key, val in h_global_dict.items()
+            }
+        return h_global_dict
+
+    def fuse_branches(
+        self,
+        h_local_dict: Dict[str, torch.Tensor],
+        h_global_dict: Dict[str, torch.Tensor],
+    ) -> Tuple[Dict[str, torch.Tensor], Dict[str, torch.Tensor]]:
+        if self.fusion is None:
+            raise RuntimeError("Branch fusion requires both graph branches")
+        h_fused_dict: Dict[str, torch.Tensor] = {}
+        fusion_weights: Dict[str, torch.Tensor] = {}
+        for key in h_local_dict:
+            fused, weights = self.fusion(h_local_dict[key], h_global_dict[key])
+            h_fused_dict[key] = fused
+            fusion_weights[key] = weights
+        return h_fused_dict, fusion_weights
 
     def forward(
         self,
@@ -708,27 +771,26 @@ class FUSECDR(nn.Module):
         x_cell = self.cell_line_module(omics_data)
         x_dict = {"drug": x_drug, "cell": x_cell}
 
-        h_local_dict = x_dict.copy()
-        for conv in self.local_convs:
-            h_local_dict = conv(h_local_dict, hetero_graph_edge_index_dict)
-            out_dict = {}
-            for key, val in h_local_dict.items():
-                out_dict[key] = self.dropout_layer(F.relu(val))
-            h_local_dict = out_dict
-
-        h_global_dict = x_dict.copy()
-        for i, conv in enumerate(self.global_convs):
-            h_global_dict = conv(h_global_dict, hetero_graph_edge_index_dict)
-            out_dict = {}
-            for key, val in h_global_dict.items():
-                val = self.global_norms[i](val)
-                out_dict[key] = self.dropout_layer(F.relu(val))
-            h_global_dict = out_dict
-
-        h_fused_dict = {}
-        for key in x_dict.keys():
-            fused, _ = self.fusion(h_local_dict[key], h_global_dict[key])
-            h_fused_dict[key] = fused
+        h_local_dict = (
+            self.encode_local(x_dict, hetero_graph_edge_index_dict)
+            if self.use_local_branch
+            else None
+        )
+        h_global_dict = (
+            self.encode_global(x_dict, hetero_graph_edge_index_dict)
+            if self.use_global_branch
+            else None
+        )
+        if h_local_dict is not None and h_global_dict is not None:
+            h_fused_dict, fusion_weights = self.fuse_branches(h_local_dict, h_global_dict)
+        elif h_local_dict is not None:
+            h_fused_dict = h_local_dict
+            fusion_weights = {}
+        elif h_global_dict is not None:
+            h_fused_dict = h_global_dict
+            fusion_weights = {}
+        else:
+            raise RuntimeError("FUSECDR has no active graph branch")
 
         logits = None
         if drug_indices is not None and cell_indices is not None:
@@ -741,6 +803,10 @@ class FUSECDR(nn.Module):
             "node_embeddings": h_fused_dict,
             "drug_embeddings": h_fused_dict["drug"],
             "cell_embeddings": h_fused_dict["cell"],
+            "input_embeddings": x_dict,
+            "local_embeddings": h_local_dict,
+            "global_embeddings": h_global_dict,
+            "fusion_weights": fusion_weights,
             "logits": logits,
         }
 

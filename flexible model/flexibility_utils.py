@@ -140,7 +140,12 @@ def build_dataset_view(
         shutil.rmtree(output_dir)
     output_dir = ensure_dir(output_dir)
     base_dataset_root = Path(base_dataset_root)
-    include_set = set(include_stems or list_real_omics_stems(base_dataset_root))
+    source_stems = (
+        list_real_omics_stems(base_dataset_root)
+        if include_stems is None
+        else include_stems
+    )
+    include_set = set(source_stems)
     exclude_set = set(exclude_stems or [])
     selected_stems = sorted(include_set - exclude_set)
 
@@ -179,6 +184,11 @@ def build_pathway_shards(
     if shard_count <= 0:
         raise ValueError("shard_count must be positive")
     pathway = pd.read_csv(Path(base_dataset_root) / "pathway.csv", index_col=0)
+    if shard_count > pathway.shape[1]:
+        raise ValueError(
+            f"shard_count ({shard_count}) cannot exceed the number of pathway "
+            f"features ({pathway.shape[1]})"
+        )
     column_shards = np.array_split(pathway.columns.to_numpy(), shard_count)
     shards: Dict[str, pd.DataFrame] = {}
     for shard_index, columns in enumerate(column_shards, start=1):

@@ -40,6 +40,17 @@ def _empty_pairs() -> pd.DataFrame:
     return pd.DataFrame(columns=["cell_id", "drug_id", "label"])
 
 
+def checkpoint_path(results_dir: str, fold: int) -> str:
+    return os.path.join(results_dir, "checkpoints", f"fold_{fold}.pt")
+
+
+def _cpu_state_dict(model: nn.Module) -> Dict[str, torch.Tensor]:
+    return {
+        name: value.detach().cpu()
+        for name, value in model.state_dict().items()
+    }
+
+
 def _concat_pairs(*tables: pd.DataFrame) -> pd.DataFrame:
     non_empty = [table for table in tables if table is not None and not table.empty]
     if not non_empty:
@@ -137,6 +148,9 @@ def run(
     warmup_epochs: int = 10,
     max_contrastive_pairs: int = 2048,
     fold_ids: List[int] | None = None,
+    num_local_layers: int | None = None,
+    num_global_layers: int | None = None,
+    save_checkpoints: bool = False,
 ) -> Dict:
     set_seed(seed)
     module = _load_fusecdr_module(root_dir)
@@ -162,6 +176,12 @@ def run(
             "epigenomics_methylation",
         ]
     fusion_dim = fusion_channels if fusion_channels is not None else hidden_channels
+    resolved_local_layers = num_layers if num_local_layers is None else num_local_layers
+    resolved_global_layers = num_layers if num_global_layers is None else num_global_layers
+    if resolved_local_layers < 0 or resolved_global_layers < 0:
+        raise ValueError("FUSECDR strict graph depths cannot be negative")
+    if resolved_local_layers == 0 and resolved_global_layers == 0:
+        raise ValueError("FUSECDR strict runs require at least one graph branch")
 
     loaded = module.dataload_flexible(prepared_dir, selected_omics=selected_omics)
     metadata = (
@@ -176,6 +196,12 @@ def run(
     fold_metrics = []
     prediction_rows_by_fold = {}
     completed_folds = {int(row["fold"]): row for row in load_completed_folds(results_dir)}
+    if save_checkpoints:
+        completed_folds = {
+            fold: row
+            for fold, row in completed_folds.items()
+            if os.path.isfile(checkpoint_path(results_dir, fold))
+        }
 
     for fold in resolve_fold_ids(split_dir, fold_ids):
         if fold in completed_folds:
@@ -255,6 +281,8 @@ def run(
             num_layers=num_layers,
             heads=heads,
             drug_num_gnn_layers=drug_num_gnn_layers,
+            num_local_layers=resolved_local_layers,
+            num_global_layers=resolved_global_layers,
         ).to(runtime_device)
 
         optimizer = torch.optim.Adam(model.parameters(), lr=lr, weight_decay=weight_decay)
@@ -267,6 +295,7 @@ def run(
 
         best_val_auc = -1.0
         best_state = None
+        best_epoch = 0
         for epoch in range(epochs):
             print(f"> Fold {fold} - Epoch {epoch + 1}/{epochs}", flush=True)
             module.train_one_epoch(
@@ -303,11 +332,40 @@ def run(
             if val_auc > best_val_auc:
                 best_val_auc = val_auc
                 best_state = copy.deepcopy(model.state_dict())
+                best_epoch = epoch + 1
 
         if best_state is None:
             raise RuntimeError("FUSECDR failed to capture a best checkpoint")
 
         model.load_state_dict(best_state)
+        parameter_count = int(sum(parameter.numel() for parameter in model.parameters() if parameter.requires_grad))
+        if save_checkpoints:
+            destination = checkpoint_path(results_dir, fold)
+            os.makedirs(os.path.dirname(destination), exist_ok=True)
+            torch.save(
+                {
+                    "fold": fold,
+                    "seed": seed,
+                    "fold_seed": seed + fold * 1000,
+                    "best_epoch": best_epoch,
+                    "best_val_auc": float(best_val_auc),
+                    "parameter_count": parameter_count,
+                    "selected_omics": list(selected_omics),
+                    "model_config": {
+                        "hidden_dim": hidden_channels,
+                        "output_dim": output_channels,
+                        "fusion_dim": fusion_dim,
+                        "dropout": dropout,
+                        "num_layers": num_layers,
+                        "num_local_layers": resolved_local_layers,
+                        "num_global_layers": resolved_global_layers,
+                        "heads": heads,
+                        "drug_num_gnn_layers": drug_num_gnn_layers,
+                    },
+                    "state_dict": _cpu_state_dict(model),
+                },
+                destination,
+            )
         best_test_predictions = _predict_full_matrix(
             module=module,
             model=model,
@@ -327,6 +385,15 @@ def run(
             "f1": metrics["f1"],
             "acc": metrics["acc"],
         }
+        if save_checkpoints:
+            fold_metric.update(
+                {
+                    "best_epoch": best_epoch,
+                    "parameter_count": parameter_count,
+                    "num_local_layers": resolved_local_layers,
+                    "num_global_layers": resolved_global_layers,
+                }
+            )
         prediction_rows = build_prediction_rows_from_mask(
             cell_ids=prediction_cell_ids,
             drug_ids=prediction_drug_ids,
@@ -361,6 +428,17 @@ def run(
                 "top_k": top_k,
                 "contrastive_weight": contrastive_weight,
                 "temperature": temperature,
+                "weight_decay": weight_decay,
+                "dropout": dropout,
+                "num_layers": num_layers,
+                "num_local_layers": resolved_local_layers,
+                "num_global_layers": resolved_global_layers,
+                "heads": heads,
+                "drug_num_gnn_layers": drug_num_gnn_layers,
+                "epochs": epochs,
+                "seed": seed,
             },
+            "checkpoints_saved": save_checkpoints,
+            "checkpoint_pattern": "checkpoints/fold_{fold}.pt" if save_checkpoints else None,
         },
     )

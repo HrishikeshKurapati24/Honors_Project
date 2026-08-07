@@ -1,0 +1,31 @@
+{
+  "dataset": "dataset-2",
+  "protocol": "random",
+  "seed": 0,
+  "n_splits": 5,
+  "split_generator": "historical_random_v1",
+  "validation_seed_policy": "fixed_base_seed_per_outer_fold",
+  "prepared_response_pairs": 117330,
+  "canonical_split_dir": "/content/drive/MyDrive/CDRP models testing/3OmicsStrictBenchmarking/splits/random/dataset-2",
+  "folds": [
+    {
+      "fold": 5,
+      "train_pairs": 82131,
+      "val_pairs": 11733,
+      "test_pairs": 23466,
+      "saved_prediction_matches": {
+        "DeepTTC": true,
+        "FUSECDR": true,
+        "GADRP": true,
+        "GraphCDR": true,
+        "GraphDRP": true,
+        "RedCDR": true
+      },
+      "sha256": {
+        "train": "c273f54febaf0aa82c9aafbf8470fb5c70c94e0dd79e82f770b06307b78fe666",
+        "val": "1c60ab6f4506159748809666af0880f562625685a4974d10ce1cd4530cb2ced4",
+        "test": "993e7f21eba7ecafac2f773d0f6068c29bb38c18c151344bec78dc9908539f67"
+      }
+    }
+  ]
+}
